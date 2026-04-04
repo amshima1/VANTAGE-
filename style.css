@@ -1,1 +1,294 @@
+/* VANTAGE - Brand Identity Variables */
+:root {
+    --gold: #C5A059;       /* Premium Gold Accents */
+    --black: #0A0A0A;      /* Deep Luxury Black */
+    --white: #FFFFFF;      /* Clean White */
+    --gray: #1F1F1F;       /* Subtle Borders */
+    --transition: 0.4s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--black);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+[span_1](start_span)/* 1. The Marquee (Top Header)[span_1](end_span) */
+.vantage-marquee {
+    background: var(--gold);
+    color: var(--black);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.vantage-marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+}
+
+@keyframes marquee {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
+[span_2](start_span)/* 2. Premium Navigation[span_2](end_span) */
+.vantage-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    background: rgba(10, 10, 10, 0.98);
+    border-bottom: 1px solid var(--gray);
+    position: sticky;
+    top: 40px;
+    z-index: 999;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+[span_3](start_span)[span_4](start_span)/* 3. Hero Slider (Home Page)[span_3](end_span)[span_4](end_span) */
+.vantage-slider {
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+}
+
+.slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 40px;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+}
+
+.overlay h2 {
+    font-size: 3.5rem;
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+    color: var(--gold);
+}
+
+[span_5](start_span)[span_6](start_span)/* 4. Collections Grid (Products)[span_5](end_span)[span_6](end_span) */
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    padding: 0 5%;
+}
+
+.vantage-card {
+    background: #111;
+    padding: 20px;
+    border: 1px solid var(--gray);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.vantage-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+}
+
+[span_7](start_span)[span_8](start_span)/* 5. Star Ratings Module[span_7](end_span)[span_8](end_span) */
+.star-rating {
+    margin: 15px 0;
+}
+
+.star-rating span {
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gray);
+    transition: color 0.2s;
+}
+
+.star-rating span.hovered, 
+.star-rating span.selected {
+    color: var(--gold);
+}
+
+.rating-label {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: #888;
+}
+
+[span_9](start_span)[span_10](start_span)/* 6. AI Assistant (Chatbox)[span_9](end_span)[span_10](end_span) */
+.aura-chat {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 320px;
+    background: var(--black);
+    border: 1px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    z-index: 1001;
+}
+
+#chatHeader {
+    background: var(--gold);
+    color: var(--black);
+    padding: 12px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#chatWindow {
+    height: 250px;
+    padding: 15px;
+    overflow-y: auto;
+    background: #0F0F0F;
+    font-size: 0.85rem;
+}
+
+.input-area {
+    display: flex;
+    border-top: 1px solid var(--gray);
+}
+
+.input-area input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 12px;
+    outline: none;
+}
+
+.input-area button {
+    background: var(--gold);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+[span_11](start_span)[span_12](start_span)/* 7. Appointment Form[span_11](end_span)[span_12](end_span) */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #111;
+    padding: 40px;
+    border: 1px solid var(--gray);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #000;
+    border: 1px solid var(--gray);
+    color: white;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--gold);
+}
+
+.vantage-btn {
+    width: 100%;
+    padding: 18px;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    font-weight: 800;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.vantage-btn:hover {
+    background: var(--white);
+}
+
+[span_13](start_span)/* Page Transitions[span_13](end_span) */
+.page {
+    display: none;
+    padding: 120px 8% 60px;
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
