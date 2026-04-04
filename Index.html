@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VANTAGE | Elite Fashion</title>
+    <link rel="stylesheet" href="vantage.css">
+</head>
+<body>
+    <div class="vantage-marquee">
+        <span>EXCLUSIVE: LAGOS FASHION WEEK - OCT 12, 2026 | MIVA SUMMER GALA - JULY 05, 2026 | BOOK YOUR PRIVATE FITTING NOW</span>
+    </div>
+
+    <nav class="vantage-nav">
+        <div class="logo">VANTAGE</div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showPage('home')">HOME</a></li>
+            <li><a href="#" onclick="showPage('products')">COLLECTIONS</a></li>
+            <li><a href="#" onclick="showPage('trustees')">THE BOARD</a></li>
+            <li><a href="#" onclick="showPage('events')">EVENTS</a></li>
+            <li><a href="#" onclick="showPage('appointments')">APPOINTMENTS</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="page active">
+        <div class="vantage-slider">
+            <div class="slider-track" id="sliderTrack">
+                <div class="slide" style="background-image: url('silk.jpg');">
+                    <div class="overlay"><h2>MIDNIGHT SILK</h2><p>Elegance that speaks without words.</p></div>
+                </div>
+                <div class="slide" style="background-image: url('suit.jpg');">
+                    <div class="overlay"><h2>EXECUTIVE SLIM-FIT</h2><p>Professional precision for the boardroom.</p></div>
+                </div>
+            </div>
+            <div class="slider-controls" id="sliderDots"></div>
+        </div>
+    </section>
+
+    <section id="products" class="page">
+        <h2 class="section-title">THE COLLECTIONS</h2>
+        <div class="product-grid">
+            <div class="vantage-card" data-id="v1">
+                <div class="img-placeholder"></div>
+                <h3>Midnight Silk Gown</h3>
+                <div class="star-rating" onmouseleave="clearHover('v1')">
+                    <span onclick="setRating('v1', 1)" onmouseover="hoverRating('v1', 1)">★</span>
+                    <span onclick="setRating('v1', 2)" onmouseover="hoverRating('v1', 2)">★</span>
+                    <span onclick="setRating('v1', 3)" onmouseover="hoverRating('v1', 3)">★</span>
+                    <span onclick="setRating('v1', 4)" onmouseover="hoverRating('v1', 4)">★</span>
+                    <span onclick="setRating('v1', 5)" onmouseover="hoverRating('v1', 5)">★</span>
+                </div>
+                <p class="rating-label" id="label-v1">Tap to rate</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="appointments" class="page">
+        <div class="form-container">
+            <h2>PRIVATE APPOINTMENT</h2>
+            <form id="appointmentForm">
+                <input type="text" id="clientName" placeholder="Full Name" required>
+                <input type="date" id="fitDate" required>
+                <select id="serviceType">
+                    <option>Custom Fitting</option>
+                    <option>Wardrobe Consulting</option>
+                </select>
+                <textarea id="clientFeedback" placeholder="Share special requests or feedback..."></textarea>
+                <button type="submit" class="vantage-btn">REQUEST ACCESS</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="aura-chat">
+        <div id="chatHeader">ASSISTANT AURA</div>
+        <div id="chatWindow"></div>
+        <div class="input-area">
+            <input type="text" id="chatInput" placeholder="How may I assist you?">
+            <button onclick="sendMessage()">SEND</button>
+        </div>
+    </div>
+
+    <script src="vantage-core.js"></script>
+</body>
+</html>
 
