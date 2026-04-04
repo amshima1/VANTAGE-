@@ -1,110 +1,116 @@
-/* VANTAGE - Brand Identity Variables */
+/* VANTAGE - PREMIUM FASHION CORE STYLESHEET 
+    Brand Colors: Gold (#C5A059), Black (#0A0A0A), White (#FFFFFF)
+*/
+
 :root {
-    --gold: #C5A059;       /* Premium Gold Accents */
-    --black: #0A0A0A;      /* Deep Luxury Black */
-    --white: #FFFFFF;      /* Clean White */
-    --gray: #1F1F1F;       /* Subtle Borders */
-    --transition: 0.4s ease;
+    --gold: #C5A059;
+    --black: #0A0A0A;
+    --white: #FFFFFF;
+    --dark-gray: #1A1A1A;
+    --light-gray: #333333;
+    --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--font-main);
     background-color: var(--black);
     color: var(--white);
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-[span_1](start_span)/* 1. The Marquee (Top Header)[span_1](end_span) */
+/* --- MODULE 1: PREMIUM MARQUEE --- */
 .vantage-marquee {
     background: var(--gold);
     color: var(--black);
-    height: 40px;
+    height: 45px;
     display: flex;
     align-items: center;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    overflow: hidden;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1100;
+    [span_1](start_span)overflow: hidden;[span_1](end_span)
 }
 
 .vantage-marquee span {
     display: inline-block;
-    padding-left: 100%;
-    animation: marquee 20s linear infinite;
     white-space: nowrap;
+    padding-left: 100%;
+    [span_2](start_span)animation: marquee-scroll 25s linear infinite;[span_2](end_span)
 }
 
-@keyframes marquee {
+@keyframes marquee-scroll {
     0% { transform: translate(0, 0); }
     100% { transform: translate(-100%, 0); }
 }
 
-[span_2](start_span)/* 2. Premium Navigation[span_2](end_span) */
+/* --- MODULE 2: NAVIGATION --- */
 .vantage-nav {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--dark-gray);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 25px 8%;
-    background: rgba(10, 10, 10, 0.98);
-    border-bottom: 1px solid var(--gray);
     position: sticky;
-    top: 40px;
-    z-index: 999;
+    top: 45px;
+    z-index: 1000;
 }
 
 .logo {
     font-size: 1.8rem;
     font-weight: 900;
-    letter-spacing: 6px;
+    letter-spacing: 8px;
     color: var(--gold);
-    text-transform: uppercase;
+    text-decoration: none;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 35px;
+    gap: 40px;
 }
 
 .nav-links a {
     color: var(--white);
     text-decoration: none;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
 }
 
 .nav-links a:hover {
     color: var(--gold);
 }
 
-[span_3](start_span)[span_4](start_span)/* 3. Hero Slider (Home Page)[span_3](end_span)[span_4](end_span) */
+/* --- MODULE 3: IMAGE SLIDER (HOME) --- */
 .vantage-slider {
     width: 100%;
-    height: 80vh;
+    height: 85vh;
     overflow: hidden;
-    position: relative;
-    background: #000;
+    [span_3](start_span)position: relative;[span_3](end_span)
 }
 
 .slider-track {
     display: flex;
     width: 100%;
     height: 100%;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    [span_4](start_span)transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);[span_4](end_span)
 }
 
 .slide {
@@ -112,183 +118,184 @@ body {
     height: 100%;
     background-size: cover;
     background-position: center;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    position: relative;
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 40px;
-    border: 1px solid rgba(197, 160, 89, 0.3);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 60px;
+    border: 1px solid rgba(197, 160, 89, 0.2);
 }
 
 .overlay h2 {
-    font-size: 3.5rem;
-    letter-spacing: 8px;
-    margin-bottom: 10px;
+    font-size: 4rem;
+    letter-spacing: 12px;
     color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 15px;
 }
 
-[span_5](start_span)[span_6](start_span)/* 4. Collections Grid (Products)[span_5](end_span)[span_6](end_span) */
+/* --- MODULE 4: COLLECTIONS & RATINGS --- */
 .section-title {
     text-align: center;
-    margin-bottom: 50px;
-    font-size: 2rem;
-    letter-spacing: 4px;
+    padding: 80px 0 40px;
+    font-size: 2.2rem;
+    letter-spacing: 5px;
     color: var(--gold);
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    padding: 0 5%;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    padding: 0 8% 100px;
 }
 
 .vantage-card {
-    background: #111;
-    padding: 20px;
-    border: 1px solid var(--gray);
+    background: #0F0F0F;
+    border: 1px solid var(--dark-gray);
+    padding: 30px;
     text-align: center;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
 }
 
 .vantage-card:hover {
     border-color: var(--gold);
-    transform: translateY(-5px);
+    transform: translateY(-10px);
 }
 
-[span_7](start_span)[span_8](start_span)/* 5. Star Ratings Module[span_7](end_span)[span_8](end_span) */
 .star-rating {
-    margin: 15px 0;
+    margin: 20px 0 10px;
 }
 
 .star-rating span {
-    font-size: 24px;
+    font-size: 26px;
     cursor: pointer;
-    color: var(--gray);
-    transition: color 0.2s;
+    color: var(--light-gray);
+    [span_5](start_span)[span_6](start_span)transition: color 0.2s ease;[span_5](end_span)[span_6](end_span)
 }
 
-.star-rating span.hovered, 
+.star-rating span.hovered,
 .star-rating span.selected {
-    color: var(--gold);
+    [span_7](start_span)color: var(--gold);[span_7](end_span)
 }
 
 .rating-label {
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    color: #888;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: #777;
+    text-transform: uppercase;
 }
 
-[span_9](start_span)[span_10](start_span)/* 6. AI Assistant (Chatbox)[span_9](end_span)[span_10](end_span) */
+/* --- MODULE 5: AI CHATBOX (AURA) --- */
 .aura-chat {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 320px;
+    bottom: 40px;
+    right: 40px;
+    width: 340px;
     background: var(--black);
     border: 1px solid var(--gold);
-    display: flex;
-    flex-direction: column;
-    z-index: 1001;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    z-index: 2000;
 }
 
 #chatHeader {
     background: var(--gold);
     color: var(--black);
-    padding: 12px;
-    font-weight: 800;
-    font-size: 0.8rem;
+    padding: 15px;
+    font-weight: 900;
     letter-spacing: 2px;
     text-align: center;
+    [span_8](start_span)font-size: 0.8rem;[span_8](end_span)
 }
 
 #chatWindow {
-    height: 250px;
-    padding: 15px;
+    height: 300px;
+    padding: 20px;
     overflow-y: auto;
-    background: #0F0F0F;
     font-size: 0.85rem;
+    background: #0D0D0D;
 }
 
 .input-area {
     display: flex;
-    border-top: 1px solid var(--gray);
+    border-top: 1px solid var(--dark-gray);
 }
 
 .input-area input {
     flex: 1;
     background: transparent;
     border: none;
-    color: white;
-    padding: 12px;
+    padding: 15px;
+    color: var(--white);
     outline: none;
 }
 
 .input-area button {
     background: var(--gold);
     border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-weight: bold;
+    padding: 0 20px;
+    font-weight: 700;
+    [span_9](start_span)cursor: pointer;[span_9](end_span)
 }
 
-[span_11](start_span)[span_12](start_span)/* 7. Appointment Form[span_11](end_span)[span_12](end_span) */
+/* --- MODULE 7: APPOINTMENTS --- */
 .form-container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
-    background: #111;
-    padding: 40px;
-    border: 1px solid var(--gray);
+    background: #0F0F0F;
+    padding: 60px;
+    border: 1px solid var(--dark-gray);
 }
 
 input, select, textarea {
     width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    background: #000;
-    border: 1px solid var(--gray);
-    color: white;
+    padding: 18px;
+    margin-bottom: 25px;
+    background: var(--black);
+    border: 1px solid var(--light-gray);
+    color: var(--white);
+    font-size: 0.9rem;
     outline: none;
 }
 
-input:focus, textarea:focus {
+input:focus {
     border-color: var(--gold);
 }
 
 .vantage-btn {
     width: 100%;
-    padding: 18px;
+    padding: 20px;
     background: var(--gold);
     color: var(--black);
     border: none;
     font-weight: 800;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
 }
 
 .vantage-btn:hover {
     background: var(--white);
 }
 
-[span_13](start_span)/* Page Transitions[span_13](end_span) */
+/* --- SYSTEM: PAGE DISPLAY --- */
 .page {
     display: none;
-    padding: 120px 8% 60px;
+    min-height: 100vh;
 }
 
 .page.active {
     display: block;
-    animation: fadeIn 0.6s ease-in-out;
+    [span_10](start_span)animation: pageFadeIn 0.8s ease;[span_10](end_span)
 }
 
-@keyframes fadeIn {
+@keyframes pageFadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
