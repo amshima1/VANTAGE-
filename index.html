@@ -1,25 +1,99 @@
-<header class="navbar">
-    <div class="menu-toggle">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VANTAGE</title>
+    <style>
+        /* This internal CSS ensures the styling loads even if the external file fails */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
 
-    <div class="logo">VANTAGE</div>
+        body {
+            background-color: #ffffff; /* Page body is white */
+        }
 
-    <div class="header-actions">
-        <div class="icon-btn">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            background-color: #000000; /* Black background for the heading */
+            height: 60px;
+            width: 100%;
+        }
+
+        /* The 3-line Hamburger */
+        .menu-toggle {
+            width: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .bar {
+            height: 2px;
+            width: 20px;
+            background-color: #ffffff; /* White lines */
+            border-radius: 2px;
+        }
+
+        /* Centered Logo */
+        .logo {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        /* Right Side Icons */
+        .header-actions {
+            width: 50px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .icon-btn svg {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
-        
-        <div class="icon-btn">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 0 1-8 0"></path>
-            </svg>
+
+        <div class="logo">VANTAGE</div>
+
+        <div class="header-actions">
+            <div class="icon-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+            
+            <div class="icon-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+            </div>
         </div>
     </header>
+
+</body>
+</html>
