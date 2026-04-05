@@ -3,67 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VANTAGE | Premium E-Commerce</title>
+    <title>VANTAGE | Premium Store</title>
     <style>
         /* --- 1. GLOBAL SETTINGS --- */
         :root {
-            --bg-dark: #131314;
             --header-black: #000000;
             --text-white: #ffffff;
             --accent-gold: #FFD700;
-            --light-gray: #f4f4f4;
+            --drawer-width: 280px;
+            --soft-gray: #f9f9f9;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: #ffffff; color: #1a1a1a; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
 
-        /* --- 2. HEADER FIXTURE (Gemini Style) --- */
+        /* --- 2. HEADER --- */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 15px;
             background-color: var(--header-black);
-            height: 65px;
+            height: 60px;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .menu-toggle {
-            width: 60px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
+        .menu-toggle { width: 45px; height: 45px; display: flex; flex-direction: column; justify-content: center; gap: 6px; cursor: pointer; }
+        .bar { height: 2.5px; width: 24px; background-color: var(--text-white); border-radius: 4px; }
+        .logo { color: var(--text-white); font-size: 1.2rem; font-weight: 900; letter-spacing: 4px; text-align: center; flex-grow: 1; text-transform: uppercase; }
+        .header-actions { display: flex; align-items: center; gap: 18px; }
+        .icon-btn svg { stroke-width: 2.5; cursor: pointer; }
+
+        /* --- 3. SIDE DRAWER & OVERLAY --- */
+        .drawer {
+            position: fixed;
+            top: 0;
+            left: calc(-1 * var(--drawer-width));
+            width: var(--drawer-width);
+            height: 100%;
+            background: #000;
+            color: white;
+            z-index: 3000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 30px 20px;
         }
+        .drawer.active { left: 0; }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 15px; }
+        .close-btn { font-size: 1.8rem; cursor: pointer; }
+        .drawer-links { list-style: none; }
+        .drawer-links li { margin: 25px 0; }
+        .drawer-links a { color: white; font-size: 1.1rem; text-transform: uppercase; font-weight: 500; letter-spacing: 1.5px; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 2500; backdrop-filter: blur(3px); }
+        .overlay.active { display: block; }
 
-        .bar { height: 2px; width: 22px; background-color: var(--text-white); border-radius: 2px; }
-
-        .logo {
-            color: var(--text-white);
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 4px;
-            text-align: center;
-            flex-grow: 1;
-            text-transform: uppercase;
-        }
-
-        .header-actions {
-            width: 60px;
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-        }
-
-        .icon-btn { cursor: pointer; display: flex; align-items: center; }
-
-        /* --- 3. HERO SECTION --- */
+        /* --- 4. HERO --- */
         .hero {
-            height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80');
+            height: 65vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e12?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -74,180 +74,145 @@
             text-align: center;
             padding: 20px;
         }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 900; }
+        .cta-btn { padding: 14px 35px; background: #fff; color: #000; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
 
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: 2px; }
-        .hero p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
-        .cta-btn {
-            padding: 15px 45px;
-            background-color: white;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        /* --- 4. PRODUCT GRID & RATINGS --- */
-        .section-title { text-align: center; padding: 50px 0 20px; font-size: 1.5rem; text-transform: uppercase; }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .product-card { border-radius: 8px; transition: transform 0.2s; }
-        .product-image { 
-            width: 100%; 
-            aspect-ratio: 1/1; 
-            background-color: #eee; 
-            position: relative;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .badge { position: absolute; top: 10px; left: 10px; background: black; color: white; padding: 4px 10px; font-size: 0.7rem; font-weight: bold; }
-        
-        .product-info { padding: 12px 0; }
-        .product-name { font-size: 1rem; font-weight: 600; }
-        .product-price { color: #555; margin-top: 4px; font-weight: bold; }
-        
-        .rating { display: flex; align-items: center; gap: 5px; margin-top: 5px; }
-        .stars { color: var(--accent-gold); font-size: 0.9rem; }
-        .count { color: #999; font-size: 0.8rem; }
-
-        /* --- 5. AI CHATBOT UI --- */
-        #chat-bubble {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: black;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
+        /* --- 5. CATEGORIES --- */
+        .category-scroll {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 9999;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 20px 15px;
+            scrollbar-width: none;
+        }
+        .category-item {
+            min-width: 140px;
+            height: 180px;
+            background: #eee;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-end;
+            padding: 15px;
+            background-size: cover;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
         }
 
-        #chat-window {
-            position: fixed;
-            bottom: 95px;
-            right: 25px;
-            width: 320px;
-            height: 450px;
-            background: white;
-            border-radius: 15px;
-            display: none; /* Toggle with JS */
-            flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            overflow: hidden;
-            z-index: 9999;
-        }
+        /* --- 6. PRODUCTS --- */
+        .section-title { padding: 30px 15px 10px; text-transform: uppercase; letter-spacing: 2px; font-size: 1.1rem; border-left: 4px solid #000; margin-left: 15px; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; }
+        .product-card { background: #fff; position: relative; }
+        .product-img { width: 100%; aspect-ratio: 1/1; background: var(--soft-gray); border-radius: 4px; overflow: hidden; position: relative; }
+        .badge { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; padding: 4px 8px; font-size: 0.65rem; font-weight: bold; }
+        .product-info { padding: 10px 0; }
+        .product-name { font-size: 0.9rem; font-weight: 600; }
+        .product-price { font-weight: 700; color: #444; margin-top: 4px; }
+        .stars { color: var(--accent-gold); font-size: 0.75rem; margin-top: 4px; display: block; }
 
-        .chat-header { background: black; color: white; padding: 15px; font-weight: 600; text-align: center; }
-        .chat-body { flex: 1; padding: 15px; font-size: 0.9rem; overflow-y: auto; background: #f9f9f9; }
-        .chat-footer { padding: 10px; border-top: 1px solid #eee; display: flex; }
-        .chat-footer input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
+        /* --- 7. NEWSLETTER --- */
+        .newsletter { background: var(--soft-gray); padding: 50px 20px; text-align: center; margin-top: 30px; }
+        .newsletter h2 { font-size: 1.2rem; margin-bottom: 10px; text-transform: uppercase; }
+        .newsletter input { width: 100%; max-width: 300px; padding: 12px; border: 1px solid #ddd; margin-bottom: 10px; outline: none; }
+        .newsletter button { width: 100%; max-width: 300px; padding: 12px; background: #000; color: #fff; border: none; font-weight: bold; text-transform: uppercase; }
 
-        /* Desktop Optimization */
+        /* --- 8. FOOTER --- */
+        footer { background: #000; color: #fff; padding: 50px 20px 20px; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; }
+        .footer-col h4 { font-size: 0.8rem; margin-bottom: 15px; color: #666; text-transform: uppercase; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; font-size: 0.85rem; opacity: 0.8; }
+        .footer-bottom { border-top: 1px solid #222; padding-top: 20px; text-align: center; font-size: 0.7rem; opacity: 0.5; }
+
+        /* --- 9. CHATBOT --- */
+        #chat-bubble { position: fixed; bottom: 20px; right: 20px; background: #000; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 4000; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        #chat-window { position: fixed; bottom: 80px; right: 20px; width: 280px; height: 380px; background: #fff; border-radius: 12px; display: none; flex-direction: column; z-index: 4000; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden; }
+        .chat-header { background: #000; color: #fff; padding: 15px; font-weight: bold; font-size: 0.75rem; text-align: center; }
+        .chat-body { flex: 1; padding: 15px; font-size: 0.8rem; overflow-y: auto; background: var(--soft-gray); }
+        .chat-footer { padding: 10px; border-top: 1px solid #eee; display: flex; gap: 5px; }
+        .chat-footer input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 20px; outline: none; font-size: 0.8rem; }
+
         @media (min-width: 768px) {
             .product-grid { grid-template-columns: repeat(4, 1fr); }
-            .hero h1 { font-size: 4.5rem; }
+            .footer-grid { grid-template-columns: repeat(4, 1fr); }
         }
     </style>
 </head>
 <body>
 
+    <div id="side-drawer" class="drawer">
+        <div class="drawer-header"><span>VANTAGE</span><div class="close-btn" onclick="toggleMenu()">✕</div></div>
+        <ul class="drawer-links">
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Men's Wear</a></li>
+            <li><a href="#">Women's Wear</a></li>
+            <li><a href="#">Track My Order</a></li>
+            <li><a href="#">Account</a></li>
+        </ul>
+    </div>
+    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
     <header class="navbar">
-        <div class="menu-toggle" onclick="alert('Menu Opening...')">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
+        <div class="menu-toggle" onclick="toggleMenu()"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
         <div class="logo">VANTAGE</div>
         <div class="header-actions">
-            <div class="icon-btn">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            </div>
-            <div class="icon-btn">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-            </div>
+            <div class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+            <div class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>
         </div>
     </header>
 
     <section class="hero">
-        <h1>VANTAGE</h1>
-        <p>Premium Quality Essentials for the Modern World.</p>
-        <a href="#" class="cta-btn">Shop New Arrivals</a>
+        <h1>THE COLLECTION</h1>
+        <a href="#" class="cta-btn">Shop Now</a>
     </section>
 
-    <h2 class="section-title">Latest Collection</h2>
-    <div class="product-grid">
-        <div class="product-card">
-            <div class="product-image"><span class="badge">HOT</span></div>
-            <div class="product-info">
-                <p class="product-name">Minimalist T-Shirt</p>
-                <div class="rating"><span class="stars">★★★★★</span><span class="count">(42)</span></div>
-                <p class="product-price">$29.00</p>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image"></div>
-            <div class="product-info">
-                <p class="product-name">Essential Hoodie</p>
-                <div class="rating"><span class="stars">★★★★☆</span><span class="count">(18)</span></div>
-                <p class="product-price">$59.00</p>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image"></div>
-            <div class="product-info">
-                <p class="product-name">Tech Cargo Pants</p>
-                <div class="rating"><span class="stars">★★★★★</span><span class="count">(89)</span></div>
-                <p class="product-price">$75.00</p>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image"><span class="badge">NEW</span></div>
-            <div class="product-info">
-                <p class="product-name">Vantage Cap</p>
-                <div class="rating"><span class="stars">★★★★☆</span><span class="count">(5)</span></div>
-                <p class="product-price">$25.00</p>
-            </div>
-        </div>
+    <div class="category-scroll">
+        <div class="category-item" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=300&q=80')">T-Shirts</div>
+        <div class="category-item" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=300&q=80')">Jackets</div>
+        <div class="category-item" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.unsplash.com/photo-1542291026-7eec264c2741?auto=format&fit=crop&w=300&q=80')">Footwear</div>
+        <div class="category-item" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=300&q=80')">Bags</div>
     </div>
 
-    <div id="chat-bubble" onclick="toggleChat()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-    </div>
+    <h2 class="section-title">New Arrivals</h2>
+    <main class="product-grid">
+        <div class="product-card">
+            <div class="product-img"><span class="badge">NEW</span></div>
+            <div class="product-info"><p class="product-name">Luxury Polo</p><span class="stars">★★★★★</span><p class="product-price">$45.00</p></div>
+        </div>
+        <div class="product-card">
+            <div class="product-img"></div>
+            <div class="product-info"><p class="product-name">Essential Hoodie</p><span class="stars">★★★★☆</span><p class="product-price">$65.00</p></div>
+        </div>
+    </main>
 
-    <div id="chat-window" id="vantageChat">
-        <div class="chat-header">VANTAGE AI</div>
-        <div class="chat-body" id="chatContent">
-            <p>Welcome to Vantage! How can I assist you with your shopping today?</p>
+    <section class="newsletter">
+        <h2>Join the list</h2>
+        <p style="font-size: 0.8rem; margin-bottom: 20px;">Get early access to drops and exclusive offers.</p>
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col"><h4>Shop</h4><ul><li>New Arrivals</li><li>Best Sellers</li></ul></div>
+            <div class="footer-col"><h4>Support</h4><ul><li>Contact Us</li><li>Shipping</li></ul></div>
+            <div class="footer-col"><h4>Company</h4><ul><li>About Us</li><li>Careers</li></ul></div>
+            <div class="footer-col"><h4>Social</h4><ul><li>Instagram</li><li>Twitter</li></ul></div>
         </div>
-        <div class="chat-footer">
-            <input type="text" placeholder="Ask about shipping, sizes...">
-        </div>
+        <div class="footer-bottom">© 2026 VANTAGE. PREMIUM QUALITY ESSENTIALS.</div>
+    </footer>
+
+    <div id="chat-bubble" onclick="toggleChat()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+    <div id="chat-window">
+        <div class="chat-header">VANTAGE ASSISTANT</div>
+        <div class="chat-body" id="chat-content">Hi! Need help with sizing or your order?</div>
+        <div class="chat-footer"><input type="text" placeholder="Type here..."><button onclick="alert('Sent!')" style="border:none; background:none; font-weight:bold;">></button></div>
     </div>
 
     <script>
-        function toggleChat() {
-            const chat = document.getElementById('chat-window');
-            if (chat.style.display === 'flex') {
-                chat.style.display = 'none';
-            } else {
-                chat.style.display = 'flex';
-            }
-        }
+        function toggleMenu() { document.getElementById('side-drawer').classList.toggle('active'); document.getElementById('overlay').classList.toggle('active'); }
+        function toggleChat() { const chat = document.getElementById('chat-window'); chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex'; }
     </script>
-
 </body>
 </html>
