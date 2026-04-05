@@ -1,44 +1,36 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #131314;
-    font-family: 'Inter', sans-serif;
-}
+/* Previous styles remain the same, update these specific classes */
 
 .navbar {
     display: flex;
-    justify-content: space-between; /* Pushes items to left, center, and right */
+    justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     background-color: #000000;
     height: 65px;
-    border-bottom: 1px solid #333; /* Subtle divider */
 }
 
-/* Give left and right items the same width to force the logo to the center */
-.menu-toggle, .shop-icon {
-    width: 40px; 
+/* Ensure both side containers have the same width for true centering */
+.menu-toggle, .header-actions {
+    width: 80px; /* Increased width to accommodate two icons */
     display: flex;
     align-items: center;
 }
 
-.shop-icon {
-    justify-content: flex-end; /* Align icon to the right edge */
-    cursor: pointer;
+.header-actions {
+    justify-content: flex-end; /* Align icons to the right */
+    gap: 15px; /* Space between Search and Shop icons */
 }
 
-/* Logo Styling */
-.logo {
-    color: #ffffff;
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-align: center;
-    flex-grow: 1; /* Helps keep it centered */
+.icon-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+}
+
+.icon-btn:hover {
+    opacity: 0.7;
 }
 
 /* 3-Line Hamburger Styling */
@@ -52,5 +44,13 @@ body {
     height: 2px;
     width: 22px;
     background-color: #ffffff;
-    border-radius: 2px;
+}
+
+.logo {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    flex-grow: 1;
 }
