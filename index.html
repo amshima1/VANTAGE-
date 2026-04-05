@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VANTAGE | Premium Store</title>
+    <title>VANTAGE | Official Store</title>
     <style>
         /* --- 1. GLOBAL SETTINGS --- */
         :root {
@@ -18,7 +18,7 @@
         body { background-color: #ffffff; color: #1a1a1a; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
 
-        /* --- 2. HEADER --- */
+        /* --- 2. HEADER (Sticky & High Contrast) --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -59,11 +59,11 @@
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 2500; backdrop-filter: blur(3px); }
         .overlay.active { display: block; }
 
-        /* --- 4. HERO --- */
+        /* --- 4. HERO SECTION --- */
         .hero {
-            height: 65vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e12?auto=format&fit=crop&w=1200&q=80');
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=1200');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -74,17 +74,19 @@
             text-align: center;
             padding: 20px;
         }
-        .hero h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 900; }
-        .cta-btn { padding: 14px 35px; background: #fff; color: #000; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 900; letter-spacing: 2px; }
+        .cta-btn { padding: 14px 40px; background: #fff; color: #000; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; }
+        .cta-btn:active { transform: scale(0.95); }
 
-        /* --- 5. CATEGORIES --- */
+        /* --- 5. CATEGORY SCROLLER --- */
         .category-scroll {
             display: flex;
             overflow-x: auto;
             gap: 15px;
-            padding: 20px 15px;
+            padding: 30px 15px;
             scrollbar-width: none;
         }
+        .category-scroll::-webkit-scrollbar { display: none; }
         .category-item {
             min-width: 140px;
             height: 180px;
@@ -94,125 +96,180 @@
             align-items: flex-end;
             padding: 15px;
             background-size: cover;
+            background-position: center;
             color: white;
             font-weight: bold;
             font-size: 0.8rem;
             text-transform: uppercase;
+            box-shadow: inset 0 -40px 20px rgba(0,0,0,0.5);
         }
 
         /* --- 6. PRODUCTS --- */
-        .section-title { padding: 30px 15px 10px; text-transform: uppercase; letter-spacing: 2px; font-size: 1.1rem; border-left: 4px solid #000; margin-left: 15px; }
+        .section-title { padding: 40px 15px 10px; text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; font-weight: 800; border-left: 5px solid #000; margin-left: 15px; }
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; }
-        .product-card { background: #fff; position: relative; }
+        .product-card { background: #fff; }
         .product-img { width: 100%; aspect-ratio: 1/1; background: var(--soft-gray); border-radius: 4px; overflow: hidden; position: relative; }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; }
         .badge { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; padding: 4px 8px; font-size: 0.65rem; font-weight: bold; }
         .product-info { padding: 10px 0; }
-        .product-name { font-size: 0.9rem; font-weight: 600; }
+        .product-name { font-size: 0.9rem; font-weight: 600; color: #111; }
         .product-price { font-weight: 700; color: #444; margin-top: 4px; }
         .stars { color: var(--accent-gold); font-size: 0.75rem; margin-top: 4px; display: block; }
 
         /* --- 7. NEWSLETTER --- */
-        .newsletter { background: var(--soft-gray); padding: 50px 20px; text-align: center; margin-top: 30px; }
-        .newsletter h2 { font-size: 1.2rem; margin-bottom: 10px; text-transform: uppercase; }
-        .newsletter input { width: 100%; max-width: 300px; padding: 12px; border: 1px solid #ddd; margin-bottom: 10px; outline: none; }
-        .newsletter button { width: 100%; max-width: 300px; padding: 12px; background: #000; color: #fff; border: none; font-weight: bold; text-transform: uppercase; }
+        .newsletter { background: var(--soft-gray); padding: 60px 20px; text-align: center; margin-top: 40px; }
+        .newsletter h2 { font-size: 1.3rem; margin-bottom: 10px; text-transform: uppercase; font-weight: 900; }
+        .newsletter p { font-size: 0.85rem; color: #666; margin-bottom: 25px; }
+        .newsletter-form { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .newsletter input { width: 100%; max-width: 400px; padding: 14px; border: 1px solid #ddd; outline: none; border-radius: 0; }
+        .newsletter button { width: 100%; max-width: 400px; padding: 14px; background: #000; color: #fff; border: none; font-weight: bold; text-transform: uppercase; cursor: pointer; }
 
         /* --- 8. FOOTER --- */
-        footer { background: #000; color: #fff; padding: 50px 20px 20px; }
+        footer { background: #000; color: #fff; padding: 60px 20px 30px; }
         .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; }
-        .footer-col h4 { font-size: 0.8rem; margin-bottom: 15px; color: #666; text-transform: uppercase; }
+        .footer-col h4 { font-size: 0.85rem; margin-bottom: 20px; color: #888; text-transform: uppercase; font-weight: 800; }
         .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 10px; font-size: 0.85rem; opacity: 0.8; }
-        .footer-bottom { border-top: 1px solid #222; padding-top: 20px; text-align: center; font-size: 0.7rem; opacity: 0.5; }
+        .footer-col li { margin-bottom: 12px; font-size: 0.85rem; opacity: 0.7; }
+        .footer-bottom { border-top: 1px solid #222; padding-top: 30px; text-align: center; font-size: 0.7rem; opacity: 0.4; letter-spacing: 1px; }
 
         /* --- 9. CHATBOT --- */
-        #chat-bubble { position: fixed; bottom: 20px; right: 20px; background: #000; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 4000; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-        #chat-window { position: fixed; bottom: 80px; right: 20px; width: 280px; height: 380px; background: #fff; border-radius: 12px; display: none; flex-direction: column; z-index: 4000; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden; }
-        .chat-header { background: #000; color: #fff; padding: 15px; font-weight: bold; font-size: 0.75rem; text-align: center; }
-        .chat-body { flex: 1; padding: 15px; font-size: 0.8rem; overflow-y: auto; background: var(--soft-gray); }
-        .chat-footer { padding: 10px; border-top: 1px solid #eee; display: flex; gap: 5px; }
-        .chat-footer input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 20px; outline: none; font-size: 0.8rem; }
+        #chat-bubble { position: fixed; bottom: 25px; right: 25px; background: #000; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 4000; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 2px solid #fff; }
+        #chat-window { position: fixed; bottom: 90px; right: 25px; width: 300px; height: 420px; background: #fff; border-radius: 15px; display: none; flex-direction: column; z-index: 4000; box-shadow: 0 15px 40px rgba(0,0,0,0.3); overflow: hidden; }
+        .chat-header { background: #000; color: #fff; padding: 18px; font-weight: bold; font-size: 0.8rem; text-align: center; letter-spacing: 1px; }
+        .chat-body { flex: 1; padding: 15px; font-size: 0.85rem; overflow-y: auto; background: var(--soft-gray); }
+        .chat-footer { padding: 12px; border-top: 1px solid #eee; display: flex; gap: 10px; background: #fff; }
+        .chat-footer input { flex: 1; padding: 10px 15px; border: 1px solid #ddd; border-radius: 25px; outline: none; font-size: 0.85rem; }
 
         @media (min-width: 768px) {
-            .product-grid { grid-template-columns: repeat(4, 1fr); }
-            .footer-grid { grid-template-columns: repeat(4, 1fr); }
+            .product-grid { grid-template-columns: repeat(4, 1fr); max-width: 1200px; margin: 0 auto; }
+            .footer-grid { grid-template-columns: repeat(4, 1fr); max-width: 1200px; margin: 0 auto; }
         }
     </style>
 </head>
 <body>
 
     <div id="side-drawer" class="drawer">
-        <div class="drawer-header"><span>VANTAGE</span><div class="close-btn" onclick="toggleMenu()">✕</div></div>
+        <div class="drawer-header">
+            <span style="letter-spacing: 4px; font-weight: 900;">VANTAGE</span>
+            <div class="close-btn" onclick="toggleMenu()">✕</div>
+        </div>
         <ul class="drawer-links">
+            <li><a href="#">Shop All</a></li>
             <li><a href="#">New Arrivals</a></li>
-            <li><a href="#">Men's Wear</a></li>
-            <li><a href="#">Women's Wear</a></li>
-            <li><a href="#">Track My Order</a></li>
-            <li><a href="#">Account</a></li>
+            <li><a href="#">Men's Collection</a></li>
+            <li><a href="#">Women's Collection</a></li>
+            <li><a href="#">Order Tracking</a></li>
+            <li><a href="#">Support</a></li>
         </ul>
     </div>
     <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
     <header class="navbar">
-        <div class="menu-toggle" onclick="toggleMenu()"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
         <div class="logo">VANTAGE</div>
         <div class="header-actions">
-            <div class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
-            <div class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>
+            <div class="icon-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <div class="icon-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </div>
         </div>
     </header>
 
     <section class="hero">
-        <h1>THE COLLECTION</h1>
-        <a href="#" class="cta-btn">Shop Now</a>
+        <h1>VANTAGE</h1>
+        <p>Premium Quality Essentials.</p>
+        <a href="#" class="cta-btn">Shop Collection</a>
     </section>
 
     <div class="category-scroll">
-        <div class="category-item" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=300&q=80')">T-Shirts</div>
-        <div class="category-item" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=300&q=80')">Jackets</div>
-        <div class="category-item" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.unsplash.com/photo-1542291026-7eec264c2741?auto=format&fit=crop&w=300&q=80')">Footwear</div>
-        <div class="category-item" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=300&q=80')">Bags</div>
+        <div class="category-item" style="background-image: url('https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=compress&cs=tinysrgb&w=300')">T-Shirts</div>
+        <div class="category-item" style="background-image: url('https://images.pexels.com/photos/1639729/pexels-photo-1639729.jpeg?auto=compress&cs=tinysrgb&w=300')">Jackets</div>
+        <div class="category-item" style="background-image: url('https://images.pexels.com/photos/1478442/pexels-photo-1478442.jpeg?auto=compress&cs=tinysrgb&w=300')">Footwear</div>
+        <div class="category-item" style="background-image: url('https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=300')">Bags</div>
     </div>
 
     <h2 class="section-title">New Arrivals</h2>
     <main class="product-grid">
         <div class="product-card">
-            <div class="product-img"><span class="badge">NEW</span></div>
-            <div class="product-info"><p class="product-name">Luxury Polo</p><span class="stars">★★★★★</span><p class="product-price">$45.00</p></div>
+            <div class="product-img"><span class="badge">NEW</span><img src="https://images.pexels.com/photos/4066290/pexels-photo-4066290.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Polo"></div>
+            <div class="product-info"><p class="product-name">Luxury Cotton Polo</p><span class="stars">★★★★★</span><p class="product-price">$45.00</p></div>
         </div>
         <div class="product-card">
-            <div class="product-img"></div>
-            <div class="product-info"><p class="product-name">Essential Hoodie</p><span class="stars">★★★★☆</span><p class="product-price">$65.00</p></div>
+            <div class="product-img"><img src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Hoodie"></div>
+            <div class="product-info"><p class="product-name">Urban Hoodie</p><span class="stars">★★★★☆</span><p class="product-price">$65.00</p></div>
+        </div>
+        <div class="product-card">
+            <div class="product-img"><img src="https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Jeans"></div>
+            <div class="product-info"><p class="product-name">Slim Fit Denim</p><span class="stars">★★★★★</span><p class="product-price">$80.00</p></div>
+        </div>
+        <div class="product-card">
+            <div class="product-img"><img src="https://images.pexels.com/photos/1032110/pexels-photo-1032110.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Cap"></div>
+            <div class="product-info"><p class="product-name">Core Vantage Cap</p><span class="stars">★★★★☆</span><p class="product-price">$25.00</p></div>
         </div>
     </main>
 
     <section class="newsletter">
-        <h2>Join the list</h2>
-        <p style="font-size: 0.8rem; margin-bottom: 20px;">Get early access to drops and exclusive offers.</p>
-        <input type="email" placeholder="Enter your email">
-        <button>Subscribe</button>
+        <h2>Join the VANTAGE List</h2>
+        <p>Subscribe for early access to drops and exclusive offers.</p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="Your email address">
+            <button>Join Now</button>
+        </div>
     </section>
 
     <footer>
         <div class="footer-grid">
-            <div class="footer-col"><h4>Shop</h4><ul><li>New Arrivals</li><li>Best Sellers</li></ul></div>
-            <div class="footer-col"><h4>Support</h4><ul><li>Contact Us</li><li>Shipping</li></ul></div>
-            <div class="footer-col"><h4>Company</h4><ul><li>About Us</li><li>Careers</li></ul></div>
-            <div class="footer-col"><h4>Social</h4><ul><li>Instagram</li><li>Twitter</li></ul></div>
+            <div class="footer-col"><h4>Shop</h4><ul><li>New Arrivals</li><li>Best Sellers</li><li>Accessories</li></ul></div>
+            <div class="footer-col"><h4>Service</h4><ul><li>Contact Us</li><li>Shipping</li><li>Returns</li></ul></div>
+            <div class="footer-col"><h4>VANTAGE</h4><ul><li>Our Story</li><li>Careers</li><li>Press</li></ul></div>
+            <div class="footer-col"><h4>Follow</h4><ul><li>Instagram</li><li>Twitter</li><li>TikTok</li></ul></div>
         </div>
         <div class="footer-bottom">© 2026 VANTAGE. PREMIUM QUALITY ESSENTIALS.</div>
     </footer>
 
-    <div id="chat-bubble" onclick="toggleChat()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+    <div id="chat-bubble" onclick="toggleChat()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </div>
+
     <div id="chat-window">
-        <div class="chat-header">VANTAGE ASSISTANT</div>
-        <div class="chat-body" id="chat-content">Hi! Need help with sizing or your order?</div>
-        <div class="chat-footer"><input type="text" placeholder="Type here..."><button onclick="alert('Sent!')" style="border:none; background:none; font-weight:bold;">></button></div>
+        <div class="chat-header">VANTAGE AI ASSISTANT</div>
+        <div class="chat-body" id="chat-content">
+            <div style="background:#eee; padding:10px; border-radius:10px; margin-bottom:10px; line-height:1.4;">
+                Hi there! Welcome to VANTAGE. How can I help you with your style today?
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Type a message...">
+            <button onclick="sendMsg()" style="border:none; background:none; font-weight:bold; font-size:1.2rem; cursor:pointer;">></button>
+        </div>
     </div>
 
     <script>
-        function toggleMenu() { document.getElementById('side-drawer').classList.toggle('active'); document.getElementById('overlay').classList.toggle('active'); }
-        function toggleChat() { const chat = document.getElementById('chat-window'); chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex'; }
+        function toggleMenu() { 
+            document.getElementById('side-drawer').classList.toggle('active'); 
+            document.getElementById('overlay').classList.toggle('active'); 
+        }
+
+        function toggleChat() { 
+            const chat = document.getElementById('chat-window'); 
+            chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex'; 
+        }
+
+        function sendMsg() {
+            const input = document.getElementById('chat-input');
+            const body = document.getElementById('chat-content');
+            if(input.value.trim() !== "") {
+                body.innerHTML += `<div style="background:#000; color:#fff; padding:10px; border-radius:10px; margin-bottom:10px; align-self:flex-end; text-align:right;">${input.value}</div>`;
+                input.value = "";
+                body.scrollTop = body.scrollHeight;
+            }
+        }
     </script>
 </body>
 </html>
