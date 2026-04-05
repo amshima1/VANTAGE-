@@ -3,41 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VANTAGE | Official Store</title>
+    <title>VANTAGE | Premium Essentials</title>
     <style>
-        /* --- 1. GLOBAL SETTINGS --- */
+        /* --- 1. CORE BRANDING --- */
         :root {
-            --header-black: #000000;
-            --text-white: #ffffff;
-            --accent-gold: #FFD700;
+            --v-black: #000000;
+            --v-white: #ffffff;
+            --v-gold: #FFD700;
+            --v-gray: #f9f9f9;
             --drawer-width: 280px;
-            --soft-gray: #f9f9f9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: #ffffff; color: #1a1a1a; overflow-x: hidden; }
+        body { background-color: var(--v-white); color: #1a1a1a; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
 
-        /* --- 2. HEADER (Sticky & High Contrast) --- */
-        .navbar {
+        /* --- 2. NAVIGATION (Sticky Header) --- */
+        .v-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 15px;
-            background-color: var(--header-black);
+            background: var(--v-black);
             height: 60px;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 2000;
         }
 
-        .menu-toggle { width: 45px; height: 45px; display: flex; flex-direction: column; justify-content: center; gap: 6px; cursor: pointer; }
-        .bar { height: 2.5px; width: 24px; background-color: var(--text-white); border-radius: 4px; }
-        .logo { color: var(--text-white); font-size: 1.2rem; font-weight: 900; letter-spacing: 4px; text-align: center; flex-grow: 1; text-transform: uppercase; }
-        .header-actions { display: flex; align-items: center; gap: 18px; }
-        .icon-btn svg { stroke-width: 2.5; cursor: pointer; }
+        .menu-btn { width: 40px; height: 40px; display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; }
+        .bar { height: 2.5px; width: 22px; background: var(--v-white); border-radius: 4px; transition: 0.3s; }
+        
+        .v-logo { color: var(--v-white); font-size: 1.1rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; }
+        
+        .nav-icons { display: flex; gap: 15px; }
+        .nav-icons svg { stroke: #fff; stroke-width: 2; cursor: pointer; }
 
-        /* --- 3. SIDE DRAWER & OVERLAY --- */
+        /* --- 3. SIDEBAR DRAWER --- */
         .drawer {
             position: fixed;
             top: 0;
@@ -45,18 +47,26 @@
             width: var(--drawer-width);
             height: 100%;
             background: #000;
-            color: white;
+            color: #fff;
             z-index: 3000;
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 30px 20px;
+            padding: 40px 20px;
         }
         .drawer.active { left: 0; }
-        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 15px; }
-        .close-btn { font-size: 1.8rem; cursor: pointer; }
-        .drawer-links { list-style: none; }
-        .drawer-links li { margin: 25px 0; }
-        .drawer-links a { color: white; font-size: 1.1rem; text-transform: uppercase; font-weight: 500; letter-spacing: 1.5px; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 2500; backdrop-filter: blur(3px); }
+        .drawer-links li { list-style: none; margin: 25px 0; border-bottom: 1px solid #111; padding-bottom: 10px; }
+        .drawer-links a { text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; font-weight: 500; }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            z-index: 2500;
+            backdrop-filter: blur(4px);
+        }
         .overlay.active { display: block; }
 
         /* --- 4. HERO SECTION --- */
@@ -70,205 +80,153 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
+            color: #fff;
             text-align: center;
-            padding: 20px;
         }
-        .hero h1 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 900; letter-spacing: 2px; }
-        .cta-btn { padding: 14px 40px; background: #fff; color: #000; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; }
-        .cta-btn:active { transform: scale(0.95); }
+        .hero h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: 3px; margin-bottom: 15px; }
+        .btn-main { padding: 12px 35px; background: #fff; color: #000; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
 
         /* --- 5. CATEGORY SCROLLER --- */
-        .category-scroll {
-            display: flex;
-            overflow-x: auto;
-            gap: 15px;
-            padding: 30px 15px;
-            scrollbar-width: none;
-        }
-        .category-scroll::-webkit-scrollbar { display: none; }
-        .category-item {
-            min-width: 140px;
-            height: 180px;
-            background: #eee;
+        .cat-scroll { display: flex; overflow-x: auto; gap: 12px; padding: 25px 15px; scrollbar-width: none; }
+        .cat-scroll::-webkit-scrollbar { display: none; }
+        .cat-card {
+            min-width: 130px;
+            height: 160px;
             border-radius: 8px;
-            display: flex;
-            align-items: flex-end;
-            padding: 15px;
             background-size: cover;
             background-position: center;
-            color: white;
-            font-weight: bold;
-            font-size: 0.8rem;
+            display: flex;
+            align-items: flex-end;
+            padding: 12px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            box-shadow: inset 0 -40px 20px rgba(0,0,0,0.5);
+            box-shadow: inset 0 -30px 20px rgba(0,0,0,0.6);
         }
 
-        /* --- 6. PRODUCTS --- */
-        .section-title { padding: 40px 15px 10px; text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; font-weight: 800; border-left: 5px solid #000; margin-left: 15px; }
-        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; }
-        .product-card { background: #fff; }
-        .product-img { width: 100%; aspect-ratio: 1/1; background: var(--soft-gray); border-radius: 4px; overflow: hidden; position: relative; }
-        .product-img img { width: 100%; height: 100%; object-fit: cover; }
-        .badge { position: absolute; top: 10px; left: 10px; background: #000; color: #fff; padding: 4px 8px; font-size: 0.65rem; font-weight: bold; }
-        .product-info { padding: 10px 0; }
-        .product-name { font-size: 0.9rem; font-weight: 600; color: #111; }
-        .product-price { font-weight: 700; color: #444; margin-top: 4px; }
-        .stars { color: var(--accent-gold); font-size: 0.75rem; margin-top: 4px; display: block; }
+        /* --- 6. PRODUCT GRID --- */
+        .title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; padding: 20px 15px 10px; border-left: 4px solid #000; margin: 20px 15px; }
+        .p-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
+        .p-card { background: #fff; }
+        .p-img { width: 100%; aspect-ratio: 1/1; background: var(--v-gray); border-radius: 4px; overflow: hidden; position: relative; }
+        .p-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .p-card:active .p-img img { transform: scale(1.05); }
+        .p-badge { position: absolute; top: 8px; left: 8px; background: #000; color: #fff; font-size: 0.6rem; padding: 3px 7px; font-weight: bold; }
+        .p-info { padding: 10px 0; }
+        .p-name { font-size: 0.85rem; font-weight: 600; }
+        .p-price { font-weight: 700; font-size: 0.9rem; margin-top: 2px; }
+        .stars { color: var(--v-gold); font-size: 0.7rem; margin: 4px 0; display: block; }
 
-        /* --- 7. NEWSLETTER --- */
-        .newsletter { background: var(--soft-gray); padding: 60px 20px; text-align: center; margin-top: 40px; }
-        .newsletter h2 { font-size: 1.3rem; margin-bottom: 10px; text-transform: uppercase; font-weight: 900; }
-        .newsletter p { font-size: 0.85rem; color: #666; margin-bottom: 25px; }
-        .newsletter-form { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .newsletter input { width: 100%; max-width: 400px; padding: 14px; border: 1px solid #ddd; outline: none; border-radius: 0; }
-        .newsletter button { width: 100%; max-width: 400px; padding: 14px; background: #000; color: #fff; border: none; font-weight: bold; text-transform: uppercase; cursor: pointer; }
+        /* --- 7. FOOTER & NEWSLETTER --- */
+        .news { background: var(--v-gray); padding: 50px 20px; text-align: center; }
+        .news input { width: 100%; padding: 12px; border: 1px solid #ddd; margin: 15px 0 10px; outline: none; }
+        .news button { width: 100%; padding: 12px; background: #000; color: #fff; font-weight: bold; text-transform: uppercase; border: none; }
 
-        /* --- 8. FOOTER --- */
-        footer { background: #000; color: #fff; padding: 60px 20px 30px; }
-        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; }
-        .footer-col h4 { font-size: 0.85rem; margin-bottom: 20px; color: #888; text-transform: uppercase; font-weight: 800; }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 12px; font-size: 0.85rem; opacity: 0.7; }
-        .footer-bottom { border-top: 1px solid #222; padding-top: 30px; text-align: center; font-size: 0.7rem; opacity: 0.4; letter-spacing: 1px; }
+        footer { background: #000; color: #fff; padding: 40px 20px; }
+        .f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .f-col h4 { font-size: 0.7rem; color: #666; text-transform: uppercase; margin-bottom: 15px; }
+        .f-col li { list-style: none; font-size: 0.8rem; opacity: 0.7; margin-bottom: 8px; }
+        .f-bottom { border-top: 1px solid #111; margin-top: 30px; padding-top: 20px; text-align: center; font-size: 0.6rem; opacity: 0.4; }
 
-        /* --- 9. CHATBOT --- */
-        #chat-bubble { position: fixed; bottom: 25px; right: 25px; background: #000; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 4000; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 2px solid #fff; }
-        #chat-window { position: fixed; bottom: 90px; right: 25px; width: 300px; height: 420px; background: #fff; border-radius: 15px; display: none; flex-direction: column; z-index: 4000; box-shadow: 0 15px 40px rgba(0,0,0,0.3); overflow: hidden; }
-        .chat-header { background: #000; color: #fff; padding: 18px; font-weight: bold; font-size: 0.8rem; text-align: center; letter-spacing: 1px; }
-        .chat-body { flex: 1; padding: 15px; font-size: 0.85rem; overflow-y: auto; background: var(--soft-gray); }
-        .chat-footer { padding: 12px; border-top: 1px solid #eee; display: flex; gap: 10px; background: #fff; }
-        .chat-footer input { flex: 1; padding: 10px 15px; border: 1px solid #ddd; border-radius: 25px; outline: none; font-size: 0.85rem; }
-
-        @media (min-width: 768px) {
-            .product-grid { grid-template-columns: repeat(4, 1fr); max-width: 1200px; margin: 0 auto; }
-            .footer-grid { grid-template-columns: repeat(4, 1fr); max-width: 1200px; margin: 0 auto; }
-        }
+        /* --- 8. CHAT INTERFACE --- */
+        .chat-btn { position: fixed; bottom: 20px; right: 20px; background: #000; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 4000; border: 1px solid rgba(255,255,255,0.2); }
+        .chat-box { position: fixed; bottom: 80px; right: 20px; width: 280px; height: 350px; background: #fff; border-radius: 12px; display: none; flex-direction: column; z-index: 4000; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 1px solid #eee; }
+        .chat-h { background: #000; color: #fff; padding: 12px; font-weight: bold; font-size: 0.7rem; text-align: center; }
+        .chat-b { flex: 1; padding: 15px; font-size: 0.8rem; background: var(--v-gray); overflow-y: auto; }
+        .chat-f { padding: 10px; display: flex; gap: 5px; background: #fff; }
+        .chat-f input { flex: 1; padding: 8px; border-radius: 20px; border: 1px solid #ddd; font-size: 0.8rem; outline: none; }
     </style>
 </head>
 <body>
 
-    <div id="side-drawer" class="drawer">
-        <div class="drawer-header">
-            <span style="letter-spacing: 4px; font-weight: 900;">VANTAGE</span>
-            <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+    <div id="drawer" class="drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+            <span style="letter-spacing:3px; font-weight:900; font-size:0.8rem;">VANTAGE</span>
+            <div onclick="toggleMenu()" style="font-size:1.5rem; cursor:pointer;">✕</div>
         </div>
         <ul class="drawer-links">
-            <li><a href="#">Shop All</a></li>
-            <li><a href="#">New Arrivals</a></li>
-            <li><a href="#">Men's Collection</a></li>
-            <li><a href="#">Women's Collection</a></li>
-            <li><a href="#">Order Tracking</a></li>
+            <li><a href="#">New Drops</a></li>
+            <li><a href="#">Shop Essentials</a></li>
+            <li><a href="#">Accessories</a></li>
             <li><a href="#">Support</a></li>
         </ul>
     </div>
-    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
-    <header class="navbar">
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+    <nav class="v-nav">
+        <div class="menu-btn" onclick="toggleMenu()">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </div>
-        <div class="logo">VANTAGE</div>
-        <div class="header-actions">
-            <div class="icon-btn">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            </div>
-            <div class="icon-btn">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-            </div>
+        <div class="v-logo">VANTAGE</div>
+        <div class="nav-icons">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
         </div>
-    </header>
+    </nav>
 
     <section class="hero">
-        <h1>VANTAGE</h1>
-        <p>Premium Quality Essentials.</p>
-        <a href="#" class="cta-btn">Shop Collection</a>
+        <h1>THE CORE</h1>
+        <a href="#" class="btn-main">Explore Collection</a>
     </section>
 
-    <div class="category-scroll">
-        <div class="category-item" style="background-image: url('https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=compress&cs=tinysrgb&w=300')">T-Shirts</div>
-        <div class="category-item" style="background-image: url('https://images.pexels.com/photos/1639729/pexels-photo-1639729.jpeg?auto=compress&cs=tinysrgb&w=300')">Jackets</div>
-        <div class="category-item" style="background-image: url('https://images.pexels.com/photos/1478442/pexels-photo-1478442.jpeg?auto=compress&cs=tinysrgb&w=300')">Footwear</div>
-        <div class="category-item" style="background-image: url('https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?auto=compress&cs=tinysrgb&w=300')">Bags</div>
+    <div class="cat-scroll">
+        <div class="cat-card" style="background-image: url('https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?w=300')">T-Shirts</div>
+        <div class="cat-card" style="background-image: url('https://images.pexels.com/photos/1639729/pexels-photo-1639729.jpeg?w=300')">Jackets</div>
+        <div class="cat-card" style="background-image: url('https://images.pexels.com/photos/1478442/pexels-photo-1478442.jpeg?w=300')">Footwear</div>
+        <div class="cat-card" style="background-image: url('https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?w=300')">Bags</div>
     </div>
 
-    <h2 class="section-title">New Arrivals</h2>
-    <main class="product-grid">
-        <div class="product-card">
-            <div class="product-img"><span class="badge">NEW</span><img src="https://images.pexels.com/photos/4066290/pexels-photo-4066290.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Polo"></div>
-            <div class="product-info"><p class="product-name">Luxury Cotton Polo</p><span class="stars">★★★★★</span><p class="product-price">$45.00</p></div>
+    <h2 class="title">New Arrivals</h2>
+    <div class="p-grid">
+        <div class="p-card" onclick="alert('Viewing: Luxury Cotton Polo')">
+            <div class="p-img"><span class="p-badge">HOT</span><img src="https://images.pexels.com/photos/4066290/pexels-photo-4066290.jpeg?w=300"></div>
+            <div class="p-info">
+                <p class="p-name">Luxury Polo</p>
+                <span class="stars">★★★★★</span>
+                <p class="p-price">$45.00</p>
+            </div>
         </div>
-        <div class="product-card">
-            <div class="product-img"><img src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Hoodie"></div>
-            <div class="product-info"><p class="product-name">Urban Hoodie</p><span class="stars">★★★★☆</span><p class="product-price">$65.00</p></div>
+        <div class="p-card" onclick="alert('Viewing: Urban Hoodie')">
+            <div class="p-img"><img src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?w=300"></div>
+            <div class="p-info">
+                <p class="p-name">Urban Hoodie</p>
+                <span class="stars">★★★★☆</span>
+                <p class="p-price">$65.00</p>
+            </div>
         </div>
-        <div class="product-card">
-            <div class="product-img"><img src="https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Jeans"></div>
-            <div class="product-info"><p class="product-name">Slim Fit Denim</p><span class="stars">★★★★★</span><p class="product-price">$80.00</p></div>
-        </div>
-        <div class="product-card">
-            <div class="product-img"><img src="https://images.pexels.com/photos/1032110/pexels-photo-1032110.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Cap"></div>
-            <div class="product-info"><p class="product-name">Core Vantage Cap</p><span class="stars">★★★★☆</span><p class="product-price">$25.00</p></div>
-        </div>
-    </main>
+    </div>
 
-    <section class="newsletter">
-        <h2>Join the VANTAGE List</h2>
-        <p>Subscribe for early access to drops and exclusive offers.</p>
-        <div class="newsletter-form">
-            <input type="email" placeholder="Your email address">
-            <button>Join Now</button>
-        </div>
+    <section class="news">
+        <h2 style="text-transform:uppercase; font-size:0.9rem; font-weight:900;">Join The List</h2>
+        <input type="email" placeholder="Your email address">
+        <button>Subscribe</button>
     </section>
 
     <footer>
-        <div class="footer-grid">
-            <div class="footer-col"><h4>Shop</h4><ul><li>New Arrivals</li><li>Best Sellers</li><li>Accessories</li></ul></div>
-            <div class="footer-col"><h4>Service</h4><ul><li>Contact Us</li><li>Shipping</li><li>Returns</li></ul></div>
-            <div class="footer-col"><h4>VANTAGE</h4><ul><li>Our Story</li><li>Careers</li><li>Press</li></ul></div>
-            <div class="footer-col"><h4>Follow</h4><ul><li>Instagram</li><li>Twitter</li><li>TikTok</li></ul></div>
+        <div class="f-grid">
+            <div class="f-col"><h4>Shop</h4><ul><li>New Drops</li><li>Best Sellers</li></ul></div>
+            <div class="f-col"><h4>Support</h4><ul><li>Contact</li><li>Shipping</li></ul></div>
         </div>
-        <div class="footer-bottom">© 2026 VANTAGE. PREMIUM QUALITY ESSENTIALS.</div>
+        <div class="f-bottom">© 2026 VANTAGE. PREMIUM ESSENTIALS.</div>
     </footer>
 
-    <div id="chat-bubble" onclick="toggleChat()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-    </div>
-
-    <div id="chat-window">
-        <div class="chat-header">VANTAGE AI ASSISTANT</div>
-        <div class="chat-body" id="chat-content">
-            <div style="background:#eee; padding:10px; border-radius:10px; margin-bottom:10px; line-height:1.4;">
-                Hi there! Welcome to VANTAGE. How can I help you with your style today?
-            </div>
-        </div>
-        <div class="chat-footer">
-            <input type="text" id="chat-input" placeholder="Type a message...">
-            <button onclick="sendMsg()" style="border:none; background:none; font-weight:bold; font-size:1.2rem; cursor:pointer;">></button>
-        </div>
+    <div class="chat-btn" onclick="toggleChat()"><svg width="22" height="22" fill="#fff" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+    <div id="chat" class="chat-box">
+        <div class="chat-h">VANTAGE ASSISTANT</div>
+        <div class="chat-b">Welcome! How can I help you?</div>
+        <div class="chat-f"><input type="text" placeholder="Type here..."><button style="background:none; border:none; font-weight:bold;">></button></div>
     </div>
 
     <script>
-        function toggleMenu() { 
-            document.getElementById('side-drawer').classList.toggle('active'); 
-            document.getElementById('overlay').classList.toggle('active'); 
+        function toggleMenu() {
+            document.getElementById('drawer').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
         }
-
-        function toggleChat() { 
-            const chat = document.getElementById('chat-window'); 
-            chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex'; 
-        }
-
-        function sendMsg() {
-            const input = document.getElementById('chat-input');
-            const body = document.getElementById('chat-content');
-            if(input.value.trim() !== "") {
-                body.innerHTML += `<div style="background:#000; color:#fff; padding:10px; border-radius:10px; margin-bottom:10px; align-self:flex-end; text-align:right;">${input.value}</div>`;
-                input.value = "";
-                body.scrollTop = body.scrollHeight;
-            }
+        function toggleChat() {
+            const c = document.getElementById('chat');
+            c.style.display = (c.style.display === 'flex') ? 'none' : 'flex';
         }
     </script>
 </body>
