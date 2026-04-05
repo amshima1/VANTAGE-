@@ -3,97 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VANTAGE</title>
+    <title>VANTAGE | Premium E-Commerce</title>
     <style>
-        /* This internal CSS ensures the styling loads even if the external file fails */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+        /* --- 1. GLOBAL SETTINGS --- */
+        :root {
+            --bg-dark: #131314;
+            --header-black: #000000;
+            --text-white: #ffffff;
+            --accent-gold: #FFD700;
+            --light-gray: #f4f4f4;
         }
 
-        body {
-            background-color: #ffffff; /* Page body is white */
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #ffffff; color: #1a1a1a; overflow-x: hidden; }
 
+        /* --- 2. HEADER FIXTURE (Gemini Style) --- */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 15px;
-            background-color: #000000; /* Black background for the heading */
-            height: 60px;
-            width: 100%;
+            padding: 0 20px;
+            background-color: var(--header-black);
+            height: 65px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        /* The 3-line Hamburger */
         .menu-toggle {
-            width: 50px;
+            width: 60px;
             display: flex;
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
         }
 
-        .bar {
-            height: 2px;
-            width: 20px;
-            background-color: #ffffff; /* White lines */
-            border-radius: 2px;
-        }
+        .bar { height: 2px; width: 22px; background-color: var(--text-white); border-radius: 2px; }
 
-        /* Centered Logo */
         .logo {
-            color: #ffffff;
-            font-size: 1.2rem;
-            font-weight: bold;
-            letter-spacing: 2px;
+            color: var(--text-white);
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 4px;
             text-align: center;
             flex-grow: 1;
+            text-transform: uppercase;
         }
 
-        /* Right Side Icons */
         .header-actions {
-            width: 50px;
+            width: 60px;
             display: flex;
             justify-content: flex-end;
-            gap: 12px;
+            gap: 15px;
         }
 
-        .icon-btn svg {
-            display: block;
+        .icon-btn { cursor: pointer; display: flex; align-items: center; }
+
+        /* --- 3. HERO SECTION --- */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: 2px; }
+        .hero p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
+        .cta-btn {
+            padding: 15px 45px;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* --- 4. PRODUCT GRID & RATINGS --- */
+        .section-title { text-align: center; padding: 50px 0 20px; font-size: 1.5rem; text-transform: uppercase; }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card { border-radius: 8px; transition: transform 0.2s; }
+        .product-image { 
+            width: 100%; 
+            aspect-ratio: 1/1; 
+            background-color: #eee; 
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .badge { position: absolute; top: 10px; left: 10px; background: black; color: white; padding: 4px 10px; font-size: 0.7rem; font-weight: bold; }
+        
+        .product-info { padding: 12px 0; }
+        .product-name { font-size: 1rem; font-weight: 600; }
+        .product-price { color: #555; margin-top: 4px; font-weight: bold; }
+        
+        .rating { display: flex; align-items: center; gap: 5px; margin-top: 5px; }
+        .stars { color: var(--accent-gold); font-size: 0.9rem; }
+        .count { color: #999; font-size: 0.8rem; }
+
+        /* --- 5. AI CHATBOT UI --- */
+        #chat-bubble {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: black;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 9999;
+        }
+
+        #chat-window {
+            position: fixed;
+            bottom: 95px;
+            right: 25px;
+            width: 320px;
+            height: 450px;
+            background: white;
+            border-radius: 15px;
+            display: none; /* Toggle with JS */
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        .chat-header { background: black; color: white; padding: 15px; font-weight: 600; text-align: center; }
+        .chat-body { flex: 1; padding: 15px; font-size: 0.9rem; overflow-y: auto; background: #f9f9f9; }
+        .chat-footer { padding: 10px; border-top: 1px solid #eee; display: flex; }
+        .chat-footer input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
+
+        /* Desktop Optimization */
+        @media (min-width: 768px) {
+            .product-grid { grid-template-columns: repeat(4, 1fr); }
+            .hero h1 { font-size: 4.5rem; }
         }
     </style>
 </head>
 <body>
 
     <header class="navbar">
-        <div class="menu-toggle">
+        <div class="menu-toggle" onclick="alert('Menu Opening...')">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
-
         <div class="logo">VANTAGE</div>
-
         <div class="header-actions">
             <div class="icon-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </div>
-            
             <div class="icon-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
             </div>
         </div>
     </header>
+
+    <section class="hero">
+        <h1>VANTAGE</h1>
+        <p>Premium Quality Essentials for the Modern World.</p>
+        <a href="#" class="cta-btn">Shop New Arrivals</a>
+    </section>
+
+    <h2 class="section-title">Latest Collection</h2>
+    <div class="product-grid">
+        <div class="product-card">
+            <div class="product-image"><span class="badge">HOT</span></div>
+            <div class="product-info">
+                <p class="product-name">Minimalist T-Shirt</p>
+                <div class="rating"><span class="stars">★★★★★</span><span class="count">(42)</span></div>
+                <p class="product-price">$29.00</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image"></div>
+            <div class="product-info">
+                <p class="product-name">Essential Hoodie</p>
+                <div class="rating"><span class="stars">★★★★☆</span><span class="count">(18)</span></div>
+                <p class="product-price">$59.00</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image"></div>
+            <div class="product-info">
+                <p class="product-name">Tech Cargo Pants</p>
+                <div class="rating"><span class="stars">★★★★★</span><span class="count">(89)</span></div>
+                <p class="product-price">$75.00</p>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image"><span class="badge">NEW</span></div>
+            <div class="product-info">
+                <p class="product-name">Vantage Cap</p>
+                <div class="rating"><span class="stars">★★★★☆</span><span class="count">(5)</span></div>
+                <p class="product-price">$25.00</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="chat-bubble" onclick="toggleChat()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </div>
+
+    <div id="chat-window" id="vantageChat">
+        <div class="chat-header">VANTAGE AI</div>
+        <div class="chat-body" id="chatContent">
+            <p>Welcome to Vantage! How can I assist you with your shopping today?</p>
+        </div>
+        <div class="chat-footer">
+            <input type="text" placeholder="Ask about shipping, sizes...">
+        </div>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const chat = document.getElementById('chat-window');
+            if (chat.style.display === 'flex') {
+                chat.style.display = 'none';
+            } else {
+                chat.style.display = 'flex';
+            }
+        }
+    </script>
 
 </body>
 </html>
