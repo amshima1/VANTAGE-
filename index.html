@@ -3,231 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VANTAGE | Premium Essentials</title>
-    <style>
-        /* --- 1. CORE BRANDING --- */
-        :root {
-            --v-black: #000000;
-            --v-white: #ffffff;
-            --v-gold: #FFD700;
-            --v-gray: #f9f9f9;
-            --drawer-width: 280px;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--v-white); color: #1a1a1a; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
-
-        /* --- 2. NAVIGATION (Sticky Header) --- */
-        .v-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 15px;
-            background: var(--v-black);
-            height: 60px;
-            position: sticky;
-            top: 0;
-            z-index: 2000;
-        }
-
-        .menu-btn { width: 40px; height: 40px; display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; }
-        .bar { height: 2.5px; width: 22px; background: var(--v-white); border-radius: 4px; transition: 0.3s; }
-        
-        .v-logo { color: var(--v-white); font-size: 1.1rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; }
-        
-        .nav-icons { display: flex; gap: 15px; }
-        .nav-icons svg { stroke: #fff; stroke-width: 2; cursor: pointer; }
-
-        /* --- 3. SIDEBAR DRAWER --- */
-        .drawer {
-            position: fixed;
-            top: 0;
-            left: calc(-1 * var(--drawer-width));
-            width: var(--drawer-width);
-            height: 100%;
-            background: #000;
-            color: #fff;
-            z-index: 3000;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 40px 20px;
-        }
-        .drawer.active { left: 0; }
-        .drawer-links li { list-style: none; margin: 25px 0; border-bottom: 1px solid #111; padding-bottom: 10px; }
-        .drawer-links a { text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; font-weight: 500; }
-        
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            z-index: 2500;
-            backdrop-filter: blur(4px);
-        }
-        .overlay.active { display: block; }
-
-        /* --- 4. HERO SECTION --- */
-        .hero {
-            height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=1200');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-align: center;
-        }
-        .hero h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: 3px; margin-bottom: 15px; }
-        .btn-main { padding: 12px 35px; background: #fff; color: #000; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
-
-        /* --- 5. CATEGORY SCROLLER --- */
-        .cat-scroll { display: flex; overflow-x: auto; gap: 12px; padding: 25px 15px; scrollbar-width: none; }
-        .cat-scroll::-webkit-scrollbar { display: none; }
-        .cat-card {
-            min-width: 130px;
-            height: 160px;
-            border-radius: 8px;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: flex-end;
-            padding: 12px;
-            color: #fff;
-            font-weight: 800;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            box-shadow: inset 0 -30px 20px rgba(0,0,0,0.6);
-        }
-
-        /* --- 6. PRODUCT GRID --- */
-        .title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; padding: 20px 15px 10px; border-left: 4px solid #000; margin: 20px 15px; }
-        .p-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
-        .p-card { background: #fff; }
-        .p-img { width: 100%; aspect-ratio: 1/1; background: var(--v-gray); border-radius: 4px; overflow: hidden; position: relative; }
-        .p-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .p-card:active .p-img img { transform: scale(1.05); }
-        .p-badge { position: absolute; top: 8px; left: 8px; background: #000; color: #fff; font-size: 0.6rem; padding: 3px 7px; font-weight: bold; }
-        .p-info { padding: 10px 0; }
-        .p-name { font-size: 0.85rem; font-weight: 600; }
-        .p-price { font-weight: 700; font-size: 0.9rem; margin-top: 2px; }
-        .stars { color: var(--v-gold); font-size: 0.7rem; margin: 4px 0; display: block; }
-
-        /* --- 7. FOOTER & NEWSLETTER --- */
-        .news { background: var(--v-gray); padding: 50px 20px; text-align: center; }
-        .news input { width: 100%; padding: 12px; border: 1px solid #ddd; margin: 15px 0 10px; outline: none; }
-        .news button { width: 100%; padding: 12px; background: #000; color: #fff; font-weight: bold; text-transform: uppercase; border: none; }
-
-        footer { background: #000; color: #fff; padding: 40px 20px; }
-        .f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .f-col h4 { font-size: 0.7rem; color: #666; text-transform: uppercase; margin-bottom: 15px; }
-        .f-col li { list-style: none; font-size: 0.8rem; opacity: 0.7; margin-bottom: 8px; }
-        .f-bottom { border-top: 1px solid #111; margin-top: 30px; padding-top: 20px; text-align: center; font-size: 0.6rem; opacity: 0.4; }
-
-        /* --- 8. CHAT INTERFACE --- */
-        .chat-btn { position: fixed; bottom: 20px; right: 20px; background: #000; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 4000; border: 1px solid rgba(255,255,255,0.2); }
-        .chat-box { position: fixed; bottom: 80px; right: 20px; width: 280px; height: 350px; background: #fff; border-radius: 12px; display: none; flex-direction: column; z-index: 4000; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 1px solid #eee; }
-        .chat-h { background: #000; color: #fff; padding: 12px; font-weight: bold; font-size: 0.7rem; text-align: center; }
-        .chat-b { flex: 1; padding: 15px; font-size: 0.8rem; background: var(--v-gray); overflow-y: auto; }
-        .chat-f { padding: 10px; display: flex; gap: 5px; background: #fff; }
-        .chat-f input { flex: 1; padding: 8px; border-radius: 20px; border: 1px solid #ddd; font-size: 0.8rem; outline: none; }
-    </style>
+    <title>Your E-Commerce Site</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">ShopName</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Electronics</a></li>
+                <li><a href="#">Clothing</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div id="drawer" class="drawer">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-            <span style="letter-spacing:3px; font-weight:900; font-size:0.8rem;">VANTAGE</span>
-            <div onclick="toggleMenu()" style="font-size:1.5rem; cursor:pointer;">✕</div>
-        </div>
-        <ul class="drawer-links">
-            <li><a href="#">New Drops</a></li>
-            <li><a href="#">Shop Essentials</a></li>
-            <li><a href="#">Accessories</a></li>
-            <li><a href="#">Support</a></li>
-        </ul>
-    </div>
-
-    <nav class="v-nav">
-        <div class="menu-btn" onclick="toggleMenu()">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-        </div>
-        <div class="v-logo">VANTAGE</div>
-        <div class="nav-icons">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-        </div>
-    </nav>
-
+    <!-- Hero Section -->
     <section class="hero">
-        <h1>THE CORE</h1>
-        <a href="#" class="btn-main">Explore Collection</a>
+        <div class="hero-content">
+            <h1>Discover the Best Deals on Electronics and Fashion</h1>
+            <p>Shop now for exclusive offers!</p>
+            <a href="#featured" class="btn">Shop Now</a>
+        </div>
     </section>
 
-    <div class="cat-scroll">
-        <div class="cat-card" style="background-image: url('https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?w=300')">T-Shirts</div>
-        <div class="cat-card" style="background-image: url('https://images.pexels.com/photos/1639729/pexels-photo-1639729.jpeg?w=300')">Jackets</div>
-        <div class="cat-card" style="background-image: url('https://images.pexels.com/photos/1478442/pexels-photo-1478442.jpeg?w=300')">Footwear</div>
-        <div class="cat-card" style="background-image: url('https://images.pexels.com/photos/934673/pexels-photo-934673.jpeg?w=300')">Bags</div>
-    </div>
-
-    <h2 class="title">New Arrivals</h2>
-    <div class="p-grid">
-        <div class="p-card" onclick="alert('Viewing: Luxury Cotton Polo')">
-            <div class="p-img"><span class="p-badge">HOT</span><img src="https://images.pexels.com/photos/4066290/pexels-photo-4066290.jpeg?w=300"></div>
-            <div class="p-info">
-                <p class="p-name">Luxury Polo</p>
-                <span class="stars">★★★★★</span>
-                <p class="p-price">$45.00</p>
+    <!-- Featured Products Section -->
+    <section id="featured" class="featured">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <!-- Electronics Section -->
+            <div class="product-category">
+                <h3>Electronics</h3>
+                <div class="products">
+                    <div class="product">
+                        <img src="https://via.placeholder.com/200" alt="Product 1">
+                        <h4>Smartphone</h4>
+                        <p>$799</p>
+                    </div>
+                    <div class="product">
+                        <img src="https://via.placeholder.com/200" alt="Product 2">
+                        <h4>Laptop</h4>
+                        <p>$1299</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Clothing Section -->
+            <div class="product-category">
+                <h3>Clothing</h3>
+                <div class="products">
+                    <div class="product">
+                        <img src="https://via.placeholder.com/200" alt="Product 3">
+                        <h4>T-shirt</h4>
+                        <p>$19.99</p>
+                    </div>
+                    <div class="product">
+                        <img src="https://via.placeholder.com/200" alt="Product 4">
+                        <h4>Jacket</h4>
+                        <p>$49.99</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="p-card" onclick="alert('Viewing: Urban Hoodie')">
-            <div class="p-img"><img src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?w=300"></div>
-            <div class="p-info">
-                <p class="p-name">Urban Hoodie</p>
-                <span class="stars">★★★★☆</span>
-                <p class="p-price">$65.00</p>
-            </div>
-        </div>
-    </div>
-
-    <section class="news">
-        <h2 style="text-transform:uppercase; font-size:0.9rem; font-weight:900;">Join The List</h2>
-        <input type="email" placeholder="Your email address">
-        <button>Subscribe</button>
     </section>
 
+    <!-- Footer Section -->
     <footer>
-        <div class="f-grid">
-            <div class="f-col"><h4>Shop</h4><ul><li>New Drops</li><li>Best Sellers</li></ul></div>
-            <div class="f-col"><h4>Support</h4><ul><li>Contact</li><li>Shipping</li></ul></div>
+        <p>&copy; 2026 Your E-Commerce Site. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
         </div>
-        <div class="f-bottom">© 2026 VANTAGE. PREMIUM ESSENTIALS.</div>
     </footer>
 
-    <div class="chat-btn" onclick="toggleChat()"><svg width="22" height="22" fill="#fff" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
-    <div id="chat" class="chat-box">
-        <div class="chat-h">VANTAGE ASSISTANT</div>
-        <div class="chat-b">Welcome! How can I help you?</div>
-        <div class="chat-f"><input type="text" placeholder="Type here..."><button style="background:none; border:none; font-weight:bold;">></button></div>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById('drawer').classList.toggle('active');
-            document.getElementById('overlay').classList.toggle('active');
-        }
-        function toggleChat() {
-            const c = document.getElementById('chat');
-            c.style.display = (c.style.display === 'flex') ? 'none' : 'flex';
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
