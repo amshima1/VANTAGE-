@@ -16,6 +16,7 @@ header {
     background-color: #333;
     color: white;
     padding: 10px 0;
+    position: relative;
 }
 
 nav {
@@ -25,8 +26,15 @@ nav {
     padding: 0 20px;
 }
 
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700; /* Gold color */
+}
+
 .nav-links {
     list-style-type: none;
+    display: flex;
 }
 
 .nav-links li {
@@ -38,6 +46,19 @@ nav {
     color: white;
     text-decoration: none;
     font-size: 16px;
+}
+
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger-menu .bar {
+    background-color: white;
+    height: 4px;
+    width: 25px;
+    margin: 4px;
 }
 
 /* Hero Section */
@@ -62,7 +83,7 @@ nav {
 }
 
 .btn {
-    background-color: #ff6347;
+    background-color: #FFD700; /* Gold color */
     padding: 10px 20px;
     color: white;
     text-decoration: none;
@@ -71,7 +92,7 @@ nav {
 }
 
 .btn:hover {
-    background-color: #e5533d;
+    background-color: #e5c100;
 }
 
 /* Search Bar */
@@ -89,7 +110,7 @@ nav {
 
 #search-btn {
     padding: 10px;
-    background-color: #ff6347;
+    background-color: #FFD700; /* Gold color */
     color: white;
     border: none;
     font-size: 16px;
@@ -97,7 +118,7 @@ nav {
 }
 
 #search-btn:hover {
-    background-color: #e5533d;
+    background-color: #e5c100;
 }
 
 /* Featured Section */
@@ -167,4 +188,31 @@ footer p {
     color: white;
     margin: 0 10px;
     text-decoration: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        background-color: #333;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .hamburger-menu.active {
+        display: flex;
+    }
 }
