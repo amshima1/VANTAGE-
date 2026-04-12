@@ -45,20 +45,4 @@ document.getElementById('product-grid').addEventListener('click', function (e) {
     if (e.target && e.target.classList.contains('btn-add-to-cart')) {
         const productName = e.target.previousElementSibling.previousElementSibling.innerText;
         const product = products.find(p => p.name === productName);
-        addToCart(product);
-    }
-});
-
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-
-// Initially load all products
-loadProducts(products);
+        addTo
