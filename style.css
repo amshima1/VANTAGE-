@@ -1,36 +1,47 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 body { background: #fdfdfd; overflow-x: hidden; }
 
-/* OVERLAY & NAVBAR */
-.overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999; }
-.overlay.active { display: block; }
+/* NAVBAR & GITHUB SIDEBAR */
 .navbar { display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; background: #111; color: white; position: sticky; top: 0; z-index: 1000; }
 .logo { font-size: 24px; font-weight: 700; }
 .logo span { color: #00d4ff; }
-.hamburger { cursor: pointer; display: flex; flex-direction: column; gap: 5px; width: 25px; }
+.hamburger { cursor: pointer; display: flex; flex-direction: column; gap: 5px; width: 25px; flex: 1; }
+.nav-spacer { flex: 1; }
 .line { width: 100%; height: 3px; background: white; }
 
-/* SIDEBAR (GITHUB STYLE) */
 .nav-links { position: fixed; top: 0; left: -100%; width: 280px; height: 100vh; background: #0d1117; border-right: 1px solid #30363d; z-index: 1001; transition: 0.3s; }
 .nav-links.active { left: 0; }
 .sidebar-header { display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid #30363d; }
 .sidebar-menu a { display: block; padding: 12px 20px; color: #adbac7; text-decoration: none; font-size: 14px; }
 .sidebar-menu a:hover { background: #161b22; color: white; }
+.menu-label { padding: 10px 20px 5px; font-size: 12px; color: #768390; font-weight: bold; text-transform: uppercase; }
+.menu-divider { height: 1px; background: #30363d; margin: 10px 20px; }
 
-/* SHOPPING UI */
+/* HERO IMAGES */
+.slider-container, .mini-hero { 
+    height: 350px; 
+    background-size: cover; 
+    background-position: center; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: white; 
+    text-align: center; 
+}
+.mini-hero { margin: 40px 0; border-radius: 10px; width: 90%; margin-left: 5%; }
+
+/* PRODUCT UI */
 .shop-container { padding: 30px 5%; }
-.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
-.product-card { background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow: hidden; text-align: center; padding-bottom: 15px; }
-.product-img { width: 100%; height: 180px; object-fit: cover; }
-.add-btn { background: #111; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
-.add-btn.mini { padding: 5px 15px; font-size: 12px; background: #00d4ff; color: #111; font-weight: bold; }
+.section-title { margin-bottom: 20px; font-size: 22px; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; }
+.product-card { background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; padding-bottom: 15px; text-align: center; }
+.product-img { width: 100%; height: 200px; object-fit: cover; }
+.add-btn { background: #111; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
 
-/* RECOMMENDATIONS */
-.recommendation-grid .small-card { transform: scale(0.95); }
-.sub-title { margin-top: 40px; font-size: 18px; border-left: 4px solid #00d4ff; padding-left: 10px; }
-
-/* CART & MODAL */
+/* OVERLAYS & MODALS */
+.overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999; }
+.overlay.active { display: block; }
 .side-cart { position: fixed; top: 0; right: -100%; width: 320px; height: 100%; background: white; z-index: 1001; transition: 0.4s; }
 .side-cart.active { right: 0; }
 .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 2000; }
-.modal-content { background: white; padding: 25px; border-radius: 10px; width: 90%; max-width: 400px; }
+.modal-content { background: white; padding: 25px; border-radius: 10px; width: 90%; }
