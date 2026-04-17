@@ -1,48 +1,52 @@
-// Example product data
-const products = [
-    { name: "Smartphone", category: "Electronics", price: "$799", image: "https://via.placeholder.com/200" },
-    { name: "Laptop", category: "Electronics", price: "$1299", image: "https://via.placeholder.com/200" },
-    { name: "T-shirt", category: "Clothing", price: "$19.99", image: "https://via.placeholder.com/200" },
-    { name: "Jacket", category: "Clothing", price: "$49.99", image: "https://via.placeholder.com/200" }
-];
+// CART UI ELEMENTS
+const sideCart = document.getElementById('side-cart');
+const cartBtn = document.getElementById('cart-icon-btn');
+const closeBtn = document.getElementById('close-cart');
+const cartCountElement = document.getElementById('cart-count');
+const cartItemsList = document.getElementById('cart-items-list');
 
-// Load all products initially
-function loadProducts(products) {
-    const productGrid = document.getElementById('product-grid');
-    productGrid.innerHTML = '';
+// CART LOGIC
+let count = 0;
+cartBtn.onclick = () => sideCart.classList.add('active');
+closeBtn.onclick = () => sideCart.classList.remove('active');
 
-    products.forEach(product => {
-        const productHTML = `
-            <div class="product">
-                <img src="${product.image}" alt="${product.name}">
-                <h4>${product.name}</h4>
-                <p>${product.price}</p>
-                <button class="btn-add-to-cart">Add to Cart</button>
-            </div>
-        `;
-        productGrid.innerHTML += productHTML;
-    });
+function addToCart(name, price) {
+    count++;
+    cartCountElement.innerText = count;
+    if(count === 1) cartItemsList.innerHTML = ''; 
+
+    const item = document.createElement('div');
+    item.style.padding = "10px 0";
+    item.style.borderBottom = "1px solid #eee";
+    item.innerHTML = `<strong>${name}</strong> - $${price}`;
+    cartItemsList.appendChild(item);
+    sideCart.classList.add('active');
 }
 
-// Search functionality
-document.getElementById("search-btn").addEventListener("click", function () {
-    const query = document.getElementById("search-bar").value.toLowerCase();
-    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+// RECENTLY VIEWED LOGIC
+let recentItems = [];
 
-    loadProducts(filteredProducts);
-});
+function addToRecent(name, imgUrl) {
+    const recentGrid = document.getElementById('recent-grid');
+    
+    // Check if already in list to avoid duplicates
+    if (recentItems.includes(name)) return;
+    
+    if (recentItems.length === 0) recentGrid.innerHTML = ''; // Clear "empty" message
 
-// Add to Cart functionality
-let cart = [];
+    recentItems.unshift(name); // Add to start of array
+    if (recentItems.length > 5) recentItems.pop(); // Keep only last 5
 
-function addToCart(product) {
-    cart.push(product);
-    alert(`${product.name} has been added to your cart!`);
+    const recentDiv = document.createElement('div');
+    recentDiv.className = 'recent-item';
+    recentDiv.innerHTML = `
+        <img src="${imgUrl}">
+        <h5>${name}</h5>
+    `;
+    
+    // Add to the front of the grid
+    recentGrid.prepend(recentDiv);
 }
 
-// Add Event Listeners for "Add to Cart" buttons
-document.getElementById('product-grid').addEventListener('click', function (e) {
-    if (e.target && e.target.classList.contains('btn-add-to-cart')) {
-        const productName = e.target.previousElementSibling.previousElementSibling.innerText;
-        const product = products.find(p => p.name === productName);
-        addTo
+// INIT
+console.log("Flux Core Loaded: Ready for Fiverr Portfolio.");
