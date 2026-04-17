@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Premium Marketplace</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>FLUX | Premium AI Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="ui-overlay" class="overlay" onclick="closeAllPanels()"></div>
 
     <div class="announcement-bar">
-        <marquee>🔥 SECURE CHECKOUT ENABLED | 20% OFF TECH | FREE SHIPPING OVER $150 🔥</marquee>
+        <marquee>🚀 GLOBAL SHIPPING AVAILABLE | SECURE STRIPE & PAYPAL CHECKOUT | 20% OFF ALL SMART TECH 🚀</marquee>
     </div>
 
     <nav class="navbar">
@@ -29,111 +29,102 @@
                 <span class="close-btn" onclick="toggleMenu()">&times;</span>
             </div>
             <ul class="sidebar-menu">
-                <li class="menu-label">Main Navigation</li>
+                <li class="menu-label">Main Dashboard</li>
                 <li><a href="#home" onclick="toggleMenu()">🏠 Home Dashboard</a></li>
-                <li><a href="#shop" onclick="toggleMenu()">🛍️ Shop All Products</a></li>
-                <li><a href="#" onclick="toggleMenu()">📦 My Orders & Tracking</a></li>
-                
+                <li><a href="#tech-section" onclick="toggleMenu()">📱 Tech Repository</a></li>
+                <li><a href="#apparel-section" onclick="toggleMenu()">👕 Apparel Branch</a></li>
                 <li class="menu-divider"></li>
-                
-                <li class="menu-label">Product Categories</li>
-                <li><a href="#tech-section" onclick="toggleMenu()">📱 Smartphones & Tech</a></li>
-                <li><a href="#apparel-section" onclick="toggleMenu()">👕 Urban Apparel</a></li>
-                
+                <li class="menu-label">User Settings</li>
+                <li><a href="#" onclick="toggleMenu()">👤 Account Profile</a></li>
+                <li><a href="#" onclick="toggleMenu()">📦 Pull Requests (Orders)</a></li>
                 <li class="menu-divider"></li>
-                
-                <li class="menu-label">Help & Support</li>
-                <li><a href="javascript:void(0)" onclick="toggleBot(); toggleMenu()">💬 Chat with AI Assistant</a></li>
-                <li><a href="#feedback" onclick="toggleMenu()">📝 Leave Feedback</a></li>
+                <li class="menu-label">Support</li>
+                <li><a href="javascript:void(0)" onclick="toggleBot(); toggleMenu()">💬 AI Live Assistant</a></li>
+                <li><a href="#feedback" onclick="toggleMenu()">📝 Submit Feedback</a></li>
             </ul>
             <div class="sidebar-footer">
-                <button class="cart-trigger-btn" onclick="openCart(); toggleMenu()">🛒 View Cart (<span id="cart-count">0</span>)</button>
+                <button class="cart-trigger-btn" onclick="openCart(); toggleMenu()">🛒 Checkout Cart (<span id="cart-count">0</span>)</button>
             </div>
         </div>
     </nav>
 
-    <section class="slider-container" id="home">
-        <div class="slider">
-            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200')">
-                <div class="slide-content">
-                    <h2>Next-Gen Tech</h2>
-                    <p>Performance meets Design with Flux Z.</p>
-                </div>
-            </div>
+    <section class="hero-main" id="home" style="background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200')">
+        <div class="hero-content">
+            <h1>The Tech Frontier</h1>
+            <p>20 New Items Added to the Flux Repository</p>
+            <a href="#tech-section" class="cta-scroll">Explore Branch</a>
         </div>
     </section>
 
-    <main class="shop-container" id="shop">
-        <h2 class="section-title" id="tech-section">Featured Technology</h2>
-        <div class="product-grid">
-            <div class="product-card" onclick="addToRecent('Flux Phone Z', 'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500')">
-                <img src="https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500" class="product-img" loading="lazy">
-                <div class="product-info">
-                    <h3>Flux Phone Z</h3>
-                    <p class="price">$799</p>
-                    <button class="add-btn" onclick="event.stopPropagation(); addToCart('Flux Phone Z', 799)">Add to Cart</button>
-                </div>
+    <main class="shop-container">
+        <h2 class="section-title" id="tech-section">Tech Catalog (20)</h2>
+        <div class="product-grid" id="tech-grid">
             </div>
-        </div>
 
-        <section class="mini-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1200')">
-            <div class="mini-hero-content">
-                <h2>Urban Apparel</h2>
-                <p>New Season Drops Now Live.</p>
+        <section class="hero-mini" style="background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1200')">
+            <div class="hero-content">
+                <h2>Urban Apparel Branch</h2>
+                <p>Version 2.0 Wearables Live</p>
             </div>
         </section>
 
-        <h2 class="section-title" id="apparel-section">New Apparel</h2>
-        <div class="product-grid">
-            <div class="product-card" onclick="addToRecent('Oversized Tee', 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500')">
-                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500" class="product-img" loading="lazy">
-                <div class="product-info">
-                    <h3>Oversized Tee</h3>
-                    <p class="price">$35</p>
-                    <button class="add-btn" onclick="event.stopPropagation(); addToCart('Oversized Tee', 35)">Add to Cart</button>
-                </div>
+        <h2 class="section-title" id="apparel-section">Apparel Collection (20)</h2>
+        <div class="product-grid" id="apparel-grid">
             </div>
-        </div>
 
         <section class="extra-section">
             <h3 class="sub-title">You May Also Like</h3>
-            <div class="product-grid recommendation-grid">
-                <div class="product-card small-card" onclick="addToRecent('Pro Watch', 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500')">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" class="product-img">
-                    <div class="product-info">
-                        <h4>Pro Watch</h4>
-                        <p class="price">$199</p>
-                        <button class="add-btn mini" onclick="event.stopPropagation(); addToCart('Pro Watch', 199)">+ Add</button>
-                    </div>
+            <div class="product-grid recommendation-grid" id="recommendation-grid">
                 </div>
-            </div>
         </section>
 
         <section class="extra-section">
             <h3 class="sub-title">Recently Viewed</h3>
-            <div class="recent-grid" id="recent-grid"><p class="empty-msg">No history yet.</p></div>
+            <div class="recent-grid" id="recent-grid"><p class="empty-msg">No viewing history found.</p></div>
+        </section>
+
+        <section class="feedback-section" id="feedback">
+            <h3>Feedback Loop</h3>
+            <textarea id="user-feedback" placeholder="Describe your experience..."></textarea>
+            <button class="add-btn" onclick="sendFeedback()">Push Feedback</button>
         </section>
     </main>
 
     <div id="side-cart" class="side-cart">
-        <div class="cart-header"><h3>Cart</h3><button onclick="closeCart()">&times;</button></div>
+        <div class="cart-header"><h3>Staged Items</h3><button onclick="closeCart()">&times;</button></div>
         <div id="cart-items-list" class="cart-content"></div>
         <div class="cart-footer">
             <p>Total: $<span id="cart-total">0</span></p>
-            <button class="checkout-btn" onclick="openPayment()">Checkout</button>
+            <button class="checkout-btn" onclick="openPayment()">Finalize Checkout</button>
         </div>
     </div>
 
     <div id="payment-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closePayment()">&times;</span>
-            <h3>Secure Checkout</h3>
+            <h3>Order Summary</h3>
             <div id="order-summary" class="order-summary"></div>
-            <p>Total: $<span id="modal-total">0</span></p>
-            <input type="text" id="card-num" placeholder="Card Number" maxlength="16">
-            <button class="pay-now-btn" id="pay-button" onclick="processPayment()">Confirm Payment</button>
+            <p><strong>Total Due: $<span id="modal-total">0</span></strong></p>
+            <input type="text" id="card-num" placeholder="Card Number (16-digits)" maxlength="16">
+            <button class="pay-now-btn" id="pay-button" onclick="processPayment()">Execute Payment</button>
+            <div id="payment-success" class="success-msg">✅ Transaction Successful</div>
         </div>
     </div>
+
+    <div id="ai-bot" class="ai-bot">
+        <div class="bot-header">Flux Assistant</div>
+        <div id="bot-messages" class="bot-messages"></div>
+        <div class="bot-input">
+            <input type="text" id="bot-query" placeholder="Ask Flux...">
+            <button onclick="askBot()">Send</button>
+        </div>
+    </div>
+    <button class="bot-toggle" onclick="toggleBot()">💬</button>
+
+    <footer class="footer">
+        <div class="logo">FLUX<span>.</span></div>
+        <p>© 2026 FLUX System Architecture. All Rights Reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
