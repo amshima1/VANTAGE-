@@ -1,143 +1,122 @@
-// Data Generation for 20 Items Each
-const techImages = [
-    'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
-    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500', 'https://images.unsplash.com/photo-1542393545-10f5cde2c810?w=500',
-    'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=500', 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500'
+const electronicImages = [
+    'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=400', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400',
+    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400', 'https://images.unsplash.com/photo-1542393545-10f5cde2c810?w=400',
+    'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=400'
 ];
 
-const apparelImages = [
-    'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500',
-    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500', 'https://images.unsplash.com/photo-1539109132314-34759616b308?w=500',
-    'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500', 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500'
+const clothesImages = [
+    'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',
+    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400', 'https://images.unsplash.com/photo-1539109132314-34759616b308?w=400'
 ];
 
-function populateProducts() {
-    const techGrid = document.getElementById('tech-grid');
-    const apparelGrid = document.getElementById('apparel-grid');
-    const recGrid = document.getElementById('recommendation-grid');
+function populateStore() {
+    const tech = document.getElementById('tech-grid');
+    const apparel = document.getElementById('apparel-grid');
+    const recs = document.getElementById('recommendation-grid');
 
     for (let i = 1; i <= 20; i++) {
-        // Tech
-        techGrid.innerHTML += createProductCard(`Tech Item ${i}`, 199 + (i * 10), techImages[i % 6]);
-        // Apparel
-        apparelGrid.innerHTML += createProductCard(`Urban Style ${i}`, 25 + (i * 2), apparelImages[i % 6]);
+        tech.innerHTML += createCard(`Hardware Module ${i}`, 199 + (i*10), electronicImages[i % 5]);
+        apparel.innerHTML += createCard(`Aesthetic Asset ${i}`, 40 + (i*2), clothesImages[i % 4]);
     }
     
-    // 4 Recommendations
-    for (let i = 1; i <= 4; i++) {
-        recGrid.innerHTML += createProductCard(`Match ${i}`, 99, techImages[(i+2)%6]);
+    // Vertical System Picks
+    for (let i = 1; i <= 6; i++) {
+        recs.innerHTML += `
+            <div class="side-card-item">
+                <img src="${electronicImages[i % 5]}">
+                <div>
+                    <h5 style="font-size:12px">Suggested v.${i}</h5>
+                    <button class="add-btn" style="padding:2px 8px; font-size:10px" onclick="addToCart('Sugg-${i}', 99)">+ Add</button>
+                </div>
+            </div>
+        `;
     }
 }
 
-function createProductCard(name, price, img) {
+function createCard(name, price, img) {
     return `
         <div class="product-card" onclick="addToRecent('${name}', '${img}')">
             <img src="${img}" class="product-img" loading="lazy">
             <div class="product-info">
-                <h3>${name}</h3>
-                <p class="price">$${price}</p>
-                <button class="add-btn" onclick="event.stopPropagation(); addToCart('${name}', ${price})">Add to Cart</button>
+                <h4>${name}</h4>
+                <p class="price" style="color:#00d4ff; font-weight:700">$${price}</p>
+                <button class="add-btn" onclick="event.stopPropagation(); addToCart('${name}', ${price})">Stage Item</button>
             </div>
         </div>
     `;
 }
 
-// UI State Logic
+// UI HANDLERS
 function toggleMenu() {
     document.getElementById('nav-links').classList.toggle('active');
     document.getElementById('ui-overlay').classList.toggle('active');
 }
-
 function openCart() {
     document.getElementById('side-cart').classList.add('active');
     document.getElementById('ui-overlay').classList.add('active');
 }
-
 function closeCart() {
     document.getElementById('side-cart').classList.remove('active');
     document.getElementById('ui-overlay').classList.remove('active');
 }
-
 function closeAllPanels() {
     document.getElementById('nav-links').classList.remove('active');
     closeCart();
 }
 
-// Cart Management
+// CART & HISTORY
 let cart = [];
 let total = 0;
+let viewed = [];
 
 function addToCart(name, price) {
     cart.push({name, price});
     total += price;
-    updateCartUI();
+    document.getElementById('cart-count').innerText = cart.length;
+    document.getElementById('cart-total').innerText = total;
+    document.getElementById('cart-items-list').innerHTML += `
+        <div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #eee">
+            <span>${name}</span><strong>$${price}</strong>
+        </div>`;
     openCart();
 }
 
-function updateCartUI() {
-    document.getElementById('cart-count').innerText = cart.length;
-    document.getElementById('cart-total').innerText = total;
-    document.getElementById('cart-items-list').innerHTML = cart.map((i, idx) => `
-        <div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #eee">
-            <span>${i.name}</span><strong>$${i.price}</strong>
-        </div>
-    `).join('');
-}
-
-// Payment Flow
-function openPayment() {
-    if(!cart.length) return alert("Repository empty.");
-    closeCart();
-    document.getElementById('order-summary').innerHTML = cart.map(i => `<div>• ${i.name} ($${i.price})</div>`).join('');
-    document.getElementById('modal-total').innerText = total;
-    document.getElementById('payment-modal').style.display = 'flex';
-}
-
-function closePayment() { document.getElementById('payment-modal').style.display = 'none'; }
-
-function processPayment() {
-    if(document.getElementById('card-num').value.length < 16) return alert("Invalid Credentials.");
-    const btn = document.getElementById('pay-button');
-    btn.innerText = "Processing Push...";
-    setTimeout(() => {
-        document.getElementById('payment-success').style.display = 'block';
-        setTimeout(() => location.reload(), 2000);
-    }, 2000);
-}
-
-// History Tracking
-let viewed = [];
 function addToRecent(name, img) {
     if(viewed.some(v => v.name === name)) return;
     viewed.unshift({name, img});
     const grid = document.getElementById('recent-grid');
     if(viewed.length === 1) grid.innerHTML = '';
-    grid.innerHTML = viewed.slice(0, 5).map(v => `
-        <div style="text-align:center; min-width:80px">
-            <img src="${v.img}" style="width:60px; height:60px; border-radius:50%; object-fit:cover; border:2px solid #00d4ff">
-            <h6 style="font-size:10px; margin-top:5px">${v.name}</h6>
+    
+    grid.innerHTML = viewed.slice(0, 8).map(v => `
+        <div class="side-card-item">
+            <img src="${v.img}">
+            <p style="font-size:12px">${v.name}</p>
         </div>
-    `).join('') + grid.innerHTML;
+    `).join('');
 }
 
-// AI Bot
+// PAYMENT & BOT
+function openPayment() {
+    if(!cart.length) return alert("Select items first.");
+    closeCart();
+    document.getElementById('modal-total').innerText = total;
+    document.getElementById('payment-modal').style.display = 'flex';
+}
+function closePayment() { document.getElementById('payment-modal').style.display = 'none'; }
+function processPayment() {
+    alert("Authorization Successful.");
+    location.reload();
+}
+
 function toggleBot() {
-    const bot = document.getElementById('ai-bot');
-    bot.style.display = (bot.style.display === 'flex') ? 'none' : 'flex';
+    const b = document.getElementById('ai-bot');
+    b.style.display = (b.style.display === 'flex') ? 'none' : 'flex';
 }
-
 function askBot() {
-    const q = document.getElementById('bot-query').value;
     const m = document.getElementById('bot-messages');
-    m.innerHTML += `<p><b>User:</b> ${q}</p>`;
-    setTimeout(() => {
-        m.innerHTML += `<p style="color:#00d4ff"><b>Flux:</b> Documentation for "${q}" not found. Try "Sale".</p>`;
-        m.scrollTop = m.scrollHeight;
-    }, 500);
+    m.innerHTML += `<p><b>User:</b> ${document.getElementById('bot-query').value}</p>`;
+    setTimeout(() => { m.innerHTML += `<p style="color:#00d4ff"><b>Flux:</b> Query acknowledged. System is processing.</p>`; }, 600);
     document.getElementById('bot-query').value = '';
 }
 
-function sendFeedback() { alert("Feedback pushed to main branch."); }
-
-// Init
-window.onload = populateProducts;
+window.onload = populateStore;
