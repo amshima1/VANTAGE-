@@ -1,70 +1,69 @@
+// IMAGE ASSETS
 const electronicImages = [
-    'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=400', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400',
-    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400', 'https://images.unsplash.com/photo-1542393545-10f5cde2c810?w=400',
-    'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=400'
+    'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
+    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500', 'https://images.unsplash.com/photo-1542393545-10f5cde2c810?w=500'
 ];
-
 const clothesImages = [
-    'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',
-    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400', 'https://images.unsplash.com/photo-1539109132314-34759616b308?w=400'
+    'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500'
 ];
 
+// DATA INITIALIZATION
 function populateStore() {
     const tech = document.getElementById('tech-grid');
     const apparel = document.getElementById('apparel-grid');
     const recs = document.getElementById('recommendation-grid');
 
     for (let i = 1; i <= 20; i++) {
-        tech.innerHTML += createCard(`Hardware Module ${i}`, 199 + (i*10), electronicImages[i % 5]);
-        apparel.innerHTML += createCard(`Aesthetic Asset ${i}`, 40 + (i*2), clothesImages[i % 4]);
+        const name = `Module X-${i}`;
+        const price = 199 + (i*10);
+        const img = electronicImages[i % 4];
+        tech.innerHTML += `<div class="product-card" onclick="viewProduct('${name}', ${price}, '${img}')">
+            <img src="${img}" style="width:100%;height:150px;object-fit:cover;">
+            <div style="padding:10px;"><h4>${name}</h4><p>$${price}</p></div>
+        </div>`;
+
+        const clName = `Asset Style-${i}`;
+        const clPrice = 45 + (i*2);
+        const clImg = clothesImages[i % 2];
+        apparel.innerHTML += `<div class="product-card" onclick="viewProduct('${clName}', ${clPrice}, '${clImg}')">
+            <img src="${clImg}" style="width:100%;height:150px;object-fit:cover;">
+            <div style="padding:10px;"><h4>${clName}</h4><p>$${clPrice}</p></div>
+        </div>`;
     }
+
+    for (let i = 1; i <= 5; i++) {
+        recs.innerHTML += `<div class="side-card-item">
+            <img src="${electronicImages[i % 4]}">
+            <p style="font-size:12px">Module ${i}</p>
+        </div>`;
+    }
+}
+
+// NAVIGATION BETWEEN HOME & PRODUCT PAGE
+function viewProduct(name, price, img) {
+    document.getElementById('home-page').style.display = 'none';
+    const pp = document.getElementById('product-page');
+    pp.style.display = 'block';
     
-    // Vertical System Picks
-    for (let i = 1; i <= 6; i++) {
-        recs.innerHTML += `
-            <div class="side-card-item">
-                <img src="${electronicImages[i % 5]}">
-                <div>
-                    <h5 style="font-size:12px">Suggested v.${i}</h5>
-                    <button class="add-btn" style="padding:2px 8px; font-size:10px" onclick="addToCart('Sugg-${i}', 99)">+ Add</button>
-                </div>
-            </div>
-        `;
-    }
+    document.getElementById('detail-title').innerText = name;
+    document.getElementById('detail-price').innerText = `$${price}`;
+    document.getElementById('detail-img').src = img;
+    
+    // Reset Add Button
+    const btn = document.getElementById('detail-add-btn');
+    btn.onclick = () => addToCart(name, price);
+    
+    addToRecent(name, img);
+    window.scrollTo(0,0);
 }
 
-function createCard(name, price, img) {
-    return `
-        <div class="product-card" onclick="addToRecent('${name}', '${img}')">
-            <img src="${img}" class="product-img" loading="lazy">
-            <div class="product-info">
-                <h4>${name}</h4>
-                <p class="price" style="color:#00d4ff; font-weight:700">$${price}</p>
-                <button class="add-btn" onclick="event.stopPropagation(); addToCart('${name}', ${price})">Stage Item</button>
-            </div>
-        </div>
-    `;
+function showHome() {
+    document.getElementById('home-page').style.display = 'block';
+    document.getElementById('product-page').style.display = 'none';
+    window.scrollTo(0,0);
 }
 
-// UI HANDLERS
-function toggleMenu() {
-    document.getElementById('nav-links').classList.toggle('active');
-    document.getElementById('ui-overlay').classList.toggle('active');
-}
-function openCart() {
-    document.getElementById('side-cart').classList.add('active');
-    document.getElementById('ui-overlay').classList.add('active');
-}
-function closeCart() {
-    document.getElementById('side-cart').classList.remove('active');
-    document.getElementById('ui-overlay').classList.remove('active');
-}
-function closeAllPanels() {
-    document.getElementById('nav-links').classList.remove('active');
-    closeCart();
-}
-
-// CART & HISTORY
+// CART & UTILS
 let cart = [];
 let total = 0;
 let viewed = [];
@@ -85,9 +84,7 @@ function addToRecent(name, img) {
     if(viewed.some(v => v.name === name)) return;
     viewed.unshift({name, img});
     const grid = document.getElementById('recent-grid');
-    if(viewed.length === 1) grid.innerHTML = '';
-    
-    grid.innerHTML = viewed.slice(0, 8).map(v => `
+    grid.innerHTML = viewed.slice(0, 10).map(v => `
         <div class="side-card-item">
             <img src="${v.img}">
             <p style="font-size:12px">${v.name}</p>
@@ -95,28 +92,11 @@ function addToRecent(name, img) {
     `).join('');
 }
 
-// PAYMENT & BOT
-function openPayment() {
-    if(!cart.length) return alert("Select items first.");
-    closeCart();
-    document.getElementById('modal-total').innerText = total;
-    document.getElementById('payment-modal').style.display = 'flex';
-}
-function closePayment() { document.getElementById('payment-modal').style.display = 'none'; }
-function processPayment() {
-    alert("Authorization Successful.");
-    location.reload();
-}
-
-function toggleBot() {
-    const b = document.getElementById('ai-bot');
-    b.style.display = (b.style.display === 'flex') ? 'none' : 'flex';
-}
-function askBot() {
-    const m = document.getElementById('bot-messages');
-    m.innerHTML += `<p><b>User:</b> ${document.getElementById('bot-query').value}</p>`;
-    setTimeout(() => { m.innerHTML += `<p style="color:#00d4ff"><b>Flux:</b> Query acknowledged. System is processing.</p>`; }, 600);
-    document.getElementById('bot-query').value = '';
-}
+// UI HELPERS
+function toggleMenu() { document.getElementById('nav-links').classList.toggle('active'); document.getElementById('ui-overlay').classList.toggle('active'); }
+function openCart() { document.getElementById('side-cart').classList.add('active'); document.getElementById('ui-overlay').classList.add('active'); }
+function closeCart() { document.getElementById('side-cart').classList.remove('active'); document.getElementById('ui-overlay').classList.remove('active'); }
+function closeAllPanels() { document.getElementById('nav-links').classList.remove('active'); closeCart(); }
+function toggleBot() { const b = document.getElementById('ai-bot'); b.style.display = (b.style.display === 'flex') ? 'none' : 'flex'; }
 
 window.onload = populateStore;
