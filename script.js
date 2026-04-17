@@ -1,52 +1,61 @@
-// CART UI ELEMENTS
+// ELEMENTS
+const navLinks = document.getElementById('nav-links');
+const hamburger = document.getElementById('hamburger');
 const sideCart = document.getElementById('side-cart');
-const cartBtn = document.getElementById('cart-icon-btn');
-const closeBtn = document.getElementById('close-cart');
-const cartCountElement = document.getElementById('cart-count');
-const cartItemsList = document.getElementById('cart-items-list');
+const paymentModal = document.getElementById('payment-modal');
+
+// HAMBURGER TOGGLE
+hamburger.onclick = () => {
+    navLinks.classList.toggle('active');
+};
+
+// Close menu when a link is clicked
+function toggleMenu() {
+    navLinks.classList.remove('active');
+}
 
 // CART LOGIC
-let count = 0;
-cartBtn.onclick = () => sideCart.classList.add('active');
-closeBtn.onclick = () => sideCart.classList.remove('active');
+let cart = [];
+let total = 0;
 
 function addToCart(name, price) {
-    count++;
-    cartCountElement.innerText = count;
-    if(count === 1) cartItemsList.innerHTML = ''; 
-
-    const item = document.createElement('div');
-    item.style.padding = "10px 0";
-    item.style.borderBottom = "1px solid #eee";
-    item.innerHTML = `<strong>${name}</strong> - $${price}`;
-    cartItemsList.appendChild(item);
+    cart.push({ name, price });
+    total += price;
+    updateCartUI();
     sideCart.classList.add('active');
 }
 
-// RECENTLY VIEWED LOGIC
-let recentItems = [];
-
-function addToRecent(name, imgUrl) {
-    const recentGrid = document.getElementById('recent-grid');
-    
-    // Check if already in list to avoid duplicates
-    if (recentItems.includes(name)) return;
-    
-    if (recentItems.length === 0) recentGrid.innerHTML = ''; // Clear "empty" message
-
-    recentItems.unshift(name); // Add to start of array
-    if (recentItems.length > 5) recentItems.pop(); // Keep only last 5
-
-    const recentDiv = document.createElement('div');
-    recentDiv.className = 'recent-item';
-    recentDiv.innerHTML = `
-        <img src="${imgUrl}">
-        <h5>${name}</h5>
-    `;
-    
-    // Add to the front of the grid
-    recentGrid.prepend(recentDiv);
+function updateCartUI() {
+    document.getElementById('cart-count').innerText = cart.length;
+    document.getElementById('cart-total').innerText = total;
+    document.getElementById('cart-items-list').innerHTML = cart.map(item => `
+        <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee">
+            <span>${item.name}</span><strong>$${item.price}</strong>
+        </div>
+    `).join('');
 }
 
-// INIT
-console.log("Flux Core Loaded: Ready for Fiverr Portfolio.");
+// MODAL CONTROLS
+document.getElementById('cart-icon-btn').onclick = () => {
+    sideCart.classList.add('active');
+    toggleMenu(); // Ensure nav closes when cart opens
+};
+
+document.getElementById('close-cart').onclick = () => sideCart.classList.remove('active');
+
+function openPayment() {
+    if (cart.length === 0) return alert("Cart is empty!");
+    sideCart.classList.remove('active');
+    paymentModal.style.display = 'flex';
+}
+
+function closePayment() { paymentModal.style.display = 'none'; }
+
+function processPayment() {
+    const btn = document.getElementById('pay-button');
+    btn.innerText = "Processing...";
+    setTimeout(() => {
+        document.getElementById('payment-success').style.display = 'block';
+        setTimeout(() => location.reload(), 2000);
+    }, 2000);
+}
