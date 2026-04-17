@@ -29,33 +29,42 @@
                 <span class="close-btn" onclick="toggleMenu()">&times;</span>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="#home" onclick="toggleMenu()">🏠 Home</a></li>
-                <li><a href="#shop" onclick="toggleMenu()">📦 Products</a></li>
+                <li class="menu-label">Main Navigation</li>
+                <li><a href="#home" onclick="toggleMenu()">🏠 Home Dashboard</a></li>
+                <li><a href="#shop" onclick="toggleMenu()">🛍️ Shop All Products</a></li>
+                <li><a href="#" onclick="toggleMenu()">📦 My Orders & Tracking</a></li>
+                
                 <li class="menu-divider"></li>
-                <li class="menu-label">Categories</li>
-                <li><a href="#shop" onclick="toggleMenu()">📱 Smartphones</a></li>
-                <li><a href="#shop" onclick="toggleMenu()">👕 Apparel</a></li>
+                
+                <li class="menu-label">Product Categories</li>
+                <li><a href="#tech-section" onclick="toggleMenu()">📱 Smartphones & Tech</a></li>
+                <li><a href="#apparel-section" onclick="toggleMenu()">👕 Urban Apparel</a></li>
+                
                 <li class="menu-divider"></li>
-                <li class="menu-label">Support</li>
-                <li><a href="javascript:void(0)" onclick="toggleBot(); toggleMenu()">💬 AI Assistant</a></li>
-                <li><a href="#feedback" onclick="toggleMenu()">📝 Feedback</a></li>
+                
+                <li class="menu-label">Help & Support</li>
+                <li><a href="javascript:void(0)" onclick="toggleBot(); toggleMenu()">💬 Chat with AI Assistant</a></li>
+                <li><a href="#feedback" onclick="toggleMenu()">📝 Leave Feedback</a></li>
             </ul>
             <div class="sidebar-footer">
-                <button class="cart-trigger-btn" onclick="openCart(); toggleMenu()">🛒 Cart (<span id="cart-count">0</span>)</button>
+                <button class="cart-trigger-btn" onclick="openCart(); toggleMenu()">🛒 View Cart (<span id="cart-count">0</span>)</button>
             </div>
         </div>
     </nav>
 
     <section class="slider-container" id="home">
         <div class="slider">
-            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1000')">
-                <div class="slide-content"><h2>Next-Gen Tech</h2><p>Experience the Flux Series</p></div>
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200')">
+                <div class="slide-content">
+                    <h2>Next-Gen Tech</h2>
+                    <p>Performance meets Design with Flux Z.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <main class="shop-container" id="shop">
-        <h2 class="section-title">Featured Products</h2>
+        <h2 class="section-title" id="tech-section">Featured Technology</h2>
         <div class="product-grid">
             <div class="product-card" onclick="addToRecent('Flux Phone Z', 'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500')">
                 <img src="https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500" class="product-img" loading="lazy">
@@ -67,23 +76,34 @@
             </div>
         </div>
 
+        <section class="mini-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1200')">
+            <div class="mini-hero-content">
+                <h2>Urban Apparel</h2>
+                <p>New Season Drops Now Live.</p>
+            </div>
+        </section>
+
+        <h2 class="section-title" id="apparel-section">New Apparel</h2>
+        <div class="product-grid">
+            <div class="product-card" onclick="addToRecent('Oversized Tee', 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500')">
+                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500" class="product-img" loading="lazy">
+                <div class="product-info">
+                    <h3>Oversized Tee</h3>
+                    <p class="price">$35</p>
+                    <button class="add-btn" onclick="event.stopPropagation(); addToCart('Oversized Tee', 35)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
         <section class="extra-section">
             <h3 class="sub-title">You May Also Like</h3>
             <div class="product-grid recommendation-grid">
                 <div class="product-card small-card" onclick="addToRecent('Pro Watch', 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500')">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" class="product-img" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" class="product-img">
                     <div class="product-info">
                         <h4>Pro Watch</h4>
                         <p class="price">$199</p>
                         <button class="add-btn mini" onclick="event.stopPropagation(); addToCart('Pro Watch', 199)">+ Add</button>
-                    </div>
-                </div>
-                <div class="product-card small-card" onclick="addToRecent('Classic Kicks', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500')">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" class="product-img" loading="lazy">
-                    <div class="product-info">
-                        <h4>Classic Kicks</h4>
-                        <p class="price">$85</p>
-                        <button class="add-btn mini" onclick="event.stopPropagation(); addToCart('Classic Kicks', 85)">+ Add</button>
                     </div>
                 </div>
             </div>
@@ -107,12 +127,11 @@
     <div id="payment-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closePayment()">&times;</span>
-            <h3>Order Summary</h3>
+            <h3>Secure Checkout</h3>
             <div id="order-summary" class="order-summary"></div>
             <p>Total: $<span id="modal-total">0</span></p>
             <input type="text" id="card-num" placeholder="Card Number" maxlength="16">
             <button class="pay-now-btn" id="pay-button" onclick="processPayment()">Confirm Payment</button>
-            <div id="payment-success" class="success-msg">✅ Success!</div>
         </div>
     </div>
 
