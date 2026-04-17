@@ -1,9 +1,11 @@
-// MENU LOGIC
+// MENU & SCROLL LOCK
 function toggleMenu() {
-    document.getElementById('nav-links').classList.toggle('active');
+    const nav = document.getElementById('nav-links');
+    nav.classList.toggle('active');
+    document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
 }
 
-// SLIDER LOGIC
+// SLIDER
 let slideIdx = 0;
 const slides = document.querySelectorAll('.slide');
 function changeSlide(n) {
@@ -25,11 +27,12 @@ function addToCart(name, price) {
         <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee">
             <span>${name}</span><strong>$${price}</strong>
         </div>`;
-    document.getElementById('side-cart').classList.add('active');
+    openCart();
 }
+function openCart() { document.getElementById('side-cart').classList.add('active'); }
 function closeCart() { document.getElementById('side-cart').classList.remove('active'); }
 
-// CHATBOT LOGIC
+// CHATBOT
 function toggleBot() {
     const bot = document.getElementById('ai-bot');
     bot.style.display = (bot.style.display === 'flex') ? 'none' : 'flex';
@@ -39,17 +42,17 @@ function askBot() {
     const msgs = document.getElementById('bot-messages');
     if(!query) return;
     msgs.innerHTML += `<p><b>You:</b> ${query}</p>`;
-    let res = "Try asking about 'sale' or 'shipping'.";
-    if(query.includes("sale")) res = "20% off all electronics right now!";
+    let res = "I'm Flux AI. Ask about 'sale' or 'shipping'.";
+    if(query.includes("sale")) res = "20% off all tech right now!";
     if(query.includes("shipping")) res = "Free shipping on orders over $150.";
     setTimeout(() => {
-        msgs.innerHTML += `<p style="color:#00d4ff"><b>Flux:</b> ${res}</p>`;
+        msgs.innerHTML += `<p style="color:#00d4ff"><b>Bot:</b> ${res}</p>`;
         msgs.scrollTop = msgs.scrollHeight;
     }, 600);
     document.getElementById('bot-query').value = "";
 }
 
-// RECENTLY VIEWED LOGIC
+// RECENTLY VIEWED
 let viewed = [];
 function addToRecent(name, img) {
     if(viewed.includes(name)) return;
@@ -64,7 +67,7 @@ function addToRecent(name, img) {
     grid.prepend(item);
 }
 
-// PAYMENT LOGIC
+// PAYMENT
 function openPayment() { closeCart(); document.getElementById('payment-modal').style.display = 'flex'; }
 function closePayment() { document.getElementById('payment-modal').style.display = 'none'; }
 function processPayment() {
@@ -76,8 +79,8 @@ function processPayment() {
     }, 2000);
 }
 
-// FEEDBACK LOGIC
+// FEEDBACK
 function sendFeedback() {
-    alert("Feedback received! Thank you for helping us improve FLUX.");
+    alert("Feedback received! Thank you.");
     document.getElementById('user-feedback').value = "";
 }
