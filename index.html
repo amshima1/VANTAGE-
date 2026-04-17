@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Pro E-commerce</title>
+    <title>FLUX | AI Marketplace</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,47 +14,22 @@
     </div>
 
     <nav class="navbar">
-        <div class="logo">FLUX<span>.</span></div>
-        
-        <div class="hamburger" id="hamburger">
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
         </div>
+
+        <div class="logo">FLUX<span>.</span></div>
+
+        <div class="nav-spacer"></div>
 
         <ul class="nav-links" id="nav-links">
             <li><a href="#shop" onclick="toggleMenu()">Shop</a></li>
-            <li><a href="#" onclick="toggleMenu()">Electronics</a></li>
-            <li><a href="#" onclick="toggleMenu()">Apparel</a></li>
+            <li><a href="#" onclick="toggleMenu()">Account</a></li>
             <li><button id="cart-icon-btn" class="cart-trigger">Cart (<span id="cart-count">0</span>)</button></li>
         </ul>
     </nav>
-
-    <div id="side-cart" class="side-cart">
-        <div class="cart-header">
-            <h3>Your Cart</h3>
-            <button id="close-cart">&times;</button>
-        </div>
-        <div id="cart-items-list" class="cart-content">
-            <p class="empty-msg">Cart is empty.</p>
-        </div>
-        <div class="cart-footer">
-            <div class="total-price">Total: $<span id="cart-total">0</span></div>
-            <button class="checkout-btn" onclick="openPayment()">Proceed to Payment</button>
-        </div>
-    </div>
-
-    <div id="payment-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closePayment()">&times;</span>
-            <h3>Secure Payment</h3>
-            <div class="payment-form">
-                <input type="text" id="card-num" placeholder="Card Number" maxlength="19">
-                <button class="pay-now-btn" id="pay-button" onclick="processPayment()">Pay Now</button>
-            </div>
-            <div id="payment-success" class="success-msg">✅ Payment Successful!</div>
-        </div>
-    </div>
 
     <main class="shop-container" id="shop">
         <div class="product-grid">
@@ -62,12 +37,35 @@
                 <img src="https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500" class="product-img">
                 <div class="product-info">
                     <h3>Flux Phone Z</h3>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p class="price">$799</p>
                     <button class="add-btn" onclick="addToCart('Flux Phone Z', 799)">Add to Cart</button>
                 </div>
             </div>
         </div>
     </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="logo">FLUX<span>.</span></div>
+            <p>Your premium destination for tech and trend.</p>
+            <div class="footer-links">
+                <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Contact</a>
+            </div>
+            <p class="copyright">© 2026 FLUX Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="side-cart" class="side-cart">
+        <div class="cart-header">
+            <h3>Cart</h3>
+            <button id="close-cart" onclick="closeCart()">&times;</button>
+        </div>
+        <div id="cart-items-list" class="cart-content"></div>
+        <div class="cart-footer">
+            <button class="checkout-btn" onclick="openPayment()">Pay Now</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
