@@ -3,72 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Premium AI Marketplace</title>
+    <title>FLUX | Premium Marketplace</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="ui-overlay" class="overlay" onclick="closeAllPanels()"></div>
 
     <div class="announcement-bar">
-        <marquee>🔥 SECURE CHECKOUT ENABLED | 20% OFF ALL TECH | UPCOMING EVENT: SUMMER GALA 🔥</marquee>
+        <marquee>🔥 SECURE CHECKOUT ENABLED | 20% OFF ALL TECH | FREE SHIPPING OVER $150 🔥</marquee>
     </div>
 
     <nav class="navbar">
-        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <div class="hamburger" onclick="toggleMenu()">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
         </div>
-
         <div class="logo" onclick="location.reload()">FLUX<span>.</span></div>
         <div class="nav-spacer"></div>
 
         <ul class="nav-links" id="nav-links">
-            <span class="close-menu" onclick="toggleMenu()">&times;</span>
-            
+            <span class="close-btn" onclick="toggleMenu()">&times;</span>
             <li class="menu-header">Explore Categories</li>
             <li><a href="#shop" onclick="toggleMenu()">📱 Smartphones & Tech</a></li>
             <li><a href="#shop" onclick="toggleMenu()">👕 Urban Apparel</a></li>
             <li><a href="#shop" onclick="toggleMenu()">🎧 Audio & Music</a></li>
-            
-            <li class="menu-header">User Account</li>
-            <li><a href="#" onclick="alert('Profile coming soon!'); toggleMenu()">👤 My Profile</a></li>
-            <li><a href="#" onclick="alert('No active orders.'); toggleMenu()">📦 Track Orders</a></li>
-            
-            <li class="menu-header">Support</li>
-            <li><a href="javascript:void(0)" onclick="toggleBot(); toggleMenu()">💬 AI Live Assistant</a></li>
+            <li class="menu-header">Account & Support</li>
+            <li><a href="javascript:void(0)" onclick="toggleBot(); toggleMenu()">💬 AI Assistant</a></li>
             <li><a href="#feedback" onclick="toggleMenu()">📝 Submit Feedback</a></li>
-
-            <li class="menu-footer-btn">
-                <button class="cart-trigger-btn" onclick="openCart(); toggleMenu()">View Cart (<span id="cart-count">0</span>)</button>
-            </li>
+            <li><button class="cart-trigger-btn" onclick="openCart(); toggleMenu()">View Cart (<span id="cart-count">0</span>)</button></li>
         </ul>
     </nav>
 
     <section class="slider-container">
         <div class="slider">
-            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1000')">
-                <div class="slide-content">
-                    <h2>Next-Gen Tech</h2>
-                    <p>Experience the Flux Phone Z</p>
-                </div>
-            </div>
-            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1000')">
-                <div class="slide-content">
-                    <h2>Urban Style</h2>
-                    <p>New Season Apparel Live</p>
-                </div>
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1000')">
+                <div class="slide-content"><h2>Next-Gen Tech</h2><p>Experience the Flux Phone Z</p></div>
             </div>
         </div>
-        <button class="slider-btn prev" onclick="changeSlide(-1)">&#10094;</button>
-        <button class="slider-btn next" onclick="changeSlide(1)">&#10095;</button>
     </section>
 
     <main class="shop-container" id="shop">
         <h2 class="section-title">Featured Products</h2>
         <div class="product-grid">
             <div class="product-card" onclick="addToRecent('Flux Phone Z', 'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500')">
-                <img src="https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500" class="product-img">
+                <img src="https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=500" class="product-img" loading="lazy">
                 <div class="product-info">
                     <h3>Flux Phone Z</h3>
                     <div class="stars">⭐⭐⭐⭐⭐</div>
@@ -76,60 +56,63 @@
                     <button class="add-btn" onclick="event.stopPropagation(); addToCart('Flux Phone Z', 799)">Add to Cart</button>
                 </div>
             </div>
-            <div class="product-card" onclick="addToRecent('Oversized Tee', 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500')">
-                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500" class="product-img">
+            <div class="product-card" onclick="addToRecent('Flux Buds', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500')">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" class="product-img" loading="lazy">
                 <div class="product-info">
-                    <h3>Oversized Tee</h3>
-                    <div class="stars">⭐⭐⭐⭐☆</div>
-                    <p class="price">$35</p>
-                    <button class="add-btn" onclick="event.stopPropagation(); addToCart('Oversized Tee', 35)">Add to Cart</button>
+                    <h3>Flux Buds</h3>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="price">$129</p>
+                    <button class="add-btn" onclick="event.stopPropagation(); addToCart('Flux Buds', 129)">Add to Cart</button>
                 </div>
             </div>
         </div>
 
         <section class="extra-section">
             <h3 class="sub-title">Recently Viewed</h3>
-            <div class="recent-grid" id="recent-grid"><p class="empty-msg">No history yet.</p></div>
+            <div class="recent-grid" id="recent-grid"><p class="empty-msg">Browsing history is empty.</p></div>
         </section>
 
         <section class="feedback-section" id="feedback">
             <h3>Feedback</h3>
-            <textarea id="user-feedback" placeholder="How can we improve?"></textarea>
+            <textarea id="user-feedback" placeholder="Your experience matters..."></textarea>
             <button class="add-btn" onclick="sendFeedback()">Submit</button>
         </section>
     </main>
 
     <footer class="footer">
         <div class="logo">FLUX<span>.</span></div>
-        <p>© 2026 Premium AI Marketplace</p>
+        <div class="footer-links"><a href="#shop">Shop</a> | <a href="#feedback">Feedback</a></div>
+        <p class="copyright">© 2026 FLUX AI Marketplace. All Rights Reserved.</p>
     </footer>
 
     <div id="ai-bot" class="ai-bot">
         <div class="bot-header">Flux Assistant</div>
         <div id="bot-messages" class="bot-messages"></div>
         <div class="bot-input">
-            <input type="text" id="bot-query" placeholder="Ask me...">
+            <input type="text" id="bot-query" placeholder="Ask Flux...">
             <button onclick="askBot()">Send</button>
         </div>
     </div>
     <button class="bot-toggle" onclick="toggleBot()">💬</button>
 
     <div id="side-cart" class="side-cart">
-        <div class="cart-header"><h3>Cart</h3><button onclick="closeCart()">&times;</button></div>
+        <div class="cart-header"><h3>Your Cart</h3><button onclick="closeCart()">&times;</button></div>
         <div id="cart-items-list" class="cart-content"></div>
         <div class="cart-footer">
             <p>Total: $<span id="cart-total">0</span></p>
-            <button class="checkout-btn" onclick="openPayment()">Checkout</button>
+            <button class="checkout-btn" onclick="openPayment()">Checkout Now</button>
         </div>
     </div>
 
     <div id="payment-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closePayment()">&times;</span>
-            <h3>Secure Payment</h3>
-            <input type="text" id="card-num" placeholder="Card Number" maxlength="16">
-            <button class="pay-now-btn" id="pay-button" onclick="processPayment()">Pay Now</button>
-            <div id="payment-success" class="success-msg">✅ Success!</div>
+            <h3>Secure Checkout</h3>
+            <div id="order-summary" class="order-summary"></div>
+            <p>Total Charge: $<span id="modal-total">0</span></p>
+            <input type="text" id="card-num" placeholder="16-Digit Card Number" maxlength="16">
+            <button class="pay-now-btn" id="pay-button" onclick="processPayment()">Confirm Payment</button>
+            <div id="payment-success" class="success-msg">✅ Payment Successful! Redirecting...</div>
         </div>
     </div>
 
