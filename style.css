@@ -1,40 +1,66 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background: #f8f9fa; color: #111; overflow-x: hidden; }
+body { background: #fdfdfd; }
 
-.navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #111; color: white; position: sticky; top: 0; z-index: 1000; }
+/* NAVBAR */
+.navbar { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 5%; 
+    background: #111; 
+    color: white; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+}
+
 .logo span { color: #00d4ff; }
-.cart-trigger { background: transparent; border: 1px solid #00d4ff; color: white; padding: 5px 12px; cursor: pointer; border-radius: 4px; }
 
-/* SIDE CART */
-.side-cart { position: fixed; top: 0; right: -350px; width: 320px; height: 100%; background: white; z-index: 2000; transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
+.nav-links { 
+    display: flex; 
+    list-style: none; 
+    align-items: center; 
+    gap: 20px; 
+}
+
+.nav-links a { color: white; text-decoration: none; font-size: 14px; }
+
+/* HAMBURGER STYLES */
+.hamburger {
+    display: none; /* Hidden on Desktop */
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.line {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+/* MOBILE VIEW (Android Friendly) */
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        right: -100%; /* Hidden off-screen */
+        width: 100%;
+        height: 100vh;
+        background: #111;
+        flex-direction: column;
+        padding-top: 50px;
+        transition: 0.5s;
+    }
+
+    .nav-links.active { right: 0; }
+}
+
+/* CART & MODAL STYLES (Keep same as before) */
+.side-cart { position: fixed; top: 0; right: -350px; width: 320px; height: 100%; background: white; z-index: 2000; transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
 .side-cart.active { right: 0; }
-.cart-header { padding: 20px; background: #111; color: white; display: flex; justify-content: space-between; }
-#close-cart { background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
-.cart-content { padding: 20px; flex-grow: 1; }
-.cart-footer { padding: 20px; border-top: 1px solid #eee; }
-.checkout-btn { width: 100%; padding: 12px; background: #111; color: white; border: none; cursor: pointer; }
-
-/* LAYOUT */
-.shop-container { padding: 40px 5%; }
-.section-title { text-align: center; margin-bottom: 30px; font-size: 1.8rem; }
-.sub-title { margin: 40px 0 20px; border-left: 4px solid #00d4ff; padding-left: 10px; }
-
-.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.product-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s; cursor: pointer; }
-.product-card:hover { transform: translateY(-5px); }
-.product-img { width: 100%; height: 200px; object-fit: cover; }
-.product-info { padding: 15px; text-align: center; }
-.add-btn { width: 100%; padding: 10px; background: #111; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px; }
-
-/* RECENTLY VIEWED MINI GRID */
-.recent-grid { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; }
-.recent-item { min-width: 120px; text-align: center; }
-.recent-item img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #00d4ff; }
-.recent-item h5 { font-size: 12px; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-/* MINI CARDS FOR RECOMMENDATIONS */
-.mini { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-.mini-card .product-img { height: 120px; }
-.mini-card h4 { font-size: 14px; }
-
-.empty-msg { color: #888; font-style: italic; }
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 4000; align-items: center; justify-content: center; }
+.modal-content { background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; text-align: center; position: relative;}
