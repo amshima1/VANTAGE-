@@ -1,47 +1,55 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background: #fdfdfd; overflow-x: hidden; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+body { background: #fafafa; color: #1a1a1a; }
 
-/* NAVBAR & GITHUB SIDEBAR */
-.navbar { display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; background: #111; color: white; position: sticky; top: 0; z-index: 1000; }
-.logo { font-size: 24px; font-weight: 700; }
-.logo span { color: #00d4ff; }
-.hamburger { cursor: pointer; display: flex; flex-direction: column; gap: 5px; width: 25px; flex: 1; }
-.nav-spacer { flex: 1; }
-.line { width: 100%; height: 3px; background: white; }
-
-.nav-links { position: fixed; top: 0; left: -100%; width: 280px; height: 100vh; background: #0d1117; border-right: 1px solid #30363d; z-index: 1001; transition: 0.3s; }
-.nav-links.active { left: 0; }
-.sidebar-header { display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid #30363d; }
-.sidebar-menu a { display: block; padding: 12px 20px; color: #adbac7; text-decoration: none; font-size: 14px; }
-.sidebar-menu a:hover { background: #161b22; color: white; }
-.menu-label { padding: 10px 20px 5px; font-size: 12px; color: #768390; font-weight: bold; text-transform: uppercase; }
-.menu-divider { height: 1px; background: #30363d; margin: 10px 20px; }
-
-/* HERO IMAGES */
-.slider-container, .mini-hero { 
-    height: 350px; 
-    background-size: cover; 
-    background-position: center; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    color: white; 
-    text-align: center; 
-}
-.mini-hero { margin: 40px 0; border-radius: 10px; width: 90%; margin-left: 5%; }
-
-/* PRODUCT UI */
-.shop-container { padding: 30px 5%; }
-.section-title { margin-bottom: 20px; font-size: 22px; }
-.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; }
-.product-card { background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; padding-bottom: 15px; text-align: center; }
-.product-img { width: 100%; height: 200px; object-fit: cover; }
-.add-btn { background: #111; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
-
-/* OVERLAYS & MODALS */
+/* Overlay */
 .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999; }
 .overlay.active { display: block; }
-.side-cart { position: fixed; top: 0; right: -100%; width: 320px; height: 100%; background: white; z-index: 1001; transition: 0.4s; }
+
+/* Nav */
+.announcement-bar { background: #00d4ff; color: #111; padding: 6px; font-size: 11px; font-weight: 700; text-align: center; }
+.navbar { display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; background: #111; color: white; position: sticky; top: 0; z-index: 1000; }
+.logo { font-size: 24px; font-weight: 700; letter-spacing: 1px; flex: 0; }
+.logo span { color: #00d4ff; }
+.hamburger { flex: 1; cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
+.nav-spacer { flex: 1; }
+.line { width: 22px; height: 3px; background: white; border-radius: 2px; }
+
+/* Sidebar (GitHub Dark) */
+.nav-links { position: fixed; top: 0; left: -100%; width: 280px; height: 100vh; background: #0d1117; border-right: 1px solid #30363d; z-index: 1001; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; }
+.nav-links.active { left: 0; }
+.sidebar-header { display: flex; justify-content: space-between; padding: 20px; border-bottom: 1px solid #30363d; }
+.logo-small { color: white; font-weight: 700; }
+.close-btn { color: #848d97; font-size: 30px; cursor: pointer; }
+.sidebar-menu { list-style: none; flex: 1; overflow-y: auto; padding-top: 10px; }
+.sidebar-menu a { display: block; padding: 12px 20px; color: #adbac7; text-decoration: none; font-size: 14px; }
+.sidebar-menu a:hover { background: #161b22; color: white; }
+.menu-label { padding: 15px 20px 5px; font-size: 11px; color: #768390; font-weight: 700; text-transform: uppercase; }
+.menu-divider { height: 1px; background: #30363d; margin: 10px 20px; }
+.sidebar-footer { padding: 20px; border-top: 1px solid #30363d; }
+.cart-trigger-btn { width: 100%; padding: 12px; background: #21262d; border: 1px solid #30363d; color: white; border-radius: 6px; font-weight: 600; cursor: pointer; }
+
+/* Heroes */
+.hero-main, .hero-mini { height: 400px; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: 0 10%; }
+.hero-mini { height: 250px; margin: 50px 0; border-radius: 12px; width: 90%; margin-left: 5%; }
+.hero-content h1 { font-size: 36px; margin-bottom: 10px; }
+.cta-scroll { display: inline-block; margin-top: 15px; padding: 10px 25px; background: #00d4ff; color: #111; text-decoration: none; border-radius: 5px; font-weight: 700; }
+
+/* Shop Grid */
+.shop-container { padding: 40px 5%; }
+.section-title { margin: 30px 0 20px; font-size: 24px; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; }
+.product-card { background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); overflow: hidden; padding-bottom: 15px; transition: 0.3s; text-align: center; }
+.product-img { width: 100%; height: 180px; object-fit: cover; }
+.product-info h3 { font-size: 15px; margin: 10px 0 5px; }
+.price { color: #00d4ff; font-weight: 700; }
+.add-btn { background: #111; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-top: 10px; font-weight: 600; }
+
+/* Cart & Bot */
+.side-cart { position: fixed; top: 0; right: -100%; width: 320px; height: 100%; background: white; z-index: 1001; transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
 .side-cart.active { right: 0; }
 .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 2000; }
-.modal-content { background: white; padding: 25px; border-radius: 10px; width: 90%; }
+.modal-content { background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; text-align: center; }
+.bot-toggle { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; border-radius: 50%; background: #00d4ff; border: none; z-index: 3000; font-size: 24px; cursor: pointer; }
+.ai-bot { position: fixed; bottom: 90px; right: 20px; width: 300px; height: 400px; background: white; display: none; flex-direction: column; z-index: 3000; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+
+.footer { background: #111; color: #555; text-align: center; padding: 40px; margin-top: 60px; }
