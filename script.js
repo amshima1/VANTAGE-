@@ -34,7 +34,7 @@ function addToCart(name, price) {
 }
 
 function openPayment() {
-    if(cart.length === 0) return alert("Empty Cart");
+    if(cart.length === 0) return alert("Your cart is empty!");
     closeCart();
     document.getElementById('order-summary').innerHTML = cart.map(i => `<div>• ${i.name} ($${i.price})</div>`).join('');
     document.getElementById('modal-total').innerText = total;
@@ -42,24 +42,11 @@ function openPayment() {
 }
 
 function processPayment() {
-    const btn = document.getElementById('pay-button');
-    btn.innerText = "Processing...";
+    document.getElementById('pay-button').innerText = "Processing...";
     setTimeout(() => {
-        document.getElementById('payment-success').style.display = 'block';
-        setTimeout(() => location.reload(), 2000);
+        alert("Payment Successful!");
+        location.reload();
     }, 2000);
 }
 
 function closePayment() { document.getElementById('payment-modal').style.display = 'none'; }
-
-let viewed = [];
-function addToRecent(name, img) {
-    if(viewed.includes(name)) return;
-    viewed.unshift(name);
-    const grid = document.getElementById('recent-grid');
-    if(viewed.length === 1) grid.innerHTML = '';
-    grid.innerHTML = `<div style="text-align:center; min-width:80px">
-        <img src="${img}" style="width:60px; height:60px; border-radius:50%; object-fit:cover; border:2px solid #00d4ff">
-        <h6 style="font-size:10px">${name}</h6>
-    </div>` + grid.innerHTML;
-}
