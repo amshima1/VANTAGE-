@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Enterprise System</title>
+    <title>FLUX | Enterprise System Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,7 +11,7 @@
     <div id="ui-overlay" class="overlay" onclick="closeAllPanels()"></div>
 
     <div class="announcement-bar">
-        <marquee>🚀 SYSTEM v4.0 ONLINE: PRODUCT DETAIL MODULES ACTIVE | DUAL-STREAM SIDEBARS | SECURE GATEWAY 🚀</marquee>
+        <marquee>🚀 SYSTEM v4.0 ONLINE: GRID LAYOUT OPTIMIZED | SECURE GATEWAY ACTIVE | GLOBAL REPOSITORY 🚀</marquee>
     </div>
 
     <nav class="navbar">
@@ -20,7 +20,7 @@
             <div class="line"></div>
             <div class="line"></div>
         </div>
-        <div class="logo" onclick="location.reload()">FLUX<span>.</span></div>
+        <div class="logo" onclick="showHome()">FLUX<span>.</span></div>
         <div class="nav-spacer"></div>
 
         <div class="nav-links" id="nav-links">
@@ -36,9 +36,11 @@
                 <li class="menu-divider"></li>
                 <li class="menu-label">User Management</li>
                 <li><a href="#" onclick="toggleMenu()">📁 Order History</a></li>
+                <li><a href="#" onclick="toggleMenu()">🔒 Security & Privacy</a></li>
                 <li class="menu-divider"></li>
                 <li class="menu-label">Customer Core</li>
                 <li><a href="javascript:void(0)" onclick="toggleBot(); toggleMenu()">🤖 AI Technical Support</a></li>
+                <li><a href="#feedback" onclick="toggleMenu()">📊 Performance Feedback</a></li>
             </ul>
             <div class="sidebar-footer">
                 <button class="cart-trigger-btn" onclick="openCart(); toggleMenu()">🛒 Review Selection (<span id="cart-count">0</span>)</button>
@@ -49,22 +51,25 @@
     <div id="home-page">
         <section class="hero-main" style="background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200')">
             <div class="hero-content">
-                <h1>Global Repository</h1>
-                <p>Accessing 40 high-tier industrial assets.</p>
+                <h1>Hardware Repository</h1>
+                <p>Deploying 20 high-performance electronic assets.</p>
                 <a href="#tech-section" class="cta-scroll">Initialize Scan</a>
             </div>
         </section>
 
         <main class="main-wrapper">
             <div class="content-left">
-                <h2 class="section-title" id="tech-section">Hardware Repository</h2>
+                <h2 class="section-title" id="tech-section">Electronics Branch</h2>
                 <div class="product-grid" id="tech-grid"></div>
 
                 <section class="hero-mini" style="background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1200')">
-                    <div class="hero-content"><h2>Apparel Inventory</h2></div>
+                    <div class="hero-content">
+                        <h2>Apparel Branch</h2>
+                        <p>20 styles pushed to main.</p>
+                    </div>
                 </section>
 
-                <h2 class="section-title" id="apparel-section">Apparel Branch</h2>
+                <h2 class="section-title" id="apparel-section">Urban Apparel</h2>
                 <div class="product-grid" id="apparel-grid"></div>
             </div>
 
@@ -74,6 +79,7 @@
                     <div class="vertical-scroll-box" id="recent-grid">
                         <p class="empty-msg">No logs found.</p>
                     </div>
+
                     <h3 class="side-title" style="margin-top: 30px;">System Picks</h3>
                     <div class="vertical-scroll-box" id="recommendation-grid"></div>
                 </div>
@@ -85,34 +91,37 @@
         <button class="back-btn" onclick="showHome()">← Back to Dashboard</button>
         <div class="product-detail-flex">
             <div class="detail-img-container">
-                <img id="detail-img" src="" alt="Product Image">
+                <img id="detail-img" src="" alt="Asset Image">
             </div>
             <div class="detail-info">
-                <h1 id="detail-title">Product Name</h1>
-                <p class="detail-tag">Authenticated Asset</p>
+                <h1 id="detail-title">Asset Name</h1>
+                <p class="detail-tag">Authenticated FLUX Asset</p>
                 <h2 id="detail-price">$0.00</h2>
-                <p class="detail-desc">This is a high-performance asset verified by FLUX System Architecture. It features industry-leading specifications and integrated compatibility with the current branch.</p>
+                <p class="detail-desc">Verified by FLUX System Architecture. This asset features industry-leading performance and full integration with the current branch specifications.</p>
                 <div class="detail-actions">
                     <button class="add-btn-large" id="detail-add-btn">Add to Selection</button>
-                    <p class="secure-text">🔒 Secure transaction via FLUX Gateway</p>
+                    <p class="secure-text">🔒 Encrypted via FLUX Security Protocols</p>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="side-cart" class="side-cart">
-        <div class="cart-header"><h3>Staged Items</h3><button onclick="closeCart()">&times;</button></div>
+        <div class="cart-header"><h3>Staged Selection</h3><button onclick="closeCart()">&times;</button></div>
         <div id="cart-items-list" class="cart-content"></div>
         <div class="cart-footer">
             <p>Total: $<span id="cart-total">0</span></p>
-            <button class="checkout-btn" onclick="openPayment()">Execute Purchase</button>
+            <button class="checkout-btn" onclick="openPayment()">Execute Merge</button>
         </div>
     </div>
 
     <div id="ai-bot" class="ai-bot">
-        <div class="bot-header">Flux Support</div>
+        <div class="bot-header">Flux AI Support</div>
         <div id="bot-messages" class="bot-messages"></div>
-        <div class="bot-input"><input type="text" id="bot-query"><button onclick="askBot()">Send</button></div>
+        <div class="bot-input">
+            <input type="text" id="bot-query" placeholder="Query system...">
+            <button onclick="askBot()">Send</button>
+        </div>
     </div>
     <button class="bot-toggle" onclick="toggleBot()">💬</button>
 
