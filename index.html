@@ -3,49 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Premium Mobile</title>
+    <title>FLUX | Official Store</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div id="mobile-menu" class="mobile-menu">
-        <div class="menu-close-bar">
-            <button id="close-menu" class="menu-x">&times;</button>
-        </div>
-        <ul class="menu-list">
-            <li><a href="#">New In</a></li>
-            <li class="has-arrow"><a href="#">Shop</a></li>
-            <li class="has-arrow"><a href="#">Brands</a></li>
-            <li><a href="#">Sale</a></li>
-            <li class="spacer"></li>
-            <li><a href="#" class="sub-link">Sign In</a></li>
-            <li><a href="#" class="sub-link">My Wish Lists <span class="wish-count">0</span></a></li>
-        </ul>
-    </div>
-
     <header class="main-header">
-        <div class="header-top">
-            <div id="hamburger-trigger" class="hamburger-icon">
-                <span></span><span></span><span></span>
+        <div class="header-main-row">
+            <div id="menu-trigger" class="header-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
             </div>
+
             <div class="logo">FLUX</div>
-            <div class="cart-trigger" id="cart-btn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                <span class="cart-badge" id="cart-count">0</span>
+
+            <div id="cart-trigger" class="header-icon-box cart-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.5">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span class="cart-badge">0</span>
             </div>
         </div>
-        <div class="search-container">
-            <input type="text" placeholder="Search">
-            <span class="search-icon">🔍</span>
+
+        <div class="header-search-row">
+            <div class="search-wrapper">
+                <input type="text" placeholder="Search">
+                <svg class="search-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
         </div>
     </header>
 
-    <main id="main-content">
-        <div class="section-title">NEW IN</div>
-        <div id="product-grid" class="product-grid"></div>
-    </main>
+    <section class="hero-banner">
+        <div class="hero-overlay">
+            <h1>SPRING READY?</h1>
+            <button class="shop-now-btn">SHOP NOW</button>
+        </div>
+    </section>
 
-    <script src="app.js"></script>
+    <div id="mobile-menu" class="mobile-drawer">
+        <div class="drawer-header">
+            <button id="close-menu">×</button>
+        </div>
+        <ul class="drawer-links">
+            <li>New In</li>
+            <li class="has-arrow">Shop</li>
+            <li class="has-arrow">Brands</li>
+            <li>Sale</li>
+        </ul>
+    </div>
+
 </body>
 </html>
