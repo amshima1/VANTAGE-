@@ -1,111 +1,151 @@
-const electronicImages = [
-    'https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=600',
-    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600',
-    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600',
-    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600'
+// 1. Data with Color Variants
+const products = [
+    { 
+        id: 1, 
+        name: "Aero Shell Parka", 
+        price: 320, 
+        colors: [
+            { name: "Obsidian", code: "#1a1a1a", img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800" },
+            { name: "Ghost", code: "#e0e0e0", img: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=800" }
+        ]
+    },
+    { 
+        id: 2, 
+        name: "Void Knit", 
+        price: 150, 
+        colors: [
+            { name: "Black", code: "#000", img: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800" },
+            { name: "Sand", code: "#d2b48c", img: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800" }
+        ]
+    }
 ];
 
-let recentViews = [];
+let cart = JSON.parse(localStorage.getItem('FLUX_CART')) || [];
 
-function initStore() {
-    const tech = document.getElementById('tech-grid');
-    const apparel = document.getElementById('apparel-grid');
-    const suggestions = document.getElementById('suggestions-grid');
-
-    // Prevent Duplication
-    tech.innerHTML = ''; 
-    apparel.innerHTML = ''; 
-    suggestions.innerHTML = '';
-
-    // Main Grids
-    for (let i = 1; i <= 20; i++) {
-        tech.innerHTML += createCard(`Hardware X-${i}`, 199 + i, electronicImages[i % 4]);
-        apparel.innerHTML += createCard(`Style Asset ${i}`, 45 + i, electronicImages[(i+2) % 4]);
-    }
-
-    // "You May Also Like" (System Picks)
-    for (let i = 0; i < 6; i++) {
-        const name = `System Pick #${i+1}`;
-        const price = 85 + i;
-        const img = electronicImages[i % 4];
-        suggestions.innerHTML += `
-            <div class="side-item" onclick="viewProduct('${name}', ${price}, '${img}')">
-                <img src="${img}">
-                <div class="side-info">
-                    <h5>${name}</h5>
-                    <p>$${price}.00</p>
-                </div>
-            </div>`;
-    }
+// --- Initialize ---
+function init() {
+    renderShop();
+    updateCartUI();
 }
 
-function createCard(name, price, img) {
-    return `
-        <div class="product-card" onclick="viewProduct('${name}', ${price}, '${img}')">
-            <div class="img-wrap"><img src="${img}" loading="lazy"></div>
-            <div style="padding:15px; border-top:1px solid #f9f9f9;">
-                <h4 style="font-size:14px; margin-bottom:5px;">${name}</h4>
-                <p style="color:#00d4ff; font-weight:800; font-size:16px;">$${price}</p>
-            </div>
-        </div>`;
-}
-
-function viewProduct(name, price, img) {
-    document.getElementById('home-page').style.display = 'none';
-    document.getElementById('product-page').style.display = 'block';
-    document.getElementById('detail-title').innerText = name;
-    document.getElementById('detail-price').innerText = `$${price}`;
-    document.getElementById('detail-img').src = img;
-    
-    addToRecent(name, img, price);
-    window.scrollTo(0,0);
-}
-
-function showHome() {
-    document.getElementById('home-page').style.display = 'block';
-    document.getElementById('product-page').style.display = 'none';
-    const menu = document.getElementById('nav-links');
-    if(menu.classList.contains('active')) toggleMenu();
-}
-
-function addToRecent(name, img, price) {
-    // Check for duplicates in history
-    if (recentViews.find(item => item.name === name)) return;
-    
-    recentViews.unshift({name, img, price});
-    const container = document.getElementById('recent-grid');
-    
-    container.innerHTML = recentViews.slice(0, 8).map(v => `
-        <div class="side-item" onclick="viewProduct('${v.name}', ${v.price}, '${v.img}')">
-            <img src="${v.img}">
-            <div class="side-info">
-                <h5>${v.name}</h5>
-                <p>$${v.price}.00</p>
-            </div>
+function renderShop() {
+    const grid = document.getElementById('product-grid');
+    grid.innerHTML = products.map(p => `
+        <div class="product-card" onclick="openDetail(${p.id})">
+            <img src="${p.colors[0].img}">
+            <h3>${p.name}</h3>
+            <p>$${p.price}</p>
         </div>
     `).join('');
 }
 
-function toggleMenu() {
-    document.getElementById('nav-links').classList.toggle('active');
-    document.getElementById('ui-overlay').classList.toggle('active');
+// --- Color Switcher Logic ---
+function openDetail(id) {
+    const product = products.find(p => p.id === id);
+    document.getElementById('shop-section').classList.add('hidden');
+    const detail = document.getElementById('detail-section');
+    detail.classList.remove('hidden');
+
+    detail.innerHTML = `
+        <div id="detail-content" style="display:grid; grid-template-columns:1fr 1fr; gap:50px; padding:60px;">
+            <div class="detail-img"><img id="main-product-img" src="${product.colors[0].img}" style="width:100%"></div>
+            <div class="detail-info">
+                <h1>${product.name}</h1>
+                <p>$${product.price}</p>
+                <div class="swatch-container">
+                    ${product.colors.map((c, index) => `
+                        <div class="swatch ${index === 0 ? 'active' : ''}" 
+                             style="background:${c.code}" 
+                             onclick="switchColor(this, '${c.img}')"></div>
+                    `).join('')}
+                </div>
+                <button onclick="addToCart(${product.id})" class="primary-btn">ADD TO BAG</button>
+                <button onclick="location.reload()" style="margin-top:20px; background:none; border:none; cursor:pointer; text-decoration:underline;">BACK</button>
+            </div>
+        </div>
+    `;
 }
 
-function toggleBot() { 
-    const b = document.getElementById('ai-bot');
-    b.style.display = (b.style.display === 'flex') ? 'none' : 'flex';
+function switchColor(el, imgPath) {
+    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('main-product-img').src = imgPath;
 }
 
-function askBot() {
-    const input = document.getElementById('bot-query');
-    const msgBox = document.getElementById('bot-messages');
-    if(!input.value) return;
-    msgBox.innerHTML += `<div class="user-msg">${input.value}</div>`;
-    input.value = '';
+// --- Payment Simulation ---
+document.getElementById('checkout-btn').onclick = () => {
+    document.getElementById('payment-overlay').classList.remove('hidden');
+};
+
+document.getElementById('confirm-payment-btn').onclick = () => {
+    const btn = document.getElementById('confirm-payment-btn');
+    const status = document.getElementById('payment-status');
+    btn.innerText = "PROCESSING...";
+    
     setTimeout(() => {
-        msgBox.innerHTML += `<div class="bot-msg"><b>AI:</b> Synchronizing deployment logs... complete.</div>`;
-        msgBox.scrollTop = msgBox.scrollHeight;
+        btn.style.background = "#28a745";
+        btn.innerText = "SUCCESS ✓";
+        status.innerText = "Order #FLX-9902 confirmed. Redirecting...";
+        localStorage.removeItem('FLUX_CART');
+        setTimeout(() => location.reload(), 3000);
+    }, 2000);
+};
+
+// --- AI Chatbot Automation ---
+const chatResponses = {
+    "shipping": "FLUX offers express shipping worldwide. 3-5 business days.",
+    "size": "Our items are 'True to Size'. If you prefer an oversized fit, size up.",
+    "hello": "Hello! I am the FLUX assistant. How can I help?",
+    "payment": "We accept all major credit cards and digital wallets."
+};
+
+document.getElementById('send-chat').onclick = () => {
+    const input = document.getElementById('chat-input');
+    const body = document.getElementById('chat-body');
+    if(!input.value) return;
+
+    // User Message
+    body.innerHTML += `<div class="msg user">${input.value}</div>`;
+    
+    // AI Response
+    const query = input.value.toLowerCase();
+    let reply = "I'm sorry, I don't understand that yet. Try 'shipping' or 'size'.";
+    
+    for(let key in chatResponses) {
+        if(query.includes(key)) reply = chatResponses[key];
+    }
+
+    setTimeout(() => {
+        body.innerHTML += `<div class="msg bot">${reply}</div>`;
+        body.scrollTop = body.scrollHeight;
     }, 600);
+
+    input.value = "";
+};
+
+document.getElementById('chat-trigger').onclick = () => {
+    document.getElementById('chat-widget').classList.toggle('chat-closed');
+};
+
+// --- Cart Helpers ---
+function addToCart(id) {
+    const p = products.find(x => x.id === id);
+    cart.push(p);
+    localStorage.setItem('FLUX_CART', JSON.stringify(cart));
+    updateCartUI();
+    document.getElementById('cart-sidebar').classList.add('active');
 }
 
-window.onload = initStore;
+function updateCartUI() {
+    document.getElementById('cart-count').innerText = cart.length;
+    const total = cart.reduce((s, i) => s + i.price, 0);
+    document.getElementById('cart-subtotal').innerText = `$${total.toFixed(2)}`;
+    document.getElementById('cart-items-container').innerHTML = cart.map(i => `
+        <div style="margin-bottom:10px; font-size:12px;">${i.name} - $${i.price}</div>
+    `).join('');
+}
+
+document.getElementById('cart-icon-trigger').onclick = () => document.getElementById('cart-sidebar').classList.add('active');
+document.getElementById('close-cart').onclick = () => document.getElementById('cart-sidebar').classList.remove('active');
+
+init();
