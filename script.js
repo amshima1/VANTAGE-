@@ -1,7 +1,13 @@
-document.getElementById('menu-trigger').onclick = () => {
-    document.getElementById('mobile-menu').classList.add('active');
-};
+let count = 0;
 
-document.getElementById('close-menu').onclick = () => {
-    document.getElementById('mobile-menu').classList.remove('active');
+// Example function to call when adding to bag
+function updateCartCount(newCount) {
+    count = newCount;
+    document.getElementById('cart-count').innerText = count;
+}
+
+// Open menu toggle
+document.getElementById('menu-trigger').onclick = () => {
+    console.log("Menu Opened");
+    // Link your mobile drawer here
 };
