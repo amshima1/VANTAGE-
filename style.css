@@ -1,38 +1,38 @@
 :root {
     --border: #eeeeee;
+    --red-close: #ff5252;
     --beige: #d4cdc3;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
-/* Header Architecture */
+/* Header & Centered Logo */
 .main-header { padding: 10px 20px; border-bottom: 1px solid var(--border); background: #fff; position: sticky; top: 0; z-index: 1000; }
 .header-top { display: flex; justify-content: space-between; align-items: center; height: 50px; position: relative; }
 
 .logo { 
     font-size: 22px; font-weight: 900; letter-spacing: 12px; 
     position: absolute; left: 50%; transform: translateX(-50%); 
+    text-transform: uppercase;
 }
 
+/* Icons and Notifications */
+.cart-container { position: relative; }
 .cart-badge { 
     position: absolute; top: -5px; right: -8px; background: #000; color: #fff; 
     font-size: 10px; width: 18px; height: 18px; border-radius: 50%; 
     display: flex; align-items: center; justify-content: center; 
 }
 
-.search-row { margin-top: 10px; }
-.search-box { position: relative; width: 100%; }
-.search-box input { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px; font-size: 16px; outline: none; }
-.search-icon { position: absolute; right: 15px; top: 12px; color: #999; }
-
-/* Slide-out Menu Styles */
+/* Zéré Style Menu */
 .mobile-drawer {
     position: fixed; top: 0; left: -100%; width: 90%; max-width: 350px; height: 100%;
     background: #fff; z-index: 3000; transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .mobile-drawer.active { left: 0; }
-.menu-x { background: #ff5252; color: #fff; border: none; width: 50px; height: 50px; cursor: pointer; float: right; font-size: 24px; }
-.menu-list { list-style: none; padding-top: 50px; }
+.menu-x { background: var(--red-close); color: #fff; border: none; width: 50px; height: 50px; cursor: pointer; float: right; font-size: 20px; }
+
+.menu-list { list-style: none; padding-top: 50px; clear: both; }
 .menu-list li { border-bottom: 1px solid #f5f5f5; position: relative; }
 .menu-list li a { display: block; padding: 18px 25px; text-decoration: none; color: #333; font-size: 15px; }
 .has-arrow::after { content: '›'; position: absolute; right: 25px; top: 18px; font-size: 22px; color: #ccc; }
@@ -40,14 +40,13 @@
 .account-link { font-size: 14px !important; color: #666 !important; }
 .wish-badge { background: #333; color: #fff; font-size: 10px; padding: 2px 7px; border-radius: 12px; margin-left: 5px; }
 
-/* Hero & Products */
-.hero { height: 80vh; background: url('https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=1200') center/cover; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 60px; color: #fff; }
-.hero-content h1 { font-size: 42px; font-weight: 400; letter-spacing: 6px; margin-bottom: 25px; text-align: center; }
-.shop-now { background: var(--beige); border: none; padding: 16px 45px; text-transform: uppercase; cursor: pointer; color: #333; }
+/* Search Row */
+.search-row { margin-top: 10px; }
+.search-box { position: relative; }
+.search-box input { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px; outline: none; font-size: 16px; }
+.search-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #999; }
 
-.product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px 15px; }
-.add-btn { width: 100%; padding: 12px; background: #fff; border: 1px solid #000; border-top: none; font-size: 12px; font-weight: 700; cursor: pointer; }
-.product-details { text-align: center; padding: 10px 0; }
-.p-price { font-weight: 700; margin-top: 5px; }
-
+/* Overlay & Hero */
 .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: none; z-index: 2500; }
+.hero { height: 80vh; background: url('https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=1200') center/cover; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 60px; }
+.shop-now { background: var(--beige); border: none; padding: 16px 45px; text-transform: uppercase; cursor: pointer; font-weight: bold; }
