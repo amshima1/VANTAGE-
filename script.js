@@ -1,21 +1,21 @@
-const arrivalsGrid = document.getElementById('arrivals-grid');
+const grid = document.getElementById('product-grid');
 
-function renderArrivals() {
-    let content = '';
-    // Generates Flux1-front.jpg to Flux11-front.jpg based on your GitHub files
+function init() {
+    let html = '';
+    // Pulls Flux1-front.jpg to Flux11-front.jpg
     for (let i = 1; i <= 11; i++) {
-        content += `
-            <div class="product-item">
-                <img src="Flux${i}-front.jpg" style="width:100%; border:1px solid #eee;">
-                <button style="width:100%; padding:10px; background:#fff; border:1px solid #000;">ADD TO CART</button>
-                <div style="padding:10px; text-align:center;">
-                    <p>Hertunba Flux ${i}</p>
+        html += `
+            <div class="prod-card">
+                <img src="Flux${i}-front.jpg">
+                <button style="width:100%; padding:10px; background:#fff; border:1px solid #000; font-weight:bold;">ADD TO CART</button>
+                <div style="padding-top:10px;">
+                    <p style="font-size:13px;">Hertunba Flux ${i}</p>
                     <p><strong>€387.95</strong></p>
                 </div>
             </div>
         `;
     }
-    arrivalsGrid.innerHTML = content;
+    grid.innerHTML = html;
 }
 
-document.addEventListener('DOMContentLoaded', renderArrivals);
+document.addEventListener('DOMContentLoaded', init);
