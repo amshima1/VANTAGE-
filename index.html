@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Luxury Editorial</title>
+    <title>FLUX | Luxury Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,19 +14,17 @@
 
     <main>
         <section class="hero-banner" style="background-image: url('hero-bg.jpg');">
-            <div class="hero-content">
+            <div class="hero-overlay">
                 <h1>SPRING READY?</h1>
-                <button class="hero-btn">SHOP NOW</button>
+                <button class="shop-now">SHOP NOW</button>
             </div>
         </section>
 
-        <div class="section-label">NEW ARRIVALS</div>
-        <section class="horizontal-scroller" id="flux-gallery">
-            </section>
-        
-        <section id="detail-view" class="detail-container" style="display:none;"></section>
-    </main>
+        <h2 class="section-title">NEW ARRIVALS</h2>
+        <div class="horizontal-scroller" id="flux-grid"></div>
 
+        <div id="likes-section" class="likes-container"></div>
+    </main>
     <script src="app.js"></script>
 </body>
 </html>
