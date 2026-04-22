@@ -1,37 +1,35 @@
-// Mapping your specific files to product objects
-const fluxProducts = [
+// Data mapped exactly to your uploaded GitHub files
+const fluxData = [
     { id: 1, name: "Flux 1", main: "Flux1-front.jpg", likes: ["Flux1-back.jpg", "Flux1-vedio.jpg"] },
     { id: 2, name: "Flux 2", main: "Flux2-front.jpg", likes: ["Flux2-front2.jpg", "Flux2-twice1.jpg"] },
-    { id: 3, name: "Flux 3", main: "Flux3-front.jpg", likes: ["Flux3-side.jpg", "Flux3-hang.jpg"] },
+    { id: 3, name: "Flux 3", main: "Flux3-front.jpg", likes: ["Flux3-hang.jpg", "Flux3-side.jpg"] },
     { id: 4, name: "Flux 4", main: "Flux4-front.jpg", likes: ["Flux4-back.jpg"] },
-    { id: 10, name: "Flux 10", main: "Flux10-front.jpg", likes: ["Flux10-back.jpg"] },
-    { id: 11, name: "Flux 11", main: "Flux11-front.jpg", likes: ["Flux11-red.jpg", "Flux11-twice.jpg", "Flux11-twice2.jpg"] }
+    { id: 11, name: "Flux 11", main: "Flux11-front.jpg", likes: ["Flux11-red.jpg", "Flux11-twice.jpg"] }
 ];
 
-const gallery = document.getElementById('flux-gallery');
-const detailView = document.getElementById('detail-view');
+const grid = document.getElementById('flux-grid');
+const likesSection = document.getElementById('likes-section');
 
 function renderGallery() {
-    gallery.innerHTML = fluxProducts.map(p => `
-        <div class="product-card" onclick="showLikes(${p.id})">
-            <img src="${p.main}" alt="${p.name}">
-            <p>${p.name}</p>
+    grid.innerHTML = fluxData.map(item => `
+        <div class="product-card" onclick="showRelated('${item.id}')">
+            <img src="${item.main}">
+            <p>${item.name}</p>
             <p><strong>€387.95</strong></p>
         </div>
     `).join('');
 }
 
-function showLikes(id) {
-    const product = fluxProducts.find(p => p.id === id);
-    detailView.style.display = 'block';
-    detailView.innerHTML = `
-        <h3>More views for ${product.name}</h3>
-        <div class="likes-grid">
-            ${product.likes.map(img => `<img src="${img}">`).join('')}
+function showRelated(id) {
+    const item = fluxData.find(p => p.id == id);
+    // Logic to show alternate "likes" (back views, etc.)
+    likesSection.innerHTML = `
+        <h4>More views you might like for ${item.name}</h4>
+        <div style="display:flex; justify-content:center; gap:10px; margin-top:15px;">
+            ${item.likes.map(img => `<img src="${img}" style="width:120px;">`).join('')}
         </div>
-        <button onclick="detailView.style.display='none'" style="margin-top:10px;">Close Details</button>
     `;
-    detailView.scrollIntoView({ behavior: 'smooth' });
+    likesSection.scrollIntoView({ behavior: 'smooth' });
 }
 
 document.addEventListener('DOMContentLoaded', renderGallery);
