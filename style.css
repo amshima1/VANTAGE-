@@ -1,45 +1,50 @@
-:root { --beige: #d4cdc3; --grey: #eeeeee; }
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica', sans-serif; }
 
-/* Header */
-.main-header { background: #fff; border-bottom: 1px solid var(--grey); padding: 10px 20px; }
-.nav-container { display: flex; justify-content: space-between; align-items: center; height: 50px; }
-.logo { font-size: 24px; font-weight: 900; letter-spacing: 10px; }
-.search-input { width: 100%; padding: 8px; border: 1px solid var(--grey); outline: none; }
+/* Header & Logo Spacing */
+.site-header { padding: 10px 20px; border-bottom: 1px solid #eee; background: #fff; }
+.nav-row { display: flex; justify-content: space-between; align-items: center; height: 50px; }
+.logo { font-size: 24px; font-weight: 900; letter-spacing: 12px; } /* Wide spacing like Zere */
 
-/* Hero Section - The fix for your white gap */
-.hero-section {
-    height: 80vh;
+.search-bar { width: 100%; padding: 8px; border: 1px solid #ddd; outline: none; margin-top: 5px; }
+
+/* FIX: This makes the image sit behind the text */
+.hero-banner {
+    height: 80vh; 
+    background-image: url('hero-bg.jpg'); /* Using your hero-bg file */
     background-size: cover;
     background-position: center;
+    position: relative;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-end; /* Moves text to bottom like Zere */
     justify-content: center;
-    padding-bottom: 50px;
+    padding-bottom: 60px;
 }
-.hero-content { text-align: center; color: white; }
-.hero-content h1 { font-size: 36px; letter-spacing: 4px; margin-bottom: 20px; font-weight: 300; }
-.shop-btn { background: var(--beige); border: none; padding: 15px 40px; font-weight: bold; text-transform: uppercase; cursor: pointer; }
 
-/* Horizontal Scroller Logic */
-.h-scroller {
-    width: 100%;
+.hero-overlay { text-align: center; color: #ffffff; }
+
+.hero-text {
+    font-size: 38px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.hero-button {
+    background-color: #d4cdc3; /* Zere beige color */
+    border: none;
+    padding: 15px 45px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* Horizontal Scroll for Arrivals */
+.horizontal-scroll {
+    display: flex;
     overflow-x: auto;
-    white-space: nowrap;
+    padding: 20px;
+    gap: 15px;
     -webkit-overflow-scrolling: touch;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--grey);
 }
-.h-scroller::-webkit-scrollbar { display: none; }
-
-.scroller-inner, .product-wrap { display: flex; padding-left: 20px; }
-
-.prop-card, .prod-card {
-    flex: 0 0 85%; /* Card size on mobile */
-    margin-right: 20px;
-    text-align: center;
-    white-space: normal;
-}
-.prod-card { flex: 0 0 180px; }
-.prod-card img { width: 100%; border: 1px solid var(--grey); }
-.arrival-header { display: flex; justify-content: space-between; padding: 20px; }
+.horizontal-scroll::-webkit-scrollbar { display: none; }
