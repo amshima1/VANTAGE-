@@ -1,33 +1,47 @@
-/* Hero Fix */
+/* Hero Fix: Text overlays the image */
 .hero-banner {
-    height: 80vh;
+    height: 85vh;
     background-size: cover;
     background-position: center;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-end; /* Keeps text at the bottom */
     justify-content: center;
-    padding-bottom: 50px;
-    color: #fff;
+    padding-bottom: 60px;
+    position: relative;
 }
-.hero-btn { background: #d4cdc3; border: none; padding: 15px 40px; font-weight: bold; cursor: pointer; }
 
-/* Scroller Logic */
+.hero-overlay { text-align: center; color: white; }
+
+.shop-now {
+    background-color: #d4cdc3; /* Matches the beige button in ZERE */
+    border: none;
+    padding: 15px 45px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Horizontal Scroller Fix: Forces elements into one line */
 .horizontal-scroller {
     display: flex;
     overflow-x: auto;
+    white-space: nowrap; /* Prevents vertical stacking */
     padding: 20px;
     gap: 15px;
-    -webkit-overflow-scrolling: touch; /* Smooth swipe on mobile */
+    -webkit-overflow-scrolling: touch;
 }
+
 .horizontal-scroller::-webkit-scrollbar { display: none; }
 
 .product-card {
-    flex: 0 0 180px; /* Card size */
+    flex: 0 0 200px; /* Width of each product card */
+    text-align: center;
+    cursor: pointer;
+}
+
+.product-card img { width: 100%; border: 1px solid #eee; }
+
+.likes-container {
+    padding: 20px;
+    background: #f9f9f9;
     text-align: center;
 }
-.product-card img { width: 100%; border: 1px solid #eee; cursor: pointer; }
-
-/* Detail View Styles */
-.detail-container { padding: 20px; text-align: center; border-top: 2px solid #000; }
-.likes-grid { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
-.likes-grid img { width: 80px; border: 1px solid #ddd; }
