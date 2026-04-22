@@ -1,38 +1,109 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+:root {
+    --beige: #d4cdc3; /* Exact button color from reference */
+    --light-grey: #eeeeee;
+}
 
-.site-header { padding: 15px; border-bottom: 1px solid #eee; text-align: center; }
-.logo { font-size: 24px; font-weight: 900; letter-spacing: 12px; margin-bottom: 10px; }
-.search-box input { width: 90%; padding: 8px; border: 1px solid #ddd; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
-/* FIX: This makes the image sit BEHIND the text */
+/* Header Layout */
+.main-header {
+    background: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.hamburger {
+    width: 25px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: #000;
+    margin-bottom: 5px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 8px;
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #000;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--light-grey);
+    margin-top: 10px;
+    outline: none;
+}
+
+/* FIX: This makes the image cover the screen and overlays the text */
 .hero-section {
-    height: 85vh;
-    background-image: url('hero-bg.jpg'); /* Your specific background file */
+    height: 80vh;
     background-size: cover;
     background-position: center;
     position: relative;
     display: flex;
-    align-items: flex-end; /* Pushes text to the bottom */
+    align-items: flex-end; /* Text at bottom */
     justify-content: center;
     padding-bottom: 60px;
 }
 
-.hero-overlay { text-align: center; color: white; }
-.hero-overlay h1 { font-size: 40px; font-weight: 300; letter-spacing: 4px; margin-bottom: 20px; }
-.shop-btn { background: #d4cdc3; border: none; padding: 15px 40px; font-weight: bold; cursor: pointer; }
+.hero-overlay {
+    text-align: center;
+    color: #ffffff;
+}
 
-/* FIX: Forces products into a swipable horizontal row */
+.hero-title {
+    font-size: 44px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    text-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+}
+
+.hero-shop-btn {
+    background: var(--beige);
+    border: none;
+    padding: 18px 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Horizontal Scroller for New Arrivals */
 .horizontal-scroller {
     display: flex;
     overflow-x: auto;
-    white-space: nowrap;
     padding: 20px;
     gap: 15px;
     -webkit-overflow-scrolling: touch;
 }
+
 .horizontal-scroller::-webkit-scrollbar { display: none; }
-
-.product-card { flex: 0 0 180px; text-align: center; cursor: pointer; }
-.product-card img { width: 100%; border: 1px solid #eee; }
-
-.likes-container { padding: 20px; background: #fdfdfd; text-align: center; }
