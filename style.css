@@ -1,50 +1,33 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica', sans-serif; }
-
-/* Header & Logo Spacing */
-.site-header { padding: 10px 20px; border-bottom: 1px solid #eee; background: #fff; }
-.nav-row { display: flex; justify-content: space-between; align-items: center; height: 50px; }
-.logo { font-size: 24px; font-weight: 900; letter-spacing: 12px; } /* Wide spacing like Zere */
-
-.search-bar { width: 100%; padding: 8px; border: 1px solid #ddd; outline: none; margin-top: 5px; }
-
-/* FIX: This makes the image sit behind the text */
+/* Hero Fix */
 .hero-banner {
-    height: 80vh; 
-    background-image: url('hero-bg.jpg'); /* Using your hero-bg file */
+    height: 80vh;
     background-size: cover;
     background-position: center;
-    position: relative;
     display: flex;
-    align-items: flex-end; /* Moves text to bottom like Zere */
+    align-items: flex-end;
     justify-content: center;
-    padding-bottom: 60px;
+    padding-bottom: 50px;
+    color: #fff;
 }
+.hero-btn { background: #d4cdc3; border: none; padding: 15px 40px; font-weight: bold; cursor: pointer; }
 
-.hero-overlay { text-align: center; color: #ffffff; }
-
-.hero-text {
-    font-size: 38px;
-    font-weight: 300;
-    letter-spacing: 5px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-.hero-button {
-    background-color: #d4cdc3; /* Zere beige color */
-    border: none;
-    padding: 15px 45px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-/* Horizontal Scroll for Arrivals */
-.horizontal-scroll {
+/* Scroller Logic */
+.horizontal-scroller {
     display: flex;
     overflow-x: auto;
     padding: 20px;
     gap: 15px;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; /* Smooth swipe on mobile */
 }
-.horizontal-scroll::-webkit-scrollbar { display: none; }
+.horizontal-scroller::-webkit-scrollbar { display: none; }
+
+.product-card {
+    flex: 0 0 180px; /* Card size */
+    text-align: center;
+}
+.product-card img { width: 100%; border: 1px solid #eee; cursor: pointer; }
+
+/* Detail View Styles */
+.detail-container { padding: 20px; text-align: center; border-top: 2px solid #000; }
+.likes-grid { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+.likes-grid img { width: 80px; border: 1px solid #ddd; }
