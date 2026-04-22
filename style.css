@@ -1,41 +1,92 @@
-/* Fix for Hero Background */
-.hero {
-    height: 80vh;
-    background-size: cover;
-    background-position: center;
+/* General Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica', sans-serif;
+}
+
+/* Header Styling */
+.main-header {
+    background: #ffffff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.nav-top {
     display: flex;
-    align-items: flex-end; /* Keeps text at the bottom */
-    justify-content: center;
-    padding-bottom: 60px;
-    color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 10px; /* Editorial spacing like ZERE */
     text-align: center;
 }
 
-.shop-now {
-    background: #d4cdc3; /* Matching Zéré beige button */
+.search-section {
+    padding: 5px 0;
+}
+
+.search-wrapper {
+    position: relative;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.search-input {
+    border: none;
+    width: 100%;
+    outline: none;
+    font-size: 14px;
+}
+
+/* HERO SECTION FIX */
+.hero-banner {
+    height: 85vh; /* Sets height so image is visible */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative; /* Allows text to be positioned inside it */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end; /* Pushes text to the bottom like ZERE */
+    justify-content: center;
+    padding-bottom: 60px; /* Gap from the bottom */
+}
+
+.hero-text-box {
+    text-align: center;
+    color: #ffffff;
+}
+
+.hero-title {
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3); /* Ensures text is readable over image */
+}
+
+.hero-btn {
+    background-color: #d4cdc3; /* Matching your beige button color */
+    color: #333;
     border: none;
     padding: 15px 45px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
+    text-transform: uppercase;
 }
-
-/* Forces Horizontal Scrolling */
-.horizontal-scroller {
-    width: 100%;
-    overflow-x: auto;
-    white-space: nowrap; /* Prevents stacking */
-    -webkit-overflow-scrolling: touch;
-    padding: 20px 0;
-}
-
-.scroll-wrapper, .product-wrapper {
-    display: flex;
-}
-
-.prop-item, .product-item {
-    flex: 0 0 85%; /* Allows seeing a peek of the next card */
-    margin-right: 15px;
-    white-space: normal; /* Allows text to wrap inside cards */
-}
-
-.product-item { flex: 0 0 200px; } /* Smaller width for product images */
