@@ -1,65 +1,59 @@
 :root {
-    --border: #eeeeee;
-    --red-close: #ff5252;
-    --beige: #d4cdc3; /* Stone color from Shop Now button */
+    --beige: #d4cdc3;
+    --light-grey: #eeeeee;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
-/* Header & Centered Logo */
-.main-header { padding: 10px 20px; border-bottom: 1px solid var(--border); background: #fff; position: sticky; top: 0; z-index: 1000; }
-.header-top { display: flex; justify-content: space-between; align-items: center; height: 50px; position: relative; }
-.logo { font-size: 22px; font-weight: 900; letter-spacing: 12px; position: absolute; left: 50%; transform: translateX(-50%); text-transform: uppercase; }
+/* Header Styling */
+.main-header { padding: 10px 20px; border-bottom: 1px solid var(--light-grey); position: sticky; top: 0; background: #fff; z-index: 100; }
+.header-top { display: flex; justify-content: space-between; align-items: center; height: 50px; }
+.logo { font-size: 24px; font-weight: 900; letter-spacing: 10px; text-indent: 10px; }
+.search-bar { position: relative; margin-top: 10px; }
+.search-bar input { width: 100%; padding: 10px; border: 1px solid var(--light-grey); outline: none; }
 
-/* hero-bg.jpg Configuration */
-.hero { height: 85vh; background: url('hero-bg.jpg') center/cover; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 60px; }
-.hero-content h1 { font-size: 42px; font-weight: 300; letter-spacing: 6px; margin-bottom: 25px; text-align: center; color: #fff; }
-.shop-now { background: var(--beige); border: none; padding: 16px 45px; text-transform: uppercase; cursor: pointer; color: #333; font-weight: bold; }
+/* Hero Fix - Prevents overlapping */
+.hero {
+    height: 80vh;
+    background: url('hero-bg.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: flex-end; /* Keeps text at the bottom */
+    justify-content: center;
+    padding-bottom: 60px;
+    text-align: center;
+    color: white;
+}
+.hero-content h1 { font-size: 42px; font-weight: 300; letter-spacing: 5px; margin-bottom: 20px; }
+.shop-now { background: var(--beige); border: none; padding: 15px 40px; font-weight: bold; cursor: pointer; }
 
-/* ADDED: Horizontal Scroller Logic for Value Props */
+/* Horizontal Scrolling Section */
 .props-scroller {
     width: 100%;
-    overflow-x: auto; /* Activates horizontal scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    border-bottom: 1px solid var(--border);
-    padding: 30px 0;
-    background: #fff;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--light-grey);
+    -webkit-overflow-scrolling: touch;
 }
-
-/* Hide the scrollbar track but allow scrolling (Optional, for clean UI) */
-.props-scroller::-webkit-scrollbar {
-    display: none;
-}
-
-.prop-wrapper {
-    display: flex; /* Lines up the items side-by-side */
-    gap: 0; /* Space is handled by items themselves */
-}
-
+.props-scroller::-webkit-scrollbar { display: none; }
+.props-wrapper { display: flex; padding-left: 20px; }
 .prop-item {
-    flex: 0 0 100%; /* Each item takes up 100% of viewport width by default */
-    min-width: 280px; /* Prevents item from squishing too much on very narrow screens */
-    text-align: center;
-    padding: 20px 40px;
+    flex: 0 0 85%;
+    margin-right: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    white-space: normal;
 }
+.prop-item h4 { margin: 10px 0; font-weight: 700; }
+.prop-item p { font-size: 14px; color: #666; margin-bottom: 10px; }
 
-/* Alignment and Typography from image_13.png - image_15.png */
-.prop-icon { margin-bottom: 15px; }
-.prop-item h4 { font-size: 16px; font-weight: 700; color: #333; margin-bottom: 10px; text-transform: capitalize; }
-.prop-item p { font-size: 14px; color: #767676; line-height: 1.6; margin-bottom: 15px; max-width: 250px; }
-.prop-link { font-size: 13px; color: #222; text-decoration: underline; font-weight: 400; text-underline-offset: 3px; }
-
-/* Adjustments for wider screens */
-@media (min-width: 768px) {
-    .prop-item { flex: 0 0 33.333%; } /* Show three props at once on tablets/desktops */
-    .props-scroller { overflow-x: hidden; } /* Turn off scrolling when all are visible */
-}
-
-/* Slide-out Menu, Drawer Styles, and Products Grid follow standard lux styling */
-.product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px 15px; }
-.add-btn { width: 100%; padding: 12px; background: #fff; border: 1px solid #000; border-top: none; font-size: 12px; font-weight: 700; cursor: pointer; }
-.product-details { text-align: center; padding: 10px 0; }
-.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: none; z-index: 2500; }
+/* Product Hover Effect */
+.product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; }
+.img-container { position: relative; width: 100%; overflow: hidden; }
+.img-container img { width: 100%; display: block; transition: opacity 0.4s; }
+.img-back { position: absolute; top: 0; left: 0; opacity: 0; }
+.img-container:hover .img-front { opacity: 0; }
+.img-container:hover .img-back { opacity: 1; }
+.add-btn { width: 100%; padding: 12px; background: #fff; border: 1px solid #000; border-top: none; font-weight: bold; font-size: 11px; }
