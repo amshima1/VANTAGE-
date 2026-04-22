@@ -1,31 +1,26 @@
 :root {
     --beige: #d4cdc3;
     --border: #eeeeee;
-    --text-grey: #767676;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
-/* Header and Logo Positioning */
-.main-header { padding: 10px 20px; border-bottom: 1px solid var(--border); background: #fff; position: sticky; top: 0; z-index: 1000; }
-.header-top { display: flex; justify-content: space-between; align-items: center; height: 50px; position: relative; }
-.logo { font-size: 22px; font-weight: 900; letter-spacing: 12px; position: absolute; left: 50%; transform: translateX(-50%); }
-
-/* Hero Alignment Fix */
-.hero { 
-    height: 80vh; 
-    background-position: center; 
-    background-size: cover; 
-    display: flex; 
-    align-items: flex-end; 
-    justify-content: center; 
-    padding-bottom: 60px; 
+/* Hero Fix: Aligns text to the bottom of the image */
+.hero {
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 60px;
+    color: #fff;
+    text-align: center;
 }
-.hero-content { text-align: center; color: #fff; }
-.hero-content h1 { font-size: 40px; font-weight: 300; letter-spacing: 5px; margin-bottom: 20px; text-shadow: 1px 1px 10px rgba(0,0,0,0.3); }
-.shop-now { background: var(--beige); border: none; padding: 15px 45px; text-transform: uppercase; font-weight: 700; cursor: pointer; }
+.hero-content h1 { font-size: 38px; font-weight: 300; letter-spacing: 5px; margin-bottom: 20px; }
+.shop-now { background: var(--beige); border: none; padding: 15px 45px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
 
-/* Horizontal Scrolling Logic */
+/* Scroller Logic: Forces horizontal movement */
 .horizontal-scroller {
     width: 100%;
     overflow-x: auto;
@@ -38,31 +33,19 @@
 
 .scroll-wrapper, .product-wrapper { display: flex; padding-left: 20px; }
 
-/* Prop Items */
 .prop-item {
-    flex: 0 0 85%;
+    flex: 0 0 85%; /* Shows one card and a peek of the next */
     margin-right: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     text-align: center;
     white-space: normal;
 }
-.prop-item h4 { font-size: 16px; font-weight: 700; margin: 10px 0; }
-.prop-item p { font-size: 14px; color: var(--text-grey); margin-bottom: 10px; }
-.prop-link { font-size: 13px; color: #000; text-decoration: underline; }
+.prop-item img.icon { width: 45px; margin-bottom: 15px; }
 
-/* Product Cards in Scroller */
+/* New Arrivals Scroller Items */
 .product-item {
-    flex: 0 0 170px;
+    flex: 0 0 200px; /* Specific width for product images */
     margin-right: 15px;
     white-space: normal;
 }
-.img-container { position: relative; overflow: hidden; width: 100%; }
-.img-container img { width: 100%; display: block; transition: opacity 0.4s; }
-.img-back { position: absolute; top: 0; left: 0; opacity: 0; }
-.img-container:hover .img-front { opacity: 0; }
-.img-container:hover .img-back { opacity: 1; }
-
-.add-btn { width: 100%; padding: 12px; background: #fff; border: 1px solid #000; border-top: none; font-size: 11px; font-weight: 700; cursor: pointer; }
-.section-header { display: flex; justify-content: space-between; padding: 20px; align-items: center; }
+.product-item img { width: 100%; border: 1px solid var(--border); }
+.add-btn { width: 100%; padding: 12px; background: #fff; border: 1px solid #000; border-top: none; font-weight: 700; cursor: pointer; }
