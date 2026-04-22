@@ -3,78 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | High-Performance Fashion</title>
+    <title>FLUX | Premium Mobile</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<body class="light-theme vibrant">
+<body>
 
     <div id="mobile-menu" class="mobile-menu">
-        <ul class="mobile-links">
-            <li><a href="#" onclick="location.reload()">NEW ARRIVALS</a></li>
-            <li><a href="#">COLLECTIONS</a></li>
-            <li><a href="#">ARCHIVE</a></li>
-            <li><a href="#">ABOUT FLUX</a></li>
+        <div class="menu-close-bar">
+            <button id="close-menu" class="menu-x">&times;</button>
+        </div>
+        <ul class="menu-list">
+            <li><a href="#">New In</a></li>
+            <li class="has-arrow"><a href="#">Shop</a></li>
+            <li class="has-arrow"><a href="#">Brands</a></li>
+            <li><a href="#">Sale</a></li>
+            <li class="spacer"></li>
+            <li><a href="#" class="sub-link">Sign In</a></li>
+            <li><a href="#" class="sub-link">My Wish Lists <span class="wish-count">0</span></a></li>
         </ul>
     </div>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <div id="hamburger" class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+    <header class="main-header">
+        <div class="header-top">
+            <div id="hamburger-trigger" class="hamburger-icon">
+                <span></span><span></span><span></span>
             </div>
-
-            <div class="logo" onclick="location.reload()">FLUX</div>
-
-            <div class="nav-right">
-                <div class="theme-selector hide-mobile">
-                    <button class="t-btn active" data-theme="vibrant">VIBRANT</button>
-                    <button class="t-btn" data-theme="neon">NEON</button>
-                </div>
-                <span class="icon" id="cart-icon-trigger">BAG (<span id="cart-count">0</span>)</span>
+            <div class="logo">FLUX</div>
+            <div class="cart-trigger" id="cart-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span class="cart-badge" id="cart-count">0</span>
             </div>
         </div>
-    </nav>
-
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-header">
-            <h2>YOUR COLLECTION</h2>
-            <button id="close-cart" class="close-btn">&times;</button>
+        <div class="search-container">
+            <input type="text" placeholder="Search">
+            <span class="search-icon">🔍</span>
         </div>
-        <div id="cart-items-container" class="cart-items"></div>
-        <div class="cart-footer">
-            <div class="cart-total"><span>TOTAL</span><span id="cart-subtotal">$0.00</span></div>
-            <button id="checkout-btn" class="primary-btn">SECURE CHECKOUT</button>
-        </div>
-    </div>
-    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    </header>
 
     <main id="main-content">
-        <section id="skeleton-grid" class="grid-view">
-            <div class="skeleton-card c1"></div>
-            <div class="skeleton-card c2"></div>
-            <div class="skeleton-card c3"></div>
-            <div class="skeleton-card c4"></div>
-        </section>
-
-        <section id="shop-section" class="hidden">
-            <div id="product-grid" class="grid-view"></div>
-        </section>
-
-        <section id="detail-section" class="hidden"></section>
+        <div class="section-title">NEW IN</div>
+        <div id="product-grid" class="product-grid"></div>
     </main>
-
-    <div id="chat-widget" class="chat-closed">
-        <div id="chat-header">FLUX ASSISTANT</div>
-        <div id="chat-body"></div>
-        <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Ask something...">
-            <button id="send-chat">↑</button>
-        </div>
-    </div>
-    <button id="chat-trigger">💬</button>
 
     <script src="app.js"></script>
 </body>
