@@ -1,51 +1,41 @@
-:root {
-    --beige: #d4cdc3;
-    --border: #eeeeee;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-
-/* Hero Fix: Aligns text to the bottom of the image */
+/* Fix for Hero Background */
 .hero {
     height: 80vh;
     background-size: cover;
     background-position: center;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-end; /* Keeps text at the bottom */
     justify-content: center;
     padding-bottom: 60px;
     color: #fff;
     text-align: center;
 }
-.hero-content h1 { font-size: 38px; font-weight: 300; letter-spacing: 5px; margin-bottom: 20px; }
-.shop-now { background: var(--beige); border: none; padding: 15px 45px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
 
-/* Scroller Logic: Forces horizontal movement */
+.shop-now {
+    background: #d4cdc3; /* Matching Zéré beige button */
+    border: none;
+    padding: 15px 45px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Forces Horizontal Scrolling */
 .horizontal-scroller {
     width: 100%;
     overflow-x: auto;
-    white-space: nowrap;
+    white-space: nowrap; /* Prevents stacking */
     -webkit-overflow-scrolling: touch;
-    padding: 30px 0;
-    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
 }
-.horizontal-scroller::-webkit-scrollbar { display: none; }
 
-.scroll-wrapper, .product-wrapper { display: flex; padding-left: 20px; }
-
-.prop-item {
-    flex: 0 0 85%; /* Shows one card and a peek of the next */
-    margin-right: 20px;
-    text-align: center;
-    white-space: normal;
+.scroll-wrapper, .product-wrapper {
+    display: flex;
 }
-.prop-item img.icon { width: 45px; margin-bottom: 15px; }
 
-/* New Arrivals Scroller Items */
-.product-item {
-    flex: 0 0 200px; /* Specific width for product images */
+.prop-item, .product-item {
+    flex: 0 0 85%; /* Allows seeing a peek of the next card */
     margin-right: 15px;
-    white-space: normal;
+    white-space: normal; /* Allows text to wrap inside cards */
 }
-.product-item img { width: 100%; border: 1px solid var(--border); }
-.add-btn { width: 100%; padding: 12px; background: #fff; border: 1px solid #000; border-top: none; font-weight: 700; cursor: pointer; }
+
+.product-item { flex: 0 0 200px; } /* Smaller width for product images */
