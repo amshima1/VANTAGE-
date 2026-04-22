@@ -1,47 +1,38 @@
-/* Hero Fix: Text overlays the image */
-.hero-banner {
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+
+.site-header { padding: 15px; border-bottom: 1px solid #eee; text-align: center; }
+.logo { font-size: 24px; font-weight: 900; letter-spacing: 12px; margin-bottom: 10px; }
+.search-box input { width: 90%; padding: 8px; border: 1px solid #ddd; }
+
+/* FIX: This makes the image sit BEHIND the text */
+.hero-section {
     height: 85vh;
+    background-image: url('hero-bg.jpg'); /* Your specific background file */
     background-size: cover;
     background-position: center;
+    position: relative;
     display: flex;
-    align-items: flex-end; /* Keeps text at the bottom */
+    align-items: flex-end; /* Pushes text to the bottom */
     justify-content: center;
     padding-bottom: 60px;
-    position: relative;
 }
 
 .hero-overlay { text-align: center; color: white; }
+.hero-overlay h1 { font-size: 40px; font-weight: 300; letter-spacing: 4px; margin-bottom: 20px; }
+.shop-btn { background: #d4cdc3; border: none; padding: 15px 40px; font-weight: bold; cursor: pointer; }
 
-.shop-now {
-    background-color: #d4cdc3; /* Matches the beige button in ZERE */
-    border: none;
-    padding: 15px 45px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Horizontal Scroller Fix: Forces elements into one line */
+/* FIX: Forces products into a swipable horizontal row */
 .horizontal-scroller {
     display: flex;
     overflow-x: auto;
-    white-space: nowrap; /* Prevents vertical stacking */
+    white-space: nowrap;
     padding: 20px;
     gap: 15px;
     -webkit-overflow-scrolling: touch;
 }
-
 .horizontal-scroller::-webkit-scrollbar { display: none; }
 
-.product-card {
-    flex: 0 0 200px; /* Width of each product card */
-    text-align: center;
-    cursor: pointer;
-}
-
+.product-card { flex: 0 0 180px; text-align: center; cursor: pointer; }
 .product-card img { width: 100%; border: 1px solid #eee; }
 
-.likes-container {
-    padding: 20px;
-    background: #f9f9f9;
-    text-align: center;
-}
+.likes-container { padding: 20px; background: #fdfdfd; text-align: center; }
