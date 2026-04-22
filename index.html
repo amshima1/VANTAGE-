@@ -3,11 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Official Store</title>
+    <title>FLUX | Luxury Editorial</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <div id="mobile-menu" class="mobile-drawer">
+        <div class="drawer-header">
+            <button id="close-menu" class="menu-x">&times;</button>
+        </div>
+        <nav class="menu-nav">
+            <ul class="menu-list">
+                <li><a href="#">New In</a></li>
+                <li class="has-arrow"><a href="#">Shop</a></li>
+                <li class="has-arrow"><a href="#">Brands</a></li>
+                <li><a href="#">Sale</a></li>
+                <li class="menu-spacer"></li>
+                <li><a href="#" class="account-link">Sign In</a></li>
+                <li><a href="#" class="account-link">My Wish Lists <span class="wish-badge">0</span></a></li>
+            </ul>
+        </nav>
+    </div>
 
     <header class="main-header">
         <div class="header-top">
@@ -18,9 +35,7 @@
                     <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
             </div>
-
             <div class="logo">F L U X</div>
-
             <div id="cart-trigger" class="header-icon cart-container">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2">
                     <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
@@ -30,11 +45,10 @@
                 <span class="cart-badge">0</span>
             </div>
         </div>
-
         <div class="search-row">
             <div class="search-box">
                 <input type="text" placeholder="Search">
-                <span class="search-glass">🔍</span>
+                <span class="search-icon">🔍</span>
             </div>
         </div>
     </header>
@@ -48,29 +62,11 @@
         </section>
 
         <div class="section-label">NEW IN</div>
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=800" alt="Meena Wrap">
-                    <button class="add-to-cart-btn">ADD TO CART</button>
-                </div>
-                <div class="product-details">
-                    <p class="p-name">Hertunba Meena Wrap</p>
-                    <p class="p-price">$653.00</p>
-                </div>
+        <div class="product-grid" id="product-grid">
             </div>
-            <div class="product-card">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1594633313214-29115f035e74?w=800" alt="Lola Kaftan">
-                    <button class="add-to-cart-btn">ADD TO CART</button>
-                </div>
-                <div class="product-details">
-                    <p class="p-name">Hertunba The Lola Kaftan</p>
-                    <p class="p-price">$416.00</p>
-                </div>
-            </div>
-        </div>
     </main>
 
+    <div id="menu-overlay" class="overlay"></div>
+    <script src="app.js"></script>
 </body>
 </html>
