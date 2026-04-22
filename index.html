@@ -3,39 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Luxury Store</title>
+    <title>FLUX | Luxury Editorial</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="main-header">
-        <div class="nav-top">
-            <div class="menu-icon">☰</div>
+        <div class="nav-container">
+            <div class="menu-btn">☰</div>
             <div class="logo">F L U X</div>
-            <div class="cart-container">
-                <span class="cart-icon">🛒</span>
-                <span class="cart-count">0</span>
-            </div>
+            <div class="cart-btn">🛒 <span class="badge">0</span></div>
         </div>
-        <div class="search-section">
-            <div class="search-wrapper">
-                <input type="text" placeholder="Search" class="search-input">
-                <span class="search-glass">🔍</span>
-            </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search" class="search-input">
         </div>
     </header>
 
     <main>
-        <section class="hero-banner" style="background-image: url('Flux1-vedio.jpg');">
-            <div class="hero-overlay">
-                <div class="hero-text-box">
-                    <h1 class="hero-title">SPRING READY?</h1>
-                    <button class="hero-btn">SHOP NOW</button>
+        <section class="hero-section" style="background-image: url('hero-bg.jpg');">
+            <div class="hero-content">
+                <h1>SPRING READY?</h1>
+                <button class="shop-btn">SHOP NOW</button>
+            </div>
+        </section>
+
+        <section class="h-scroller">
+            <div class="scroller-inner">
+                <div class="prop-card">
+                    <img src="18063.jpg" alt="Delivery">
+                    <h4>Free Standard Delivery</h4>
+                    <p>Orders over £180 get free standard UK delivery.</p>
+                    <a href="#">Learn More</a>
+                </div>
+                <div class="prop-card">
+                    <img src="18065.jpg" alt="Returns">
+                    <h4>Hassle Free Returns</h4>
+                    <p>Not satisfied? Return your order hassle free.</p>
+                    <a href="#">Learn More</a>
+                </div>
+                <div class="prop-card">
+                    <img src="18067.jpg" alt="Secure">
+                    <h4>100% Secure Checkout</h4>
+                    <p>Processed using secure payment platforms.</p>
+                    <a href="#">Learn More</a>
                 </div>
             </div>
         </section>
-        
-        </main>
 
+        <div class="arrival-header">
+            <h2 class="label">NEW ARRIVALS</h2>
+            <a href="#" class="all-link">View All</a>
+        </div>
+        <section class="h-scroller">
+            <div class="product-wrap" id="product-grid">
+                </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
 </body>
 </html>
