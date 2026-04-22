@@ -3,23 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Advanced Ecosystem</title>
+    <title>FLUX | High-Performance Fashion</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="light-theme vibrant">
+
+    <div id="mobile-menu" class="mobile-menu">
+        <ul class="mobile-links">
+            <li><a href="#" onclick="location.reload()">NEW ARRIVALS</a></li>
+            <li><a href="#">COLLECTIONS</a></li>
+            <li><a href="#">ARCHIVE</a></li>
+            <li><a href="#">ABOUT FLUX</a></li>
+        </ul>
+    </div>
 
     <nav class="navbar">
         <div class="nav-container">
+            <div id="hamburger" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
             <div class="logo" onclick="location.reload()">FLUX</div>
-            <div class="nav-icons">
+
+            <div class="nav-right">
+                <div class="theme-selector hide-mobile">
+                    <button class="t-btn active" data-theme="vibrant">VIBRANT</button>
+                    <button class="t-btn" data-theme="neon">NEON</button>
+                </div>
                 <span class="icon" id="cart-icon-trigger">BAG (<span id="cart-count">0</span>)</span>
             </div>
         </div>
     </nav>
 
     <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-header"><h2>YOUR BAG</h2><button id="close-cart">&times;</button></div>
+        <div class="cart-header">
+            <h2>YOUR COLLECTION</h2>
+            <button id="close-cart" class="close-btn">&times;</button>
+        </div>
         <div id="cart-items-container" class="cart-items"></div>
         <div class="cart-footer">
             <div class="cart-total"><span>TOTAL</span><span id="cart-subtotal">$0.00</span></div>
@@ -29,43 +52,30 @@
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
     <main id="main-content">
-        <section id="shop-section">
+        <section id="skeleton-grid" class="grid-view">
+            <div class="skeleton-card c1"></div>
+            <div class="skeleton-card c2"></div>
+            <div class="skeleton-card c3"></div>
+            <div class="skeleton-card c4"></div>
+        </section>
+
+        <section id="shop-section" class="hidden">
             <div id="product-grid" class="grid-view"></div>
         </section>
 
-        <section id="detail-section" class="hidden">
-            <div id="detail-content"></div>
-        </section>
-
-        <section id="payment-overlay" class="payment-modal hidden">
-            <div class="payment-card">
-                <h3>PAYMENT DETAILS</h3>
-                <div class="card-input-box">
-                    <input type="text" placeholder="Card Number" maxlength="16">
-                    <div class="flex">
-                        <input type="text" placeholder="MM/YY">
-                        <input type="text" placeholder="CVC">
-                    </div>
-                </div>
-                <button id="confirm-payment-btn" class="primary-btn">PAY NOW</button>
-                <p id="payment-status"></p>
-            </div>
-        </section>
+        <section id="detail-section" class="hidden"></section>
     </main>
 
     <div id="chat-widget" class="chat-closed">
         <div id="chat-header">FLUX ASSISTANT</div>
-        <div id="chat-body">
-            <div class="msg bot">Hello! How can I help you today?</div>
-        </div>
+        <div id="chat-body"></div>
         <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Ask about shipping, sizes...">
+            <input type="text" id="chat-input" placeholder="Ask something...">
             <button id="send-chat">↑</button>
         </div>
     </div>
     <button id="chat-trigger">💬</button>
 
-    <div id="toast-container"></div>
     <script src="app.js"></script>
 </body>
 </html>
