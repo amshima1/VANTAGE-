@@ -3,106 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Enterprise System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>FLUX | Advanced Ecosystem</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="ui-overlay" class="overlay" onclick="toggleMenu()"></div>
 
     <nav class="navbar">
-        <div class="hamburger" onclick="toggleMenu()">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
-
-        <div class="logo-container" onclick="showHome()">
-            <div class="logo">FLUX<span>.</span></div>
-        </div>
-
-        <div class="nav-icons">
-            <div class="cart-icon" onclick="openCart()">🛒 <span id="cart-count">0</span></div>
-        </div>
-
-        <div class="nav-links" id="nav-links">
-            <div class="sidebar-header">
-                <div class="logo-small">FLUX<span>.</span></div>
-                <span class="close-btn" onclick="toggleMenu()">&times;</span>
+        <div class="nav-container">
+            <div class="logo" onclick="location.reload()">FLUX</div>
+            <div class="nav-icons">
+                <span class="icon" id="cart-icon-trigger">BAG (<span id="cart-count">0</span>)</span>
             </div>
-            <ul class="sidebar-menu">
-                <li class="menu-label">Repository Access</li>
-                <li><a href="#" onclick="showHome()">🌐 Global Dashboard</a></li>
-                <li><a href="#tech-section" onclick="toggleMenu()">⚡ Electronic Assets</a></li>
-                <li><a href="#apparel-section" onclick="toggleMenu()">🧵 Apparel Inventory</a></li>
-                <li class="menu-divider"></li>
-                <li><a href="javascript:void(0)" onclick="toggleBot(); toggleMenu()">🤖 AI Technical Support</a></li>
-            </ul>
         </div>
     </nav>
 
-    <div id="home-page">
-        <section class="hero-main">
-            <div class="hero-content">
-                <h1>Electronics Branch</h1>
-                <p>Deploying 20 high-performance assets to main branch.</p>
-                <a href="#tech-section" class="cta-scroll">Initialize Scan</a>
-            </div>
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header"><h2>YOUR BAG</h2><button id="close-cart">&times;</button></div>
+        <div id="cart-items-container" class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total"><span>TOTAL</span><span id="cart-subtotal">$0.00</span></div>
+            <button id="checkout-btn" class="primary-btn">SECURE CHECKOUT</button>
+        </div>
+    </div>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <main id="main-content">
+        <section id="shop-section">
+            <div id="product-grid" class="grid-view"></div>
         </section>
 
-        <main class="main-wrapper">
-            <div class="content-left">
-                <h2 class="section-title" id="tech-section">Active Hardware Repository</h2>
-                <div class="product-grid" id="tech-grid"></div>
-                
-                <h2 class="section-title" id="apparel-section" style="margin-top:50px;">Apparel Branch</h2>
-                <div class="product-grid" id="apparel-grid"></div>
-            </div>
+        <section id="detail-section" class="hidden">
+            <div id="detail-content"></div>
+        </section>
 
-            <aside class="content-right">
-                <div class="sticky-side">
-                    <h3 class="side-title">Personal History</h3>
-                    <div class="vertical-scroll-box" id="recent-grid">
-                        <p class="empty-msg">No logs found.</p>
+        <section id="payment-overlay" class="payment-modal hidden">
+            <div class="payment-card">
+                <h3>PAYMENT DETAILS</h3>
+                <div class="card-input-box">
+                    <input type="text" placeholder="Card Number" maxlength="16">
+                    <div class="flex">
+                        <input type="text" placeholder="MM/YY">
+                        <input type="text" placeholder="CVC">
                     </div>
-
-                    <h3 class="side-title" style="margin-top: 30px;">System Picks</h3>
-                    <div class="vertical-scroll-box" id="suggestions-grid"></div>
                 </div>
-            </aside>
-        </main>
-    </div>
-
-    <div id="product-page" class="product-page-container" style="display:none;">
-        <button class="back-btn" onclick="showHome()">← Back to Dashboard</button>
-        <div class="product-detail-flex">
-            <div class="detail-img-container"><img id="detail-img" src=""></div>
-            <div class="detail-info">
-                <p class="detail-tag">Authenticated Asset</p>
-                <h1 id="detail-title"></h1>
-                <h2 id="detail-price"></h2>
-                <p class="detail-desc">Verified industry-leading performance asset with full FLUX integration.</p>
-                <button class="add-btn-large">Add to Selection</button>
+                <button id="confirm-payment-btn" class="primary-btn">PAY NOW</button>
+                <p id="payment-status"></p>
             </div>
+        </section>
+    </main>
+
+    <div id="chat-widget" class="chat-closed">
+        <div id="chat-header">FLUX ASSISTANT</div>
+        <div id="chat-body">
+            <div class="msg bot">Hello! How can I help you today?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask about shipping, sizes...">
+            <button id="send-chat">↑</button>
         </div>
     </div>
+    <button id="chat-trigger">💬</button>
 
-    <footer class="system-footer">
-        <div class="footer-bottom">
-            <p>&copy; 2026 FLUX System Architecture. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <div id="ai-bot" class="ai-bot">
-        <div class="bot-header"><span>FLUX AI Support</span><button onclick="toggleBot()">&times;</button></div>
-        <div id="bot-messages" class="bot-messages"></div>
-        <div class="bot-input-area">
-            <input type="text" id="bot-query" placeholder="Enter command..." onkeypress="if(event.key==='Enter') askBot()">
-            <button onclick="askBot()">Send</button>
-        </div>
-    </div>
-    <button class="bot-toggle" onclick="toggleBot()">💬</button>
-
-    <script src="script.js"></script>
+    <div id="toast-container"></div>
+    <script src="app.js"></script>
 </body>
 </html>
