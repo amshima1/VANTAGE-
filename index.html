@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Official Store</title>
+    <title>FLUX | Luxury Editorial</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
 </head>
@@ -11,62 +11,63 @@
 
     <header class="main-header">
         <div class="header-top">
-            <div class="menu-icon">☰</div>
+            <div class="menu-trigger">☰</div>
             <div class="logo">F L U X</div>
-            <div class="cart-icon">🛒 <span class="badge">0</span></div>
+            <div class="cart-container">
+                🛒 <span class="cart-badge">0</span>
+            </div>
         </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search">
-            <span class="search-glass">🔍</span>
+        <div class="search-row">
+            <div class="search-box">
+                <input type="text" placeholder="Search">
+                <span class="search-icon">🔍</span>
+            </div>
         </div>
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero" style="background-image: url('Flux1-vedio.jpg');">
             <div class="hero-content">
                 <h1>SPRING READY?</h1>
                 <button class="shop-now">SHOP NOW</button>
             </div>
         </section>
 
-        <section class="props-scroller">
-            <div class="props-wrapper">
+        <section class="horizontal-scroller value-props">
+            <div class="scroll-wrapper">
                 <div class="prop-item">
-                    <div class="icon">🚚</div>
+                    <div class="prop-icon">🚚</div>
                     <h4>Free Standard Delivery</h4>
                     <p>Place an order over £180 and get free standard UK delivery.</p>
-                    <a href="#">Learn More</a>
+                    <a href="#" class="prop-link">Learn More</a>
                 </div>
                 <div class="prop-item">
-                    <div class="icon">📦</div>
+                    <div class="prop-icon">📦</div>
                     <h4>Hassle Free Returns</h4>
                     <p>Not satisfied with your order? Return it hassle free.</p>
-                    <a href="#">Learn More</a>
+                    <a href="#" class="prop-link">Learn More</a>
                 </div>
                 <div class="prop-item">
-                    <div class="icon">🔒</div>
+                    <div class="prop-icon">🔒</div>
                     <h4>100% Secure Checkout</h4>
                     <p>All orders are processed using a secure payment platform.</p>
-                    <a href="#">Learn More</a>
+                    <a href="#" class="prop-link">Learn More</a>
                 </div>
             </div>
         </section>
 
-        <div class="section-label">NEW IN</div>
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="img-container">
-                    <img src="18043.jpg" class="img-front" alt="Front">
-                    <img src="18045.jpg" class="img-back" alt="Back">
-                    <button class="add-btn">ADD TO CART</button>
-                </div>
-                <div class="product-details">
-                    <p>The Lola Kaftan</p>
-                    <p class="p-price">$416.00</p>
-                </div>
+        <section class="new-arrivals-section">
+            <div class="section-header">
+                <h2 class="section-label">NEW ARRIVALS</h2>
+                <a href="#" class="view-all">View All</a>
             </div>
-        </div>
+            <div class="horizontal-scroller">
+                <div class="product-wrapper" id="arrivals-grid">
+                    </div>
+            </div>
+        </section>
     </main>
 
+    <script src="app.js"></script>
 </body>
 </html>
