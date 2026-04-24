@@ -1,81 +1,140 @@
-/* --- NAVBAR BASE --- */
+/* RESET AND BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    color: #121212;
+    overflow-x: hidden;
+}
+
+/* NAVIGATION BAR */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
+    padding: 20px 5%;
     background: #fff;
-    border-bottom: 1px solid #f0f0f0;
     position: sticky;
     top: 0;
-    z-index: 2000;
+    z-index: 1000;
+    border-bottom: 1px solid #eee;
 }
 
-/* --- HAMBURGER --- */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: #c5a059; /* Gold accent */
+}
+
+/* HAMBURGER MENU ICON */
 .menu-toggle {
     display: flex;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
-    z-index: 3000; /* Stays above everything */
 }
 
 .bar {
-    width: 22px;
+    width: 25px;
     height: 2px;
     background: #121212;
     transition: 0.3s;
 }
 
-/* --- THE HIDDEN SIDEBAR --- */
+/* SIDEBAR NAVIGATION (HIDDEN BY DEFAULT) */
 .nav-links {
     position: fixed;
     top: 0;
-    left: -100%; /* Completely hidden off-screen */
-    width: 300px; /* Sidebar width */
+    left: -100%; /* Off-screen */
+    width: 280px;
     height: 100vh;
     background: #fff;
-    display: flex;
     flex-direction: column;
-    padding: 100px 40px; /* Space for the links */
-    gap: 25px;
-    transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-    box-shadow: 5px 0 15px rgba(0,0,0,0.05);
-    z-index: 2500;
-    list-style: none;
+    padding: 100px 40px;
+    gap: 30px;
+    transition: 0.4s ease-in-out;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+    z-index: 999;
+    list-style: none; /* Removes the dots from your screenshot */
+    display: flex;
 }
 
-/* When the menu is toggled OPEN */
 .nav-links.active {
-    left: 0;
+    left: 0; /* Slides in */
 }
 
 .nav-links a {
     text-decoration: none;
     color: #121212;
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.1rem;
+    font-weight: 600;
     text-transform: uppercase;
+}
+
+/* HERO SECTION */
+.hero {
+    height: 80vh;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.eyebrow {
+    letter-spacing: 5px;
+    font-size: 0.8rem;
+    color: #888;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.btn {
+    padding: 15px 40px;
+    background: #121212;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
     letter-spacing: 1px;
 }
 
-/* --- OVERLAY --- */
+/* OVERLAY */
 .menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.3);
-    display: none; /* Hidden by default */
-    z-index: 2400;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 900;
 }
 
 .menu-overlay.active {
     display: block;
 }
 
-/* --- ANIMATING THE HAMBURGER TO 'X' --- */
-.menu-toggle.is-active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
-.menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* FOOTER */
+footer {
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
