@@ -1,49 +1,35 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica', sans-serif; }
 
-/* Header Styling */
-.main-header { padding: 10px 20px; border-bottom: 1px solid #eee; background: #fff; }
-.header-top { display: flex; justify-content: space-between; align-items: center; height: 50px; }
+/* Header & Search Styles */
+.main-header { background: #fff; padding: 10px 20px; border-bottom: 1px solid #eee; }
+.nav-top { display: flex; justify-content: space-between; align-items: center; height: 50px; }
+.logo { font-size: 24px; font-weight: 900; letter-spacing: 10px; }
+.search-container { padding: 5px 0 10px 0; }
+.search-input { width: 100%; padding: 12px; border: 1px solid #eee; outline: none; font-size: 14px; }
+.badge { background: #000; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; vertical-align: top; }
 
-.hamburger { width: 24px; cursor: pointer; }
-.hamburger span { display: block; height: 2px; background: #000; margin: 4px 0; }
-
-.logo { font-size: 24px; font-weight: 900; letter-spacing: 10px; } /* Editorial spacing */
-
-.cart-box { position: relative; }
-.badge { position: absolute; top: -5px; right: -5px; background: #000; color: #fff; font-size: 10px; padding: 2px 5px; border-radius: 50%; }
-
-.search-input { width: 100%; padding: 10px; border: 1px solid #eee; margin-top: 10px; outline: none; }
-
-/* FIX: This removes the white gap and puts text OVER the image */
-.hero-section {
-    height: 85vh; /* Sets the height of the image area */
+/* FIX: Removes white gap and overlays text on Flux1-vedio.jpg */
+.hero-editorial {
+    height: 80vh; /* Sets height of image */
     background-size: cover;
     background-position: center;
+    position: relative;
     display: flex;
     align-items: flex-end; /* Keeps text at the bottom */
     justify-content: center;
     padding-bottom: 60px;
-    position: relative;
 }
 
-.hero-overlay { text-align: center; color: #fff; }
-.hero-title { font-size: 42px; font-weight: 300; letter-spacing: 4px; margin-bottom: 20px; text-transform: uppercase; }
+.hero-content { text-align: center; color: #ffffff; }
+.hero-heading { font-size: 42px; font-weight: 300; letter-spacing: 4px; margin-bottom: 25px; text-transform: uppercase; }
+.hero-btn { background: #d4cdc3; border: none; padding: 16px 48px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
 
-.shop-btn {
-    background: #d4cdc3; /* Matches the beige Zéré button */
-    border: none;
-    padding: 15px 45px;
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
-/* Horizontal Scroll Logic */
-.horizontal-scroller {
+/* Horizontal Scroller Fix */
+.product-scroller {
     display: flex;
     overflow-x: auto;
     padding: 20px;
     gap: 15px;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; /* Smooth swipe */
 }
-.horizontal-scroller::-webkit-scrollbar { display: none; }
+.product-scroller::-webkit-scrollbar { display: none; }
