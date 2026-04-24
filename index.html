@@ -1,95 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Store</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <header>
-        <nav class="navbar">
-            <div class="logo">BRAND<b>.</b></div>
-            
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-
-            <ul class="nav-links" id="nav-list">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-
-            <div class="cart-icon">
-                🛒 <span id="cart-count">0</span>
-            </div>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>New Collection 2026</h1>
-            <p>Quality meets minimalist design. Available now.</p>
-            <a href="#shop" class="btn">Shop Now</a>
+<header>
+    <nav class="navbar">
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
-    </section>
 
-    <section id="shop" class="container">
-        <h2 class="section-title">Featured Products</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="product-img"></div>
-                <h3>Street Hoodie</h3>
-                <p>$65.00</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <div class="product-img"></div>
-                <h3>Canvas Sneakers</h3>
-                <p>$80.00</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <div class="product-img"></div>
-                <h3>Daily Backpack</h3>
-                <p>$45.00</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <div class="product-img"></div>
-                <h3>Wool Beanie</h3>
-                <p>$25.00</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
+        <div class="logo">VELORA<span>.</span></div>
+
+        <ul class="nav-links" id="nav-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+        <div class="cart-icon">
+            <span class="icon">👜</span>
+            <span id="cart-count">0</span>
         </div>
-    </section>
+    </nav>
+</header>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-about">
-                <h3>BRAND.</h3>
-                <p>Sustainable fashion for the modern era.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Links</h4>
-                <a href="#">Shipping</a>
-                <a href="#">Returns</a>
-            </div>
-            <div class="footer-newsletter">
-                <h4>Stay Updated</h4>
-                <div class="news-input">
-                    <input type="email" placeholder="Email address">
-                    <button>Go</button>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
+<div class="menu-overlay" id="overlay"></div>
