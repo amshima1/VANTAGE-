@@ -1,112 +1,81 @@
-:root {
-    --black: #1a1a1a;
-    --white: #ffffff;
-    --gray: #f8f8f8;
-    --accent: #ff4757;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--black); }
-
-/* --- NAVIGATION --- */
+/* --- NAVBAR BASE --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
-    background: var(--white);
+    padding: 15px 5%;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
     position: sticky;
     top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 2000;
 }
 
-.logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; }
-.logo b { color: var(--accent); }
-
-.nav-links { display: flex; list-style: none; gap: 30px; }
-.nav-links a { text-decoration: none; color: var(--black); font-weight: 500; transition: 0.3s; }
-.nav-links a:hover { color: var(--accent); }
-
-/* --- HERO --- */
-.hero {
-    height: 70vh;
-    background: var(--gray);
+/* --- HAMBURGER --- */
+.menu-toggle {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 20px;
-}
-
-.hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.1; margin-bottom: 15px; }
-.hero p { font-size: 1.1rem; margin-bottom: 25px; opacity: 0.8; }
-.btn {
-    padding: 15px 40px;
-    background: var(--black);
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 4px;
-}
-
-/* --- GRID --- */
-.container { padding: 60px 5%; }
-.section-title { margin-bottom: 40px; font-size: 1.8rem; text-align: center; }
-
-.product-grid {
-    display: grid;
-    /* This makes it 1 column on mobile, 2 on tablet, 4 on desktop */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.product-card { background: var(--white); transition: transform 0.3s; }
-.product-card:hover { transform: translateY(-5px); }
-.product-img { width: 100%; height: 300px; background: #eee; margin-bottom: 15px; border-radius: 8px; }
-.add-to-cart {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background: none;
-    border: 1px solid var(--black);
+    flex-direction: column;
+    gap: 5px;
     cursor: pointer;
-    font-weight: 600;
+    z-index: 3000; /* Stays above everything */
 }
 
-/* --- FOOTER --- */
-footer { background: var(--black); color: var(--white); padding: 60px 5%; margin-top: 50px; }
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-}
-.footer-links a { display: block; color: #999; text-decoration: none; margin-bottom: 10px; }
-.news-input { display: flex; margin-top: 15px; }
-.news-input input { padding: 10px; border: none; flex: 1; }
-.news-input button { padding: 10px 20px; background: var(--accent); border: none; color: white; cursor: pointer; }
-
-/* --- RESPONSIVE MOBILE MENU --- */
-@media (max-width: 768px) {
-    .menu-toggle { display: block; cursor: pointer; }
-    .bar { display: block; width: 25px; height: 3px; margin: 5px; background: var(--black); transition: 0.3s; }
-    
-    .nav-links {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background: var(--white);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 10px rgba(0,0,0,0.05);
-        padding: 20px 0;
-    }
-
-    .nav-links.active { left: 0; }
+.bar {
+    width: 22px;
+    height: 2px;
+    background: #121212;
+    transition: 0.3s;
 }
 
-@media (min-width: 769px) {
-    .menu-toggle { display: none; }
+/* --- THE HIDDEN SIDEBAR --- */
+.nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Completely hidden off-screen */
+    width: 300px; /* Sidebar width */
+    height: 100vh;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 40px; /* Space for the links */
+    gap: 25px;
+    transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    box-shadow: 5px 0 15px rgba(0,0,0,0.05);
+    z-index: 2500;
+    list-style: none;
 }
+
+/* When the menu is toggled OPEN */
+.nav-links.active {
+    left: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #121212;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- OVERLAY --- */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    display: none; /* Hidden by default */
+    z-index: 2400;
+}
+
+.menu-overlay.active {
+    display: block;
+}
+
+/* --- ANIMATING THE HAMBURGER TO 'X' --- */
+.menu-toggle.is-active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+.menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
