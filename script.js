@@ -9,7 +9,3 @@ function toggleMenu() {
 
 menuBtn.addEventListener('click', toggleMenu);
 overlay.addEventListener('click', toggleMenu);
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', toggleMenu);
-});
