@@ -1,35 +1,23 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica', sans-serif; }
-
-/* Header & Search Styles */
+/* Fixes the header layout */
 .main-header { background: #fff; padding: 10px 20px; border-bottom: 1px solid #eee; }
-.nav-top { display: flex; justify-content: space-between; align-items: center; height: 50px; }
-.logo { font-size: 24px; font-weight: 900; letter-spacing: 10px; }
-.search-container { padding: 5px 0 10px 0; }
-.search-input { width: 100%; padding: 12px; border: 1px solid #eee; outline: none; font-size: 14px; }
-.badge { background: #000; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; vertical-align: top; }
+.nav-row { display: flex; justify-content: space-between; align-items: center; height: 45px; }
+.logo { font-size: 22px; font-weight: 900; letter-spacing: 10px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: #000; margin: 4px 0; }
+.search-row { position: relative; margin-top: 10px; padding-bottom: 5px; }
+.search-row input { width: 100%; padding: 12px; border: 1px solid #eee; outline: none; }
+.search-glass { position: absolute; right: 15px; top: 12px; color: #999; }
 
-/* FIX: Removes white gap and overlays text on Flux1-vedio.jpg */
-.hero-editorial {
-    height: 80vh; /* Sets height of image */
+/* FIX: This removes the white space by putting text ON the image */
+.hero-section {
+    height: 80vh; 
     background-size: cover;
     background-position: center;
-    position: relative;
     display: flex;
-    align-items: flex-end; /* Keeps text at the bottom */
+    align-items: flex-end; /* Keeps text at the bottom edge */
     justify-content: center;
     padding-bottom: 60px;
 }
 
-.hero-content { text-align: center; color: #ffffff; }
-.hero-heading { font-size: 42px; font-weight: 300; letter-spacing: 4px; margin-bottom: 25px; text-transform: uppercase; }
-.hero-btn { background: #d4cdc3; border: none; padding: 16px 48px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-
-/* Horizontal Scroller Fix */
-.product-scroller {
-    display: flex;
-    overflow-x: auto;
-    padding: 20px;
-    gap: 15px;
-    -webkit-overflow-scrolling: touch; /* Smooth swipe */
-}
-.product-scroller::-webkit-scrollbar { display: none; }
+.hero-content { text-align: center; color: #fff; }
+.hero-title { font-size: 40px; font-weight: 300; letter-spacing: 4px; margin-bottom: 20px; }
+.shop-btn { background: #d4cdc3; border: none; padding: 15px 45px; font-weight: bold; cursor: pointer; }
