@@ -1,23 +1,112 @@
-/* Fixes the header layout */
-.main-header { background: #fff; padding: 10px 20px; border-bottom: 1px solid #eee; }
-.nav-row { display: flex; justify-content: space-between; align-items: center; height: 45px; }
-.logo { font-size: 22px; font-weight: 900; letter-spacing: 10px; }
-.hamburger span { display: block; width: 22px; height: 2px; background: #000; margin: 4px 0; }
-.search-row { position: relative; margin-top: 10px; padding-bottom: 5px; }
-.search-row input { width: 100%; padding: 12px; border: 1px solid #eee; outline: none; }
-.search-glass { position: absolute; right: 15px; top: 12px; color: #999; }
-
-/* FIX: This removes the white space by putting text ON the image */
-.hero-section {
-    height: 80vh; 
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: flex-end; /* Keeps text at the bottom edge */
-    justify-content: center;
-    padding-bottom: 60px;
+:root {
+    --black: #1a1a1a;
+    --white: #ffffff;
+    --gray: #f8f8f8;
+    --accent: #ff4757;
 }
 
-.hero-content { text-align: center; color: #fff; }
-.hero-title { font-size: 40px; font-weight: 300; letter-spacing: 4px; margin-bottom: 20px; }
-.shop-btn { background: #d4cdc3; border: none; padding: 15px 45px; font-weight: bold; cursor: pointer; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--black); }
+
+/* --- NAVIGATION --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; }
+.logo b { color: var(--accent); }
+
+.nav-links { display: flex; list-style: none; gap: 30px; }
+.nav-links a { text-decoration: none; color: var(--black); font-weight: 500; transition: 0.3s; }
+.nav-links a:hover { color: var(--accent); }
+
+/* --- HERO --- */
+.hero {
+    height: 70vh;
+    background: var(--gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.1; margin-bottom: 15px; }
+.hero p { font-size: 1.1rem; margin-bottom: 25px; opacity: 0.8; }
+.btn {
+    padding: 15px 40px;
+    background: var(--black);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+/* --- GRID --- */
+.container { padding: 60px 5%; }
+.section-title { margin-bottom: 40px; font-size: 1.8rem; text-align: center; }
+
+.product-grid {
+    display: grid;
+    /* This makes it 1 column on mobile, 2 on tablet, 4 on desktop */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.product-card { background: var(--white); transition: transform 0.3s; }
+.product-card:hover { transform: translateY(-5px); }
+.product-img { width: 100%; height: 300px; background: #eee; margin-bottom: 15px; border-radius: 8px; }
+.add-to-cart {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: none;
+    border: 1px solid var(--black);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* --- FOOTER --- */
+footer { background: var(--black); color: var(--white); padding: 60px 5%; margin-top: 50px; }
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+}
+.footer-links a { display: block; color: #999; text-decoration: none; margin-bottom: 10px; }
+.news-input { display: flex; margin-top: 15px; }
+.news-input input { padding: 10px; border: none; flex: 1; }
+.news-input button { padding: 10px 20px; background: var(--accent); border: none; color: white; cursor: pointer; }
+
+/* --- RESPONSIVE MOBILE MENU --- */
+@media (max-width: 768px) {
+    .menu-toggle { display: block; cursor: pointer; }
+    .bar { display: block; width: 25px; height: 3px; margin: 5px; background: var(--black); transition: 0.3s; }
+    
+    .nav-links {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: var(--white);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+        padding: 20px 0;
+    }
+
+    .nav-links.active { left: 0; }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle { display: none; }
+}
