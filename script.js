@@ -1,36 +1,18 @@
-// Mobile Menu Toggle
-const menu = document.querySelector('#mobile-menu');
-const navLinks = document.querySelector('#nav-list');
+const menuBtn = document.querySelector('#mobile-menu');
+const navList = document.querySelector('#nav-list');
+const overlay = document.querySelector('#overlay');
 
-menu.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    // Animation for hamburger to X (optional)
-    menu.classList.toggle('is-active'); 
-});
+// Function to toggle menu
+const toggleMenu = () => {
+    navList.classList.toggle('active');
+    menuBtn.classList.toggle('is-active');
+    overlay.classList.toggle('active');
+};
 
-// Close menu when a link is clicked
-document.querySelectorAll('.nav-links a').forEach(n => n.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-}));
+menuBtn.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', toggleMenu); // Close if user clicks outside
 
-// Shopping Cart Feedback
-let count = 0;
-const cartCount = document.getElementById('cart-count');
-
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', () => {
-        count++;
-        cartCount.innerText = count;
-        
-        // Visual feedback
-        button.style.background = '#2ed573';
-        button.style.color = 'white';
-        button.innerText = 'Added!';
-        
-        setTimeout(() => {
-            button.style.background = 'none';
-            button.style.color = 'black';
-            button.innerText = 'Add to Cart';
-        }, 1000);
-    });
+// Close menu if a link is clicked
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', toggleMenu);
 });
