@@ -1,25 +1,95 @@
-<header class="main-header">
-    <div class="nav-row">
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="logo">F L U X</div>
-        <div class="cart-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-            <span class="badge">0</span>
-        </div>
-    </div>
-    <div class="search-row">
-        <input type="text" placeholder="Search">
-        <span class="search-glass">🔍</span>
-    </div>
-</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<section class="hero-section" style="background-image: url('Flux1-vedio.jpg');">
-    <div class="hero-content">
-        <h1 class="hero-title">SPRING READY?</h1>
-        <button class="shop-btn">SHOP NOW</button>
-    </div>
-</section>
+    <header>
+        <nav class="navbar">
+            <div class="logo">BRAND<b>.</b></div>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="nav-links" id="nav-list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <div class="cart-icon">
+                🛒 <span id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>New Collection 2026</h1>
+            <p>Quality meets minimalist design. Available now.</p>
+            <a href="#shop" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <section id="shop" class="container">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img"></div>
+                <h3>Street Hoodie</h3>
+                <p>$65.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img"></div>
+                <h3>Canvas Sneakers</h3>
+                <p>$80.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img"></div>
+                <h3>Daily Backpack</h3>
+                <p>$45.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img"></div>
+                <h3>Wool Beanie</h3>
+                <p>$25.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h3>BRAND.</h3>
+                <p>Sustainable fashion for the modern era.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Links</h4>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <div class="news-input">
+                    <input type="email" placeholder="Email address">
+                    <button>Go</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
