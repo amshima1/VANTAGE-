@@ -1,21 +1,36 @@
-const arrivals = document.getElementById('flux-arrivals');
+// Mobile Menu Toggle
+const menu = document.querySelector('#mobile-menu');
+const navLinks = document.querySelector('#nav-list');
 
-const fluxList = [
-    { name: "Flux 1", main: "Flux1-front.jpg" },
-    { name: "Flux 2", main: "Flux2-front.jpg" },
-    { name: "Flux 3", main: "Flux3-front.jpg" },
-    { name: "Flux 11", main: "Flux11-front.jpg" }
-];
+menu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    // Animation for hamburger to X (optional)
+    menu.classList.toggle('is-active'); 
+});
 
-function loadArrivals() {
-    arrivals.innerHTML = fluxList.map(p => `
-        <div class="p-card" style="flex: 0 0 190px; text-align: center;">
-            <img src="${p.main}" style="width: 100%; border: 1px solid #eee;">
-            <button style="width: 100%; padding: 12px; background: #fff; border: 1px solid #000; font-weight: bold;">ADD TO CART</button>
-            <p style="margin-top: 10px; font-size: 14px;">${p.name}</p>
-            <p><strong>€387.95</strong></p>
-        </div>
-    `).join('');
-}
+// Close menu when a link is clicked
+document.querySelectorAll('.nav-links a').forEach(n => n.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+}));
 
-document.addEventListener('DOMContentLoaded', loadArrivals);
+// Shopping Cart Feedback
+let count = 0;
+const cartCount = document.getElementById('cart-count');
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+        count++;
+        cartCount.innerText = count;
+        
+        // Visual feedback
+        button.style.background = '#2ed573';
+        button.style.color = 'white';
+        button.innerText = 'Added!';
+        
+        setTimeout(() => {
+            button.style.background = 'none';
+            button.style.color = 'black';
+            button.innerText = 'Add to Cart';
+        }, 1000);
+    });
+});
