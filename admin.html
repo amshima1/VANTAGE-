@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
 
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>📊 VANTAGE ADMIN</h1>
+
+<h2 id="revenue"></h2>
+<h2 id="ordersCount"></h2>
+
+<div id="orders"></div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+db.collection("orders").onSnapshot(snapshot => {
+
+  let box = document.getElementById("orders");
+  let total = 0;
+
+  box.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    let o = doc.data();
+    total += o.total;
+
+    box.innerHTML += `
+      <div class="order">
+        <p>Ref: ${o.ref}</p>
+        <p>Total: ₦${o.total}</p>
+      </div>
+    `;
+  });
+
+  document.getElementById("revenue").innerText =
+    "Revenue: ₦" + total;
+
+  document.getElementById("ordersCount").innerText =
+    "Orders: " + snapshot.size;
+});
+</script>
+
+</body>
+</html>
