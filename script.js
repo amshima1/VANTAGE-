@@ -12,11 +12,16 @@ function toggleMenu() {
 menuBtn.addEventListener('click', toggleMenu);
 overlay.addEventListener('click', toggleMenu);
 
+// Handle Cart Updates
 document.querySelectorAll('.add-btn').forEach(button => {
     button.addEventListener('click', () => {
         count++;
         cartCount.innerText = count;
         button.innerText = "Added";
-        setTimeout(() => { button.innerText = "Add to Cart"; }, 1000);
+        button.style.background = "#c5a059";
+        setTimeout(() => {
+            button.innerText = "Add to Cart";
+            button.style.background = "#121212";
+        }, 1200);
     });
 });
