@@ -1,23 +1,16 @@
-// Sidebar Elements
-const menuToggle = document.getElementById('mobile-menu');
-const sideMenu = document.getElementById('side-menu');
-const closeMenu = document.getElementById('close-menu');
+let cart = 0;
 
-// Sidebar Logic
-menuToggle.addEventListener('click', () => sideMenu.classList.add('active'));
-closeMenu.addEventListener('click', () => sideMenu.classList.remove('active'));
+function addToCart() {
+  cart++;
+  document.getElementById("cart-count").innerText = "🛒 " + cart;
+}
 
-// Chatbot Logic
-const chatToggle = document.getElementById('chat-toggle');
-const chatBox = document.getElementById('chat-container');
-chatToggle.addEventListener('click', () => chatBox.classList.toggle('active'));
-document.getElementById('close-chat').addEventListener('click', () => chatBox.classList.remove('active'));
+function quickView(name, price) {
+  document.getElementById("modal").style.display = "block";
+  document.getElementById("product-name").innerText = name;
+  document.getElementById("product-price").innerText = price;
+}
 
-// Cart Counter Logic
-let count = 0;
-document.querySelectorAll('.add-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        count++;
-        document.getElementById('cart-count').innerText = count;
-    });
-});
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
