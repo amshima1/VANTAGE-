@@ -1,99 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VELORA | Luxury Modern Essentials</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VANTAGE Fashion</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0f0f0f;
+  color: white;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+  url('https://images.unsplash.com/photo-1521335629791-ce4aec67dd47');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 4rem;
+}
+
+.hero button {
+  padding: 12px 25px;
+  background: gold;
+  border: none;
+  cursor: pointer;
+}
+
+/* FILTERS */
+.filters {
+  text-align: center;
+  margin: 20px;
+}
+
+.filters button {
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* PRODUCTS */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+  padding: 40px;
+}
+
+.product {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.product:hover {
+  transform: scale(1.05);
+}
+
+.product img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* CART */
+.cart-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: gold;
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+}
+
+.cart {
+  position: fixed;
+  right: -300px;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: black;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.cart.show {
+  right: 0;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
+</style>
 </head>
+
 <body>
 
-    <header class="main-header">
-        <nav class="navbar">
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="logo">VELORA<span>.</span></div>
-            <div class="cart-icon" id="cart-btn">
-                <i class="fas fa-shopping-bag"></i>
-                <span id="cart-count">0</span>
-            </div>
-        </nav>
+<!-- CART -->
+<div class="cart-icon" onclick="toggleCart()">
+🛒 <span id="cart-count">0</span>
+</div>
 
-        <div class="side-menu" id="side-menu">
-            <button class="close-menu" id="close-menu">&times;</button>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#full-collection">Shop Collection</a></li>
-                <li><a href="#">Our Story</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
+<div class="cart" id="cart">
+<h2>Your Cart</h2>
+<ul id="cart-items"></ul>
+<p>Total: ₦<span id="total">0</span></p>
+</div>
 
-        <div class="search-container">
-            <div class="search-wrapper">
-                <input type="text" placeholder="Search products...">
-                <i class="fas fa-search"></i>
-            </div>
-        </div>
-    </header>
+<!-- HERO -->
+<section class="hero">
+<div>
+<h1>VANTAGE</h1>
+<p>Modern Fashion for Bold Individuals</p>
+<button>Shop Now</button>
+</div>
+</section>
 
-    <main>
-        <section class="hero">
-            <img src="hero-bg.jpg" alt="Velora Hero" class="hero-image">
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <h1>The Velora Collection</h1>
-            </div>
-        </section>
+<!-- FILTER -->
+<div class="filters">
+<button onclick="filterProducts('all')">All</button>
+<button onclick="filterProducts('men')">Men</button>
+<button onclick="filterProducts('women')">Women</button>
+</div>
 
-        <section class="products-container" id="full-collection">
-            <h2 class="section-title">The Full Collection</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="Flux1-front.jpg" alt="Flux Elite">
-                    <div class="product-info"><h3>Flux Elite</h3><p>$120.00</p><button class="add-btn">ADD TO CART</button></div>
-                </div>
-                <div class="product-card">
-                    <img src="Wanni-Fuga-Anagram-Slip-dress.jpg" alt="Anagram Slip">
-                    <div class="product-info"><h3>Anagram Slip Dress</h3><p>$220.00</p><button class="add-btn">ADD TO CART</button></div>
-                </div>
-                <div class="product-card">
-                    <img src="Flux3-side.jpg" alt="Flux Side-Drape">
-                    <div class="product-info"><h3>Flux Side-Drape</h3><p>$160.00</p><button class="add-btn">ADD TO CART</button></div>
-                </div>
-                <div class="product-card">
-                    <img src="Flux4-front.jpg" alt="Executive Set">
-                    <div class="product-info"><h3>Executive Set</h3><p>$210.00</p><button class="add-btn">ADD TO CART</button></div>
-                </div>
-                </div>
-        </section>
-    </main>
+<!-- PRODUCTS -->
+<section class="product-grid">
 
-    <div class="chat-wrapper">
-        <button class="chat-toggle" id="chat-toggle"><i class="fas fa-comment-dots"></i></button>
-        <div class="chat-container" id="chat-container">
-            <div class="chat-header"><span>Aura Assistant</span><button id="close-chat">&times;</button></div>
-            <div class="chat-box" id="chat-box">
-                <div class="bot-msg">Hello, I'm Aura. How can I help you?</div>
-            </div>
-            <div class="chat-input">
-                <input type="text" placeholder="Type a message..." id="user-input">
-                <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-    </div>
+<div class="product men">
+<img src="https://images.unsplash.com/photo-1520975693416-35a1c1b2c5f5">
+<h3>Men Hoodie</h3>
+<p>₦25000</p>
+<button onclick="addToCart('Men Hoodie',25000)">Add to Cart</button>
+</div>
 
-    <footer class="footer-black">
-        <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-        </div>
-        <p>&copy; 2026 VELORA. All Rights Reserved.</p>
-    </footer>
+<div class="product women">
+<img src="https://images.unsplash.com/photo-1520975922284-9c1b4c6e6d4c">
+<h3>Women Dress</h3>
+<p>₦30000</p>
+<button onclick="addToCart('Women Dress',30000)">Add to Cart</button>
+</div>
 
-    <script src="./script.js"></script>
+<div class="product men">
+<img src="https://images.unsplash.com/photo-1516822003754-cca485356ecb">
+<h3>Men Jacket</h3>
+<p>₦40000</p>
+<button onclick="addToCart('Men Jacket',40000)">Add to Cart</button>
+</div>
+
+<div class="product women">
+<img src="https://images.unsplash.com/photo-1520975922284-9c1b4c6e6d4c">
+<h3>Luxury Gown</h3>
+<p>₦50000</p>
+<button onclick="addToCart('Luxury Gown',50000)">Add to Cart</button>
+</div>
+
+</section>
+
+<!-- YOU MAY ALSO LIKE -->
+<section>
+<h2 style="text-align:center;">You May Also Like</h2>
+<div class="product-grid">
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c">
+<h3>Sneakers</h3>
+<p>₦20000</p>
+<button onclick="addToCart('Sneakers',20000)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a2a">
+<h3>Cap</h3>
+<p>₦10000</p>
+<button onclick="addToCart('Cap',10000)">Add to Cart</button>
+</div>
+
+</div>
+</section>
+
+<footer>
+<p>© 2026 VANTAGE. All rights reserved.</p>
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+  cart.push({name, price});
+  updateCart();
+}
+
+function updateCart() {
+  let cartItems = document.getElementById("cart-items");
+  let total = 0;
+
+  cartItems.innerHTML = "";
+
+  cart.forEach(item => {
+    total += item.price;
+    cartItems.innerHTML += `<li>${item.name} - ₦${item.price}</li>`;
+  });
+
+  document.getElementById("total").innerText = total;
+  document.getElementById("cart-count").innerText = cart.length;
+}
+
+function toggleCart() {
+  document.getElementById("cart").classList.toggle("show");
+}
+
+function filterProducts(category) {
+  let products = document.querySelectorAll(".product");
+
+  products.forEach(p => {
+    if (category === "all" || p.classList.contains(category)) {
+      p.style.display = "block";
+    } else {
+      p.style.display = "none";
+    }
+  });
+}
+</script>
+
 </body>
 </html>
