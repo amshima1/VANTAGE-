@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VELORA | Premium Collection</title>
+    <title>VELORA | Luxury Modern Essentials</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <header>
+    <header class="main-header">
         <nav class="navbar">
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
             <div class="logo">VELORA<span>.</span></div>
-            <div class="cart-icon" id="cart-btn">👜 <span id="cart-count">0</span></div>
+            <div class="cart-icon" id="cart-btn">
+                <i class="fas fa-shopping-bag"></i>
+                <span id="cart-count">0</span>
+            </div>
         </nav>
+        <div class="search-container">
+            <div class="search-wrapper">
+                <input type="text" placeholder="Search products...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
     </header>
 
     <main>
@@ -22,11 +32,11 @@
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1>The Velora Collection</h1>
-                <a href="#featured" class="btn">SHOP NOW</a>
+                <a href="#full-collection" class="btn">SHOP NOW</a>
             </div>
         </section>
 
-        <section class="products-container" id="featured">
+        <section class="products-container" id="full-collection">
             <h2 class="section-title">The Full Collection</h2>
             <div class="product-grid">
                 <div class="product-card">
@@ -34,16 +44,16 @@
                     <div class="product-info"><h3>Flux Elite</h3><p>$120.00</p><button class="add-btn">ADD TO CART</button></div>
                 </div>
                 <div class="product-card">
-                    <img src="Wanni-Fuga-Anagram-Slip-dress.jpg" alt="Anagram Slip">
-                    <div class="product-info"><h3>Anagram Slip</h3><p>$220.00</p><button class="add-btn">ADD TO CART</button></div>
+                    <img src="Wanni-Fuga-Anagram-Slip-dress.jpg" alt="Anagram Slip Dress">
+                    <div class="product-info"><h3>Anagram Slip Dress</h3><p>$220.00</p><button class="add-btn">ADD TO CART</button></div>
                 </div>
                 <div class="product-card">
                     <img src="Flux2-front.jpg" alt="Flux Signature">
                     <div class="product-info"><h3>Flux Signature</h3><p>$145.00</p><button class="add-btn">ADD TO CART</button></div>
                 </div>
                 <div class="product-card">
-                    <img src="Flux3-side.jpg" alt="Flux Drape">
-                    <div class="product-info"><h3>Flux Drape</h3><p>$160.00</p><button class="add-btn">ADD TO CART</button></div>
+                    <img src="Flux3-side.jpg" alt="Flux Side-Drape">
+                    <div class="product-info"><h3>Flux Side-Drape</h3><p>$160.00</p><button class="add-btn">ADD TO CART</button></div>
                 </div>
                 <div class="product-card">
                     <img src="Flux4-front.jpg" alt="Executive Set">
@@ -63,7 +73,7 @@
                 </div>
                 <div class="product-card">
                     <img src="Flux8-front.jpg" alt="Classic Slim">
-                    <div class="product-info"><h3>Classic Slim</h3><p>$110.00</p><button class="add-btn">ADD TO CART</button></div>
+                    <div class="product-info"><h3>Classic Slim</h3><p>$115.00</p><button class="add-btn">ADD TO CART</button></div>
                 </div>
                 <div class="product-card">
                     <img src="Flux10-front.jpg" alt="Modern Kaftan">
@@ -76,8 +86,8 @@
     <div class="checkout-modal" id="checkout-modal">
         <div class="modal-content">
             <button class="close-btn" id="close-modal">&times;</button>
-            <h2>Your Cart</h2>
-            <p>Total Items: <span id="modal-cart-count">0</span></p>
+            <h2>Checkout</h2>
+            <p>Items: <span id="modal-cart-count">0</span></p>
             <div class="pay-btn-group">
                 <button class="pay-btn stripe">Pay with Card</button>
                 <button class="pay-btn paypal">PayPal</button>
@@ -86,10 +96,14 @@
     </div>
 
     <div class="chat-wrapper">
-        <button class="chat-toggle" id="chat-toggle"><i class="fas fa-comment"></i></button>
+        <button class="chat-toggle" id="chat-toggle"><i class="fas fa-comment-dots"></i></button>
         <div class="chat-container" id="chat-container">
-            <div class="chat-header"><span>Aura AI</span><button id="close-chat">&times;</button></div>
+            <div class="chat-header"><span>Aura AI Assistant</span><button id="close-chat">&times;</button></div>
             <div class="chat-box" id="chat-box"><div class="bot-msg">Welcome to Velora.</div></div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type a message...">
+                <button><i class="fas fa-paper-plane"></i></button>
+            </div>
         </div>
     </div>
 
@@ -98,7 +112,7 @@
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
         </div>
-        <p>&copy; 2026 VELORA</p>
+        <p>&copy; 2026 VELORA. All Rights Reserved.</p>
     </footer>
 
     <script src="./script.js"></script>
