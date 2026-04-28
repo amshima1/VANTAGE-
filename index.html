@@ -11,13 +11,28 @@
 
     <header class="main-header">
         <nav class="navbar">
-            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
             <div class="logo">VELORA<span>.</span></div>
+            
             <div class="cart-icon" id="cart-btn">
                 <i class="fas fa-shopping-bag"></i>
                 <span id="cart-count">0</span>
             </div>
         </nav>
+
+        <div class="side-menu" id="side-menu">
+            <button class="close-menu" id="close-menu">&times;</button>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#full-collection">Shop Collection</a></li>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
         <div class="search-container">
             <div class="search-wrapper">
                 <input type="text" placeholder="Search products...">
@@ -44,8 +59,8 @@
                     <div class="product-info"><h3>Flux Elite</h3><p>$120.00</p><button class="add-btn">ADD TO CART</button></div>
                 </div>
                 <div class="product-card">
-                    <img src="Wanni-Fuga-Anagram-Slip-dress.jpg" alt="Anagram Slip Dress">
-                    <div class="product-info"><h3>Anagram Slip Dress</h3><p>$220.00</p><button class="add-btn">ADD TO CART</button></div>
+                    <img src="Wanni-Fuga-Anagram-Slip-dress.jpg" alt="Anagram Slip">
+                    <div class="product-info"><h3>Anagram Slip</h3><p>$220.00</p><button class="add-btn">ADD TO CART</button></div>
                 </div>
                 <div class="product-card">
                     <img src="Flux2-front.jpg" alt="Flux Signature">
@@ -83,35 +98,15 @@
         </section>
     </main>
 
-    <div class="checkout-modal" id="checkout-modal">
-        <div class="modal-content">
-            <button class="close-btn" id="close-modal">&times;</button>
-            <h2>Checkout</h2>
-            <p>Items: <span id="modal-cart-count">0</span></p>
-            <div class="pay-btn-group">
-                <button class="pay-btn stripe">Pay with Card</button>
-                <button class="pay-btn paypal">PayPal</button>
-            </div>
-        </div>
-    </div>
-
     <div class="chat-wrapper">
         <button class="chat-toggle" id="chat-toggle"><i class="fas fa-comment-dots"></i></button>
         <div class="chat-container" id="chat-container">
-            <div class="chat-header"><span>Aura AI Assistant</span><button id="close-chat">&times;</button></div>
-            <div class="chat-box" id="chat-box"><div class="bot-msg">Welcome to Velora.</div></div>
-            <div class="chat-input">
-                <input type="text" placeholder="Type a message...">
-                <button><i class="fas fa-paper-plane"></i></button>
-            </div>
+            <div class="chat-header"><span>Aura Assistant</span><button id="close-chat">&times;</button></div>
+            <div class="chat-box" id="chat-box"><div class="bot-msg">How can I help?</div></div>
         </div>
     </div>
 
     <footer class="footer-black">
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
         <p>&copy; 2026 VELORA. All Rights Reserved.</p>
     </footer>
 
