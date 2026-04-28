@@ -1,73 +1,46 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f8f8f8;
-  color: #111;
+  font-family: Arial;
+  background: #f4f4f4;
 }
 
-/* HEADER */
 header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  background: #000;
-  color: white;
-  align-items: center;
-}
-
-header nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-/* HERO */
-.hero {
-  height: 60vh;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-  url('https://images.unsplash.com/photo-1521335629791-ce4aec67dd49') center/cover;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-}
-
-/* PRODUCTS */
-#products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 40px;
-}
-
-.product {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  transition: 0.3s;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.product:hover {
-  transform: translateY(-5px);
-}
-
-.product button {
-  padding: 8px;
-  border: none;
   background: black;
   color: white;
-  cursor: pointer;
-  margin-top: 10px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
 }
 
-/* FOOTER */
-footer {
+.hero {
   text-align: center;
-  padding: 20px;
+  padding: 50px;
   background: #111;
   color: white;
+}
+
+#products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding: 20px;
+  gap: 15px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.order {
+  background: white;
+  padding: 10px;
+  margin: 10px;
+}
+
+button {
+  padding: 8px;
+  background: black;
+  color: white;
+  border: none;
 }
