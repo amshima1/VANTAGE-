@@ -28,15 +28,7 @@
                 <span class="search-icon">🔍</span>
             </div>
         </div>
-        <ul class="nav-links" id="nav-list">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
     </header>
-
-    <div class="menu-overlay" id="overlay"></div>
 
     <section class="hero">
         <img src="hero-bg.jpg" alt="Velora Hero" class="hero-image">
@@ -48,16 +40,8 @@
     </section>
 
     <section class="products-container" id="featured">
-        <h2 class="section-title">The Full Collection</h2>
+        <h2 class="section-title">Featured Collection</h2>
         <div class="product-grid">
-            <div class="product-card">
-                <img src="Flux1-front.jpg" alt="Flux Elite">
-                <div class="product-info"><h3>Flux Elite I</h3><p>$120.00</p><button class="add-btn">Add to Cart</button></div>
-            </div>
-            <div class="product-card">
-                <img src="Wanni-Fuga-Anagram-Slip-dress.jpg" alt="Anagram Slip Dress">
-                <div class="product-info"><h3>Anagram Slip Dress</h3><p>$220.00</p><button class="add-btn">Add to Cart</button></div>
-            </div>
             <div class="product-card">
                 <img src="Flux3-side.jpg" alt="Flux Side-Drape">
                 <div class="product-info"><h3>Flux Side-Drape</h3><p>$160.00</p><button class="add-btn">Add to Cart</button></div>
@@ -76,29 +60,29 @@
                 <button id="close-modal">&times;</button>
             </div>
             <div class="modal-body">
-                <p>Items in Cart: <span id="modal-cart-count">0</span></p>
+                <p>Items: <span id="modal-cart-count">0</span></p>
                 <div class="pay-btn-group">
-                    <button class="pay-btn stripe"><i class="fab fa-stripe"></i> Pay with Card</button>
-                    <button class="pay-btn paypal"><i class="fab fa-paypal"></i> Pay with PayPal</button>
+                    <button class="pay-btn stripe">Pay with Card</button>
+                    <button class="pay-btn paypal">PayPal</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <button class="chat-toggle" id="chat-toggle"><i class="fas fa-comment-alt"></i></button>
     <div class="chat-container" id="chat-container">
         <div class="chat-header">
             <span>Aura AI Assistant</span>
             <button id="close-chat">&times;</button>
         </div>
         <div class="chat-box" id="chat-box">
-            <div class="bot-msg">Hello, I'm Aura. How can I help you with your purchase?</div>
+            <div class="bot-msg">Hello, I'm Aura. How can I help?</div>
         </div>
         <div class="chat-input">
-            <input type="text" id="user-input" placeholder="Type a message...">
+            <input type="text" id="user-input" placeholder="Message...">
             <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
-    <button class="chat-toggle" id="chat-toggle"><i class="fas fa-comment-alt"></i></button>
 
     <footer class="footer-black">
         <div class="social-icons">
@@ -106,7 +90,7 @@
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-facebook-f"></i></a>
         </div>
-        <p>&copy; 2026 VELORA. All Rights Reserved.</p>
+        <p>&copy; 2026 VELORA</p>
     </footer>
 
     <script src="./script.js"></script>
