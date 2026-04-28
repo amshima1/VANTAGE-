@@ -1,71 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VANTAGE | Fashion Store</title>
+<title>VANTAGE SAAS</title>
 <link rel="stylesheet" href="style.css">
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 </head>
 
 <body>
 
 <header>
-  <h1>VANTAGE</h1>
+  <h1>VANTAGE SAAS</h1>
   <nav>
-    <a href="#">Home</a>
-    <a href="#">Shop</a>
-    <a href="#">Contact</a>
-    <span id="cart-count">🛒 0</span>
+    <a href="index.html">Home</a>
+    <a href="vendor.html">Vendor</a>
+    <a href="admin.html">Admin</a>
+    <a href="login.html">Login</a>
+    <a href="checkout.html">Cart 🛒</a>
   </nav>
 </header>
 
 <section class="hero">
-  <h2>New Collection 2026</h2>
-  <p>Luxury meets street fashion</p>
-  <button>Shop Now</button>
+  <h2>Multi-Vendor Fashion Marketplace</h2>
 </section>
 
-<section class="products">
+<section id="products" class="grid"></section>
 
-  <div class="product">
-    <img src="img1.jpg">
-    <h3>Black Hoodie</h3>
-    <p>$25</p>
-    <button onclick="addToCart()">Add to Cart</button>
-    <button onclick="quickView('Black Hoodie', '$25')">Quick View</button>
-  </div>
-
-  <div class="product">
-    <img src="img2.jpg">
-    <h3>White Sneaker</h3>
-    <p>$40</p>
-    <button onclick="addToCart()">Add to Cart</button>
-    <button onclick="quickView('White Sneaker', '$40')">Quick View</button>
-  </div>
-
-</section>
-
-<!-- QUICK VIEW MODAL -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span onclick="closeModal()">X</span>
-    <h2 id="product-name"></h2>
-    <p id="product-price"></p>
-  </div>
-</div>
-
-<section class="recommend">
-  <h2>You May Also Like</h2>
-  <div class="products">
-    <div class="product">Sample Product</div>
-    <div class="product">Sample Product</div>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 VANTAGE. All rights reserved.</p>
-</footer>
-
-<script src="script.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
