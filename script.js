@@ -12,7 +12,7 @@ function toggleMenu() {
 menuBtn.addEventListener('click', toggleMenu);
 overlay.addEventListener('click', toggleMenu);
 
-// Handle Add to Cart
+// Cart Notification Logic
 document.querySelectorAll('.add-btn').forEach(button => {
     button.addEventListener('click', () => {
         count++;
