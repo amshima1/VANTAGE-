@@ -1,4 +1,4 @@
-// ================= FIREBASE INIT =================
+// FIREBASE INIT (REPLACE)
 const firebaseConfig = {
   apiKey: "YOUR_KEY",
   authDomain: "YOUR_DOMAIN",
@@ -8,19 +8,18 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// ================= CART =================
+// CART
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function addToCart(name, price, vendorId){
-  cart.push({name, price, vendorId});
+function addToCart(name, price){
+  cart.push({name, price});
   localStorage.setItem("cart", JSON.stringify(cart));
-  alert(name + " added");
+  alert(name + " added to cart");
 }
 
-// ================= LOAD PRODUCTS =================
+// LOAD PRODUCTS
 function loadProducts(){
   const box = document.getElementById("products");
-  if(!box) return;
 
   db.collection("products").onSnapshot(snapshot => {
     box.innerHTML = "";
@@ -29,11 +28,10 @@ function loadProducts(){
       let p = doc.data();
 
       box.innerHTML += `
-        <div class="card">
+        <div class="product">
           <h3>${p.name}</h3>
           <p>₦${p.price}</p>
-          <small>Vendor: ${p.vendorId}</small>
-          <button onclick="addToCart('${p.name}',${p.price},'${p.vendorId}')">
+          <button onclick="addToCart('${p.name}',${p.price})">
             Add to Cart
           </button>
         </div>
