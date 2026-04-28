@@ -1,28 +1,23 @@
-// Sidebar Navigation Logic
+// Sidebar Elements
 const menuToggle = document.getElementById('mobile-menu');
 const sideMenu = document.getElementById('side-menu');
 const closeMenu = document.getElementById('close-menu');
 
-// Open the menu
-menuToggle.addEventListener('click', () => {
-    sideMenu.classList.add('active');
-});
+// Sidebar Logic
+menuToggle.addEventListener('click', () => sideMenu.classList.add('active'));
+closeMenu.addEventListener('click', () => sideMenu.classList.remove('active'));
 
-// Close the menu using the 'X' button
-closeMenu.addEventListener('click', () => {
-    sideMenu.classList.remove('active');
-});
+// Chatbot Logic
+const chatToggle = document.getElementById('chat-toggle');
+const chatBox = document.getElementById('chat-container');
+chatToggle.addEventListener('click', () => chatBox.classList.toggle('active'));
+document.getElementById('close-chat').addEventListener('click', () => chatBox.classList.remove('active'));
 
-// Simple Cart Counter Logic
-let cartCount = 0;
-const cartDisplay = document.getElementById('cart-count');
-
-document.querySelectorAll('.add-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        cartCount++;
-        cartDisplay.innerText = cartCount;
-        // Optional feedback
-        button.innerText = "ADDED";
-        setTimeout(() => button.innerText = "ADD TO CART", 1000);
+// Cart Counter Logic
+let count = 0;
+document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        count++;
+        document.getElementById('cart-count').innerText = count;
     });
 });
