@@ -1,60 +1,73 @@
-// ================= FIREBASE =================
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-// ================= CART =================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function addToCart(name, price){
-  cart.push({name, price});
+// MENU
+function toggleMenu() {
+  document.getElementById("nav").classList.toggle("active");
+}
+
+// CART
+function addToCart(name, price) {
+  cart.push({ name, price });
   localStorage.setItem("cart", JSON.stringify(cart));
-  alert(name + " added to cart");
+  updateCart();
 }
 
-function getTotal(){
-  return cart.reduce((sum, i) => sum + i.price, 0);
+function updateCart() {
+  document.getElementById("cartCount").innerText = cart.length;
 }
 
-// ================= LOAD PRODUCTS =================
-function loadProducts(){
-  const box = document.getElementById("products");
-
-  db.collection("products").onSnapshot(snapshot => {
-    box.innerHTML = "";
-
-    snapshot.forEach(doc => {
-      let p = doc.data();
-
-      box.innerHTML += `
-        <div class="card">
-          <h3>${p.name}</h3>
-          <p>₦${p.price}</p>
-          <button onclick="addToCart('${p.name}', ${p.price})">
-            Add to Cart
-          </button>
-        </div>
-      `;
-    });
-  });
+// NAV
+function showHome() {
+  document.getElementById("homePage").style.display = "block";
+  document.getElementById("cartPage").style.display = "none";
 }
 
-loadProducts();
+function showCart() {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("cartPage").style.display = "block";
 
-// ================= SAVE ORDER =================
-function saveOrder(ref){
-  db.collection("orders").add({
-    cart,
-    total: getTotal(),
-    ref,
-    createdAt: new Date()
+  let container = document.getElementById("cartItems");
+  container.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach((item, i) => {
+    total += item.price;
+
+    container.innerHTML += `
+      <div class="cart-item">
+        <span>${item.name} - ₦${item.price}</span>
+        <button onclick="removeItem(${i})">X</button>
+      </div>
+    `;
   });
 
+  document.getElementById("totalPrice").innerText = total;
+}
+
+function removeItem(i) {
+  cart.splice(i, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCart();
+  showCart();
+}
+
+function checkout() {
+  alert("Checkout successful (demo)");
+  cart = [];
   localStorage.removeItem("cart");
-  alert("Order placed successfully!");
+  updateCart();
+  showHome();
 }
+
+// DARK MODE
+function toggleDark() {
+  document.body.classList.toggle("dark");
+}
+
+// SCROLL
+function scrollToShop() {
+  document.getElementById("shop").scrollIntoView();
+}
+
+updateCart();
