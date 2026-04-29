@@ -1,31 +1,131 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>VANTAGE STORE</title>
+<title>VANTAGE PREMIUM STORE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<style>
+body{font-family:Arial;margin:0;background:#f4f4f4}
+header{background:#111;color:white;padding:15px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
+.container{padding:10px}
+#productList{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.card{background:white;padding:10px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+.card img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+button{padding:6px 10px;cursor:pointer;border:none;border-radius:5px;background:black;color:white}
+button:hover{opacity:0.8}
+.cart{position:fixed;right:0;top:0;width:280px;height:100%;background:white;display:none;padding:10px;box-shadow:-2px 0 10px rgba(0,0,0,0.2)}
+input{width:100%;padding:6px;margin:5px 0}
+footer{text-align:center;background:#111;color:white;padding:15px;margin-top:20px}
+.icons a{color:white;margin:5px;text-decoration:none}/* FLOAT BUTTONS */ .whatsapp{position:fixed;bottom:20px;left:20px;background:#25D366;color:white;border-radius:50%;padding:15px;font-size:18px;text-decoration:none} .adminBtn{position:fixed;bottom:80px;right:20px;background:#000;color:white;border-radius:50%;padding:12px}
 
-<link rel="stylesheet" href="style.css">
+.adminPanel{display:none;position:fixed;top:60px;left:50%;transform:translateX(-50%);background:white;padding:15px;width:300px;box-shadow:0 0 10px gray;border-radius:10px} </style>
 
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 </head>
+<body><header>
+<h2>VANTAGE PREMIUM</h2>
+<button onclick="toggleCart()">Cart 🛒 (<span id='cartCount'>0</span>)</button>
+</header><div class="container">
+<h3>Products</h3>
+<div id="productList"></div>
+</div><!-- CART --><div id="cartBox" class="cart">
+<h3>Cart</h3>
+<div id="cartItems"></div>
+<h4>Total: ₦<span id="total">0</span></h4>
+<button onclick="pay()">Checkout</button>
+<button onclick="toggleCart()">Close</button>
+</div><!-- ADMIN PANEL --><div id="adminPanel" class="adminPanel">
+<h3>Admin Panel</h3>
+<input id="pname" placeholder="Product Name">
+<input id="pprice" placeholder="Price">
+<input id="pimg" placeholder="Image URL">
+<button onclick="addProduct()">Add Product</button>
+<button onclick="toggleAdmin()">Close</button>
+</div><button class="adminBtn" onclick="toggleAdmin()">⚙</button>
 
-<body>
+<!-- WHATSAPP --><a class="whatsapp" href="https://wa.me/234XXXXXXXXXX" target="_blank">💬</a>
 
-<header>
-  <h1>VANTAGE</h1>
-  <nav>
-    <a href="checkout.html">Cart</a>
-    <a href="login.html">Admin</a>
-  </nav>
-</header>
+<footer>
+<div class="icons">
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+<a href="#">Twitter</a>
+<a href="#">YouTube</a>
+</div>
+<p>VANTAGE © 2026 - Premium Business Website</p>
+</footer><script>
+let products = JSON.parse(localStorage.getItem("vantageProducts")) || [
+{name:"T-Shirt",price:5000,img:"https://via.placeholder.com/150"},
+{name:"Sneakers",price:15000,img:"https://via.placeholder.com/150"},
+{name:"Hoodie",price:12000,img:"https://via.placeholder.com/150"}
+];
 
-<section class="hero">
-  <h2>Modern Fashion Store</h2>
-</section>
+let cart = [];
 
-<section id="products"></section>
+function render(){
+let box=document.getElementById('productList');
+box.innerHTML="";
+products.forEach((p,i)=>{
+box.innerHTML+=`
+<div class='card'>
+<img src='${p.img}'>
+<h4>${p.name}</h4>
+<p>₦${p.price}</p>
+<button onclick='add(${i})'>Add to Cart</button>
+</div>`;
+});
+}
 
-<script src="script.js"></script>
-</body>
+function add(i){
+cart.push(products[i]);
+document.getElementById('cartCount').innerText=cart.length;
+updateCart();
+}
+
+function updateCart(){
+let c=document.getElementById('cartItems');
+c.innerHTML='';let t=0;
+cart.forEach(v=>{t+=v.price;c.innerHTML+=`<p>${v.name} - ₦${v.price}</p>`});
+document.getElementById('total').innerText=t;
+}
+
+function toggleCart(){
+let b=document.getElementById('cartBox');
+b.style.display=b.style.display==='block'?'none':'block';
+}
+
+function pay(){
+let total=cart.reduce((s,i)=>s+i.price,0);
+var handler=PaystackPop.setup({
+key:'YOUR_PUBLIC_KEY_HERE',
+email:'customer@email.com',
+amount:total*100,
+currency:'NGN',
+callback:function(){
+alert('Payment Successful!');
+cart=[];
+document.getElementById('cartCount').innerText=0;
+updateCart();
+toggleCart();
+}
+});handler.openIframe();
+}
+
+function toggleAdmin(){
+let p=document.getElementById('adminPanel');
+p.style.display=p.style.display==='block'?'none':'block';
+}
+
+function addProduct(){
+let name=document.getElementById('pname').value;
+let price=document.getElementById('pprice').value;
+let img=document.getElementById('pimg').value;
+if(!name||!price||!img)return;
+products.push({name,price:parseInt(price),img});
+localStorage.setItem("vantageProducts",JSON.stringify(products));
+render();
+toggleAdmin();
+}
+
+render();
+</script></body>
 </html>
