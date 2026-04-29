@@ -1,131 +1,100 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>VANTAGE PREMIUM STORE</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://js.paystack.co/v1/inline.js"></script>
-<style>
-body{font-family:Arial;margin:0;background:#f4f4f4}
-header{background:#111;color:white;padding:15px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
-.container{padding:10px}
-#productList{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
-.card{background:white;padding:10px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
-.card img{width:100%;height:120px;object-fit:cover;border-radius:8px}
-button{padding:6px 10px;cursor:pointer;border:none;border-radius:5px;background:black;color:white}
-button:hover{opacity:0.8}
-.cart{position:fixed;right:0;top:0;width:280px;height:100%;background:white;display:none;padding:10px;box-shadow:-2px 0 10px rgba(0,0,0,0.2)}
-input{width:100%;padding:6px;margin:5px 0}
-footer{text-align:center;background:#111;color:white;padding:15px;margin-top:20px}
-.icons a{color:white;margin:5px;text-decoration:none}/* FLOAT BUTTONS */ .whatsapp{position:fixed;bottom:20px;left:20px;background:#25D366;color:white;border-radius:50%;padding:15px;font-size:18px;text-decoration:none} .adminBtn{position:fixed;bottom:80px;right:20px;background:#000;color:white;border-radius:50%;padding:12px}
-
-.adminPanel{display:none;position:fixed;top:60px;left:50%;transform:translateX(-50%);background:white;padding:15px;width:300px;box-shadow:0 0 10px gray;border-radius:10px} </style>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VANTAGE Store</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body><header>
-<h2>VANTAGE PREMIUM</h2>
-<button onclick="toggleCart()">Cart 🛒 (<span id='cartCount'>0</span>)</button>
-</header><div class="container">
-<h3>Products</h3>
-<div id="productList"></div>
-</div><!-- CART --><div id="cartBox" class="cart">
-<h3>Cart</h3>
-<div id="cartItems"></div>
-<h4>Total: ₦<span id="total">0</span></h4>
-<button onclick="pay()">Checkout</button>
-<button onclick="toggleCart()">Close</button>
-</div><!-- ADMIN PANEL --><div id="adminPanel" class="adminPanel">
-<h3>Admin Panel</h3>
-<input id="pname" placeholder="Product Name">
-<input id="pprice" placeholder="Price">
-<input id="pimg" placeholder="Image URL">
-<button onclick="addProduct()">Add Product</button>
-<button onclick="toggleAdmin()">Close</button>
-</div><button class="adminBtn" onclick="toggleAdmin()">⚙</button>
 
-<!-- WHATSAPP --><a class="whatsapp" href="https://wa.me/234XXXXXXXXXX" target="_blank">💬</a>
+<body>
+
+<header>
+  <div class="logo">VANTAGE</div>
+
+  <div class="menu" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav">
+    <a onclick="showHome()">Home</a>
+    <a onclick="showCart()">Cart 🛒 (<span id="cartCount">0</span>)</a>
+    <span class="toggle" onclick="toggleDark()">Dark</span>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Build Your Online Store with VANTAGE</h1>
+  <p>Modern frontend e-commerce system</p>
+  <button onclick="scrollToShop()">Start Shopping</button>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div>🔥 100+ Products</div>
+  <div>💼 Fiverr Ready</div>
+  <div>⚡ Fast UI</div>
+</div>
+
+<!-- WHY -->
+<h2 class="section-title">Why Choose VANTAGE?</h2>
+
+<div class="why">
+  <div class="box">Modern Design</div>
+  <div class="box">Mobile Friendly</div>
+  <div class="box">Easy Customization</div>
+</div>
+
+<!-- HOME -->
+<div id="homePage">
+
+<h2 class="section-title" id="shop">Shop Products</h2>
+
+<section class="products">
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <h3>Product 1</h3>
+    <p>₦5,000</p>
+    <button onclick="addToCart('Product 1', 5000)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <h3>Product 2</h3>
+    <p>₦8,000</p>
+    <button onclick="addToCart('Product 2', 8000)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300">
+    <h3>Product 3</h3>
+    <p>₦12,000</p>
+    <button onclick="addToCart('Product 3', 12000)">Add to Cart</button>
+  </div>
+
+</section>
+
+<h2 class="section-title">Testimonials</h2>
+
+<div class="review">"VANTAGE is clean and professional!"</div>
+<div class="review">"Perfect Fiverr portfolio project."</div>
+
+</div>
+
+<!-- CART -->
+<div id="cartPage" class="cart-page">
+  <h2>Your Cart 🛒</h2>
+  <div id="cartItems"></div>
+
+  <h3>Total: ₦<span id="totalPrice">0</span></h3>
+
+  <button class="checkout-btn" onclick="checkout()">Checkout</button>
+</div>
 
 <footer>
-<div class="icons">
-<a href="#">Facebook</a>
-<a href="#">Instagram</a>
-<a href="#">Twitter</a>
-<a href="#">YouTube</a>
-</div>
-<p>VANTAGE © 2026 - Premium Business Website</p>
-</footer><script>
-let products = JSON.parse(localStorage.getItem("vantageProducts")) || [
-{name:"T-Shirt",price:5000,img:"https://via.placeholder.com/150"},
-{name:"Sneakers",price:15000,img:"https://via.placeholder.com/150"},
-{name:"Hoodie",price:12000,img:"https://via.placeholder.com/150"}
-];
+  © 2026 VANTAGE Store
+</footer>
 
-let cart = [];
-
-function render(){
-let box=document.getElementById('productList');
-box.innerHTML="";
-products.forEach((p,i)=>{
-box.innerHTML+=`
-<div class='card'>
-<img src='${p.img}'>
-<h4>${p.name}</h4>
-<p>₦${p.price}</p>
-<button onclick='add(${i})'>Add to Cart</button>
-</div>`;
-});
-}
-
-function add(i){
-cart.push(products[i]);
-document.getElementById('cartCount').innerText=cart.length;
-updateCart();
-}
-
-function updateCart(){
-let c=document.getElementById('cartItems');
-c.innerHTML='';let t=0;
-cart.forEach(v=>{t+=v.price;c.innerHTML+=`<p>${v.name} - ₦${v.price}</p>`});
-document.getElementById('total').innerText=t;
-}
-
-function toggleCart(){
-let b=document.getElementById('cartBox');
-b.style.display=b.style.display==='block'?'none':'block';
-}
-
-function pay(){
-let total=cart.reduce((s,i)=>s+i.price,0);
-var handler=PaystackPop.setup({
-key:'YOUR_PUBLIC_KEY_HERE',
-email:'customer@email.com',
-amount:total*100,
-currency:'NGN',
-callback:function(){
-alert('Payment Successful!');
-cart=[];
-document.getElementById('cartCount').innerText=0;
-updateCart();
-toggleCart();
-}
-});handler.openIframe();
-}
-
-function toggleAdmin(){
-let p=document.getElementById('adminPanel');
-p.style.display=p.style.display==='block'?'none':'block';
-}
-
-function addProduct(){
-let name=document.getElementById('pname').value;
-let price=document.getElementById('pprice').value;
-let img=document.getElementById('pimg').value;
-if(!name||!price||!img)return;
-products.push({name,price:parseInt(price),img});
-localStorage.setItem("vantageProducts",JSON.stringify(products));
-render();
-toggleAdmin();
-}
-
-render();
-</script></body>
+<script src="script.js"></script>
+</body>
 </html>
