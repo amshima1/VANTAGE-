@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Maison Élara | haute couture rêvée</title>
+  <title>Maison Élara | Dreamy Haute Couture</title>
   <!-- Font Awesome 6 for colorful icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
@@ -18,11 +18,11 @@
         <i class="fas fa-feather-alt"></i> Maison Élara
       </div>
       <div class="nav-links">
-        <a href="#"><i class="fas fa-gem"></i> Nouveauté</a>
-        <a href="#"><i class="fas fa-tshirt"></i> Prêt-à-porter</a>
+        <a href="#"><i class="fas fa-gem"></i> New Arrivals</a>
+        <a href="#"><i class="fas fa-tshirt"></i> Ready-to-Wear</a>
         <a href="#"><i class="fas fa-crown"></i> Couture</a>
         <a href="#" id="cart-toggle" class="cart-icon">
-          <i class="fas fa-shopping-bag"></i> Panier <span id="cart-count">0</span>
+          <i class="fas fa-shopping-bag"></i> Cart <span id="cart-count">0</span>
         </a>
       </div>
     </div>
@@ -31,10 +31,10 @@
   <main class="container">
     <section class="hero">
       <div class="hero-text">
-        <h1>Éclat de Soie</h1>
-        <p>Collection printemps · couleurs vibrantes & pièces uniques</p>
+        <h1>Silk Radiance</h1>
+        <p>Spring Collection · Vibrant Colors & Unique Pieces</p>
         <button class="btn-shop" onclick="document.querySelector('.product-grid').scrollIntoView({behavior:'smooth'})">
-          <i class="fas fa-star"></i> Découvrir
+          <i class="fas fa-star"></i> Discover
         </button>
       </div>
       <div class="hero-image">
@@ -42,22 +42,22 @@
       </div>
     </section>
 
-    <h2 class="section-title"><i class="fas fa-palette" style="color:#d4af37;"></i> Nos Trésors</h2>
+    <h2 class="section-title"><i class="fas fa-palette" style="color:#d4af37;"></i> Our Treasures</h2>
     <div class="product-grid" id="productGrid"></div>
 
     <!-- Cart panel (colorful) -->
     <div class="cart-panel" id="cartPanel">
-      <h2 style="display: flex; gap:10px; color:#2c1e3f;"><i class="fas fa-shopping-basket"></i> Votre Sélection</h2>
-      <div id="cartItemsContainer" class="cart-items">Votre panier est vide.</div>
+      <h2 style="display: flex; gap:10px; color:#2c1e3f;"><i class="fas fa-shopping-basket"></i> Your Selection</h2>
+      <div id="cartItemsContainer" class="cart-items">Your cart is empty.</div>
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-        <span class="total">Total: <span id="cartTotal">0 €</span></span>
-        <button class="checkout-btn" id="checkoutButton"><i class="fas fa-lock"></i> Payer</button>
+        <span class="total">Total: <span id="cartTotal">$0</span></span>
+        <button class="checkout-btn" id="checkoutButton"><i class="fas fa-lock"></i> Checkout</button>
       </div>
     </div>
   </main>
 
   <footer>
-    <p>© 2025 Maison Élara · <i class="fas fa-heart" style="color:#f28482;"></i> fait avec passion</p>
+    <p>© 2025 Maison Élara · <i class="fas fa-heart" style="color:#f28482;"></i> made with passion</p>
   </footer>
 
   <script src="script.js"></script>
